@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 4 - Forças Internas e Tensões</title>
+    <link rel="stylesheet" media="all" href="/assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="/3-mec_resistencia_materiais/Aula3-Reaçõesdeapoio.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 4 - Forças Internas e Tensões</h2>
+<div class="container">
+
+    <h3>Forças Externas e Reações de Apoio:</h3>
+    <p>Antes de calcular as forças internas e as tensões, é crucial determinar as forças externas atuantes sobre o corpo e as reações de apoio. Esse passo envolve:</p>
+
+    <ul>
+        <li><strong>Diagrama de Corpo Livre (DCL):</strong> Representar o corpo isolado, indicando todas as forças externas e as reações nos apoios.</li>
+        <li><strong>Equações de Equilíbrio:</strong>
+            <ul>
+                <li><strong>Somatório das forças horizontais:</strong> Somatório das forças em X, igual a zero.</li>
+                <li><strong>Somatório das forças verticais:</strong> Somatório das forças em Y, igual a zero.</li>
+                <li><strong>Somatório dos momentos em torno de um ponto:</strong> Somatório dos momentos no ponto, igual a zero.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <p>Essas equações permitem calcular as reações de apoio necessárias para manter o equilíbrio.</p>
+
+    <h3>Cálculo das Forças Internas: Método das Seções</h3>
+    <p>As forças internas são aquelas que atuam dentro de uma estrutura e garantem que ela resista às forças externas aplicadas. Quando uma estrutura está submetida a forças externas, como cargas, essas forças criam esforços internos que mantêm o corpo coeso. Esses esforços são fundamentais para determinar se o material ou a estrutura pode suportar as cargas sem falhar.</p>
+
+    <p>O cálculo das forças internas ajuda a prever onde podem ocorrer falhas, garantir a segurança e dimensionar corretamente componentes estruturais. O método das seções é utilizado para determinar essas forças em pontos específicos da estrutura. Ele envolve dividir a estrutura em partes e aplicar as equações de equilíbrio em cada uma. As forças internas calculadas são:</p>
+
+    <ul>
+        <li><strong>Força Normal (N):</strong> Atua perpendicularmente à seção transversal e é gerada por forças externas que puxam (tração) ou empurram (compressão) as partes do corpo.</li>
+        <li><strong>Força Cortante (V):</strong> Atua no plano da seção transversal e causa deslizamento entre as partes do corpo, provocando cisalhamento.</li>
+        <li><strong>Momento Fletor (M):</strong> Momento que provoca a flexão do corpo em relação ao eixo da seção, causando curvatura.</li>
+        <li><strong>Torque (T):</strong> Resultante de forças externas que tendem a torcer a estrutura em torno de seu eixo longitudinal.</li>
+    </ul>
+
+    <h3>Procedimento:</h3>
+    <ul>
+        <li>Escolher um ponto de interesse.</li>
+        <li>Cortar o corpo na seção que passa pelo ponto.</li>
+        <li>Aplicar as equações de equilíbrio para a porção restante.</li>
+    </ul>
+
+    <h3>Cálculo da Tensão no Material</h3>
+    <p>Uma vez determinadas as forças internas, o próximo passo é calcular as tensões no material, que são diretamente relacionadas às forças internas e à geometria da seção.</p>
+
+    <ul>
+        <li><strong>Tensão Normal Média (σ):</strong> É a razão entre a força normal e a área da seção transversal. Pode ser uma tensão de tração (quando puxa) ou tensão de compressão (quando empurra).</li>
+        <li><strong>Tensão de Cisalhamento Média (τ):</strong> Relaciona-se à força cortante aplicada paralelamente à seção transversal.</li>
+        <li><strong>Tensão Admissível:</strong> A tensão máxima que o material pode suportar sem falhar, geralmente na região de deformação elástica, e é calculada com base no coeficiente de segurança.</li>
+    </ul>
+
+    <h3>Considerações Finais:</h3>
+    <ul>
+        <li>Para garantir a segurança estrutural, a tensão admissível nunca deve ser excedida.</li>
+        <li>Em casos de cargas dinâmicas, o coeficiente de segurança deve ser maior.</li>
+        <li>Materiais dúcteis e frágeis possuem critérios de falha diferentes para dimensionamento.</li>
+    </ul>
+</div>
+
+</body>
+</html>

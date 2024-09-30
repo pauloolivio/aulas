@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Básica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            justify-content: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        h2{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .calculator {
+            margin-bottom: 10px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 600px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 618px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            button {
+            width: 260px;
+        }
+            input {
+            width: 240px;
+        }
+        h1{
+            font-size: 25px;
+        }
+        label, h2{
+            font-size: 17px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Básica</h1>
+        
+        <div class="calculator">
+            <h2>Período</h2>
+            <label for="velocidade_angular_periodo">Velocidade Ângular (rad/s):</label>
+            <input type="number" id="velocidade_angular_periodo" placeholder="Digite a velocidade angular">
+            <button onclick="calcularPeriodo()">Calcular</button>
+            <div id="resultadoPeriodo" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Frequência</h2>
+            <label for="velocidade_angular_frequencia">Velocidade Ângular (rad/s):</label>
+            <input type="number" id="velocidade_angular_frequencia" placeholder="Digite a velocidade angular">
+            <button onclick="calcularFrequencia()">Calcular</button>
+            <div id="resultadoFrequencia" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Velocidade Tangencial</h2>
+            <label for="rotacao_velocidade">Rotação (rpm):</label>
+            <input type="number" id="rotacao_velocidade" placeholder="Digite a rotação">
+            <label for="raio_velocidade">Raio (m):</label>
+            <input type="number" id="raio_velocidade" placeholder="Digite o raio">
+            <button onclick="calcularVelocidadeTangencial()">Calcular</button>
+            <div id="resultadoVelocidade" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Rotação</h2>
+            <label for="velocidade_tangencial">Velocidade Tangencial (m/s):</label>
+            <input type="number" id="velocidade_tangencial" placeholder="Digite a velocidade tangencial">
+            <label for="raio_rotacao">Raio (m):</label>
+            <input type="number" id="raio_rotacao" placeholder="Digite o raio">
+            <button onclick="calcularRotacao()">Calcular</button>
+            <div id="resultadoRotacao" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Força Tangencial</h2>
+            <label for="torque_forca">Torque (N.m):</label>
+            <input type="number" id="torque_forca" placeholder="Digite o torque">
+            <label for="raio_forca">Raio (m):</label>
+            <input type="number" id="raio_forca" placeholder="Digite o raio">
+            <button onclick="calcularForca()">Calcular</button>
+            <div id="resultadoForca" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Momento Torçor (Torque) </h2>
+            <label for="potencia_torque">Potência (Watts):</label>
+            <input type="number" id="potencia_torque" placeholder="Digite a potência">
+            <label for="rotacao_torque">Rotação (rpm):</label>
+            <input type="number" id="rotacao_torque" placeholder="Digite a rotação">
+            <button onclick="calcularTorque()">Calcular</button>
+            <div id="resultadoTorque" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Relação de Transmissão (Dentes/Diâmetro)</h2>
+            <label for="dentes_pinhao">Número de dentes ou diâmetro do pinhão:</label>
+            <input type="number" id="dentes_pinhao" placeholder="Digite o número de dentes do pinhão">
+            <label for="dentes_coroa">Número de dentes ou diâmetro da coroa:</label>
+            <input type="number" id="dentes_coroa" placeholder="Digite o número de dentes da coroa">
+            <button onclick="calcularRelacaoTransmissaoDentes()">Calcular</button>
+            <div id="resultadoRelacaoTransmissaoDentes" class="result"></div>
+        </div>
+
+        <div class="calculator">
+            <h2>Relação de Transmissão (Velocidade)</h2>
+            <label for="velocidade_pinhao">Velocidade angular ou rotação do pinhão:</label>
+            <input type="number" id="velocidade_pinhao" placeholder="Digite a velocidade do pinhão">
+            <label for="velocidade_coroa">Velocidade angular ou rotação da coroa:</label>
+            <input type="number" id="velocidade_coroa" placeholder="Digite a velocidade da coroa">
+            <button onclick="calcularRelacaoTransmissaoVelocidade()">Calcular</button>
+            <div id="resultadoRelacaoTransmissaoVelocidade" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        function calcularPeriodo() {
+            const velocidadeAngular = parseFloat(document.getElementById('velocidade_angular_periodo').value);
+            if (velocidadeAngular) {
+                const periodo = (2 * Math.PI) / velocidadeAngular;
+                document.getElementById('resultadoPeriodo').innerHTML = `Período: ${periodo.toFixed(2)} s`;
+            } else {
+                document.getElementById('resultadoPeriodo').innerHTML = 'Por favor, insira a velocidade angular.';
+            }
+        }
+
+        function calcularFrequencia() {
+            const velocidadeAngular = parseFloat(document.getElementById('velocidade_angular_frequencia').value);
+            if (velocidadeAngular) {
+                const frequencia = velocidadeAngular / (2 * Math.PI);
+                document.getElementById('resultadoFrequencia').innerHTML = `Frequência: ${frequencia.toFixed(2)} Hz`;
+            } else {
+                document.getElementById('resultadoFrequencia').innerHTML = 'Por favor, insira a velocidade angular.';
+            }
+        }
+
+        function calcularVelocidadeTangencial() {
+            const rotacao = parseFloat(document.getElementById('rotacao_velocidade').value);
+            const raio = parseFloat(document.getElementById('raio_velocidade').value);
+
+            if (rotacao && raio) {
+                const velocidadeAngular = (rotacao * 2 * Math.PI) / 60; // rad/s
+                const velocidadeTangencial = velocidadeAngular * raio;
+                const resultado = `Velocidade Angular: ${velocidadeAngular.toFixed(2)} rad/s<br>
+                                   Velocidade Tangencial: ${velocidadeTangencial.toFixed(2)} m/s`;
+                document.getElementById('resultadoVelocidade').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoVelocidade').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+
+        function calcularRotacao() {
+            const velocidadeTangencial = parseFloat(document.getElementById('velocidade_tangencial').value);
+            const raio = parseFloat(document.getElementById('raio_rotacao').value);
+
+            if (velocidadeTangencial && raio) {
+                const velocidadeAngular = velocidadeTangencial / raio;
+                const rotacao = (velocidadeAngular * 60) / (2 * Math.PI);
+                const resultado = `Velocidade Angular: ${velocidadeAngular.toFixed(2)} rad/s<br>
+                                   Rotação: ${rotacao.toFixed(2)} rpm`;
+                document.getElementById('resultadoRotacao').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoRotacao').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+
+        function calcularForca() {
+            const torque = parseFloat(document.getElementById('torque_forca').value);
+            const raio = parseFloat(document.getElementById('raio_forca').value);
+
+            if (torque && raio) {
+                const forcaTangencial = torque / raio;
+                const resultado = `Força Tangencial: ${forcaTangencial.toFixed(2)} N`;
+                document.getElementById('resultadoForca').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoForca').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+
+        function calcularTorque() {
+            const potencia = parseFloat(document.getElementById('potencia_torque').value);
+            const rotacao = parseFloat(document.getElementById('rotacao_torque').value);
+
+            if (potencia && rotacao) {
+                const velocidadeAngular = (rotacao * 2 * Math.PI) / 60; // rad/s
+                const torque = potencia / velocidadeAngular;
+                const resultado = `Torque: ${torque.toFixed(2)} N.m`;
+                document.getElementById('resultadoTorque').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoTorque').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+
+        function calcularRelacaoTransmissaoDentes() {
+            const dentesPinhao = parseFloat(document.getElementById('dentes_pinhao').value);
+            const dentesCoroa = parseFloat(document.getElementById('dentes_coroa').value);
+
+            if (dentesPinhao && dentesCoroa) {
+                const relacaoTransmissao = dentesCoroa / dentesPinhao;
+                const resultado = `Relação de Transmissão: ${relacaoTransmissao.toFixed(2)}`;
+                document.getElementById('resultadoRelacaoTransmissaoDentes').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoRelacaoTransmissaoDentes').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+
+        function calcularRelacaoTransmissaoVelocidade() {
+            const velocidadePinhao = parseFloat(document.getElementById('velocidade_pinhao').value);
+            const velocidadeCoroa = parseFloat(document.getElementById('velocidade_coroa').value);
+
+            if (velocidadePinhao && velocidadeCoroa) {
+                const relacaoTransmissao = velocidadePinhao / velocidadeCoroa;
+                const resultado = `Relação de Transmissão: ${relacaoTransmissao.toFixed(2)}`;
+                document.getElementById('resultadoRelacaoTransmissaoVelocidade').innerHTML = resultado;
+            } else {
+                document.getElementById('resultadoRelacaoTransmissaoVelocidade').innerHTML = 'Por favor, insira ambos os valores.';
+            }
+        }
+    </script>
+</body>
+</html>
