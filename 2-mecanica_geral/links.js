@@ -1,5 +1,5 @@
 const links = [
-    { text: "Link da disciplina", url: "https://classroom.google.com/c/Njg1ODc1MDI3MTYx" },
+    { text: "Link da disciplina", url: "https://classroom.google.com/u/1/c/Njg1ODc1MDI3MTYx" },
   ];
   
   function loadLinks() {
