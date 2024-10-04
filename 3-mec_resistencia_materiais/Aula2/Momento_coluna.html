@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Momentos em uma Coluna</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        canvas {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 300px;
+        }
+        label {
+            margin: 5px;
+            text-align: center;
+            width: 100%;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            max-width: 300px;
+            background-color: #007bff;
+            color: white;
+            display: block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                text-align: center;
+            }
+            label {
+                font-size: 16px;
+            }
+            input {
+                width: 90%;
+            }
+            button {
+                max-width: 90%;
+            }
+            canvas {
+                height: 300px;
+            }
+            #result {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Momentos em uma Coluna</h1>
+    <canvas id="coluna" width="300" height="450"></canvas>
+    <div class="input-container">
+        <label>Força (N):
+            <input type="number" id="forca" />
+        </label>
+        <label>Posição (m):
+            <input type="number" id="posicao" min="0" max="1" step="0.1" />
+        </label>
+        <button onclick="adicionarForca()">Adicionar Força</button>
+        <button onclick="calcularMomentos()">Calcular Momentos</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const canvas = document.getElementById('coluna');
+        const ctx = canvas.getContext('2d');
+        const forcas = [];
+
+        function desenharColuna() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Criar gradiente azul horizontal
+            const gradiente = ctx.createLinearGradient(130, 50, 170, 50);
+            gradiente.addColorStop(0, '#00f');
+            gradiente.addColorStop(1, '#005');
+
+            // Desenhar o retângulo da coluna
+            ctx.fillStyle = gradiente;
+            ctx.fillRect(140, 50, 20, 350);
+
+            // Desenhar o apoio
+            desenharApoio(150, 400, 'A');
+
+            for (let i = 0; i < forcas.length; i++) {
+                const { posicao, forca } = forcas[i];
+                const y = 400 - posicao * 350;
+                
+                ctx.font = '16px Arial';
+                ctx.fillStyle = 'black';
+                ctx.beginPath();
+                ctx.moveTo(100, y);
+                ctx.lineTo(140, y);
+                ctx.strokeStyle = 'red';
+                ctx.stroke();
+                ctx.fillText(`${forca} N`, 65, y + 5);
+            }
+
+            // Desenhar a linha da cota
+            ctx.beginPath();
+            ctx.moveTo(200, 50);
+            ctx.lineTo(200, 400);
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            
+            // Adicionar texto "1 m"
+            ctx.font = '18px Arial';
+            ctx.fillText("1 m", 205, 250);
+        }
+
+        function desenharApoio(x, y, letra) {
+            // Desenhar retângulo preto como apoio
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x - 30, y, 60, 20);
+
+            // Adicionar letra do apoio
+            ctx.font = '18px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText(letra, x - 5, y + 35);
+        }
+
+        function adicionarForca() {
+            const forca = parseFloat(document.getElementById('forca').value);
+            const posicao = parseFloat(document.getElementById('posicao').value);
+            if (forcas.length < 4 && !isNaN(forca) && !isNaN(posicao) && posicao <= 1) {
+                forcas.push({ forca, posicao });
+                desenharColuna();
+            } else {
+                alert("A posição deve estar entre 0 e 1 metro.");
+            }
+        }
+
+        function calcularMomentos() {
+            let momentoA = 0;
+
+            for (const { forca, posicao } of forcas) {
+                momentoA += forca * posicao;
+            }
+
+            const sentido = momentoA >= 0 ? "HORÁRIO": "ANTI-HORÁRIO";
+            document.getElementById('result').innerText = `Momento em A: ${Math.abs(momentoA).toFixed(2)} Nm (SENTIDO ${sentido})`;
+        }
+
+        desenharColuna();
+    </script>
+</body>
+</html>

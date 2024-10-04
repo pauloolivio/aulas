@@ -42,59 +42,41 @@
         <a class="btn btn-default btn-sm" href="/3-mec_resistencia_materiais/Aula3-Reaçõesdeapoio.html">
             <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
         </a>
-        <h2>Pré Aula 4 - Forças Internas e Tensões</h2>
+        <h2>Pré Aula 3 - Reações de Apoio</h2>
 <div class="container">
-
-    <h3>Forças Externas e Reações de Apoio:</h3>
-    <p>Antes de calcular as forças internas e as tensões, é crucial determinar as forças externas atuantes sobre o corpo e as reações de apoio. Esse passo envolve:</p>
-
+    
+    <p>As reações de apoio ocorrem nos pontos onde um corpo em equilíbrio está apoiado ou fixado, sendo geradas em resposta a forças e momentos aplicados externamente. Essas reações são fundamentais para garantir o equilíbrio do corpo, neutralizando as forças externas. Ao analisar um sistema bidimensional, as reações de apoio podem ser determinadas através do uso de equações de equilíbrio.</p>
+    
+    <h3>Tipos Comuns de Apoios:</h3>
     <ul>
-        <li><strong>Diagrama de Corpo Livre (DCL):</strong> Representar o corpo isolado, indicando todas as forças externas e as reações nos apoios.</li>
-        <li><strong>Equações de Equilíbrio:</strong>
-            <ul>
-                <li><strong>Somatório das forças horizontais:</strong> Somatório das forças em X, igual a zero.</li>
-                <li><strong>Somatório das forças verticais:</strong> Somatório das forças em Y, igual a zero.</li>
-                <li><strong>Somatório dos momentos em torno de um ponto:</strong> Somatório dos momentos no ponto, igual a zero.</li>
-            </ul>
-        </li>
+        <li><strong>Apoio Fixo:</strong> Restringe as translações e rotações, fornecendo reações tanto horizontais quanto verticais e momentos.</li>
+        <li><strong>Apoio Móvel:</strong> Restringe apenas a translação em uma direção, fornecendo uma reação perpendicular à superfície de apoio (normal).</li>
+        <li><strong>Pino e Rolete:</strong> Permitem rotação e restringem translações em uma ou duas direções, fornecendo reações horizontais e/ou verticais.</li>
     </ul>
 
-    <p>Essas equações permitem calcular as reações de apoio necessárias para manter o equilíbrio.</p>
+    <h3>Passo a Passo para Encontrar Reações de Apoio:</h3>
 
-    <h3>Cálculo das Forças Internas: Método das Seções</h3>
-    <p>As forças internas são aquelas que atuam dentro de uma estrutura e garantem que ela resista às forças externas aplicadas. Quando uma estrutura está submetida a forças externas, como cargas, essas forças criam esforços internos que mantêm o corpo coeso. Esses esforços são fundamentais para determinar se o material ou a estrutura pode suportar as cargas sem falhar.</p>
+    <h3>1. Identificação do Sistema e Desenho do DCL:</h3>
+    <p>Isole o corpo em questão e desenhe seu Diagrama de Corpo Livre (DCL). No DCL, identifique todos os pontos de apoio e as forças atuantes (forças pontuais e cargas distribuídas). Represente graficamente as reações de apoio nas direções adequadas (vertical, horizontal ou momentos).</p>
 
-    <p>O cálculo das forças internas ajuda a prever onde podem ocorrer falhas, garantir a segurança e dimensionar corretamente componentes estruturais. O método das seções é utilizado para determinar essas forças em pontos específicos da estrutura. Ele envolve dividir a estrutura em partes e aplicar as equações de equilíbrio em cada uma. As forças internas calculadas são:</p>
-
+    <h3>2. Escreva as Equações de Equilíbrio:</h3>
+    <p>Use as equações de equilíbrio para o corpo no plano bidimensional:</p>
     <ul>
-        <li><strong>Força Normal (N):</strong> Atua perpendicularmente à seção transversal e é gerada por forças externas que puxam (tração) ou empurram (compressão) as partes do corpo.</li>
-        <li><strong>Força Cortante (V):</strong> Atua no plano da seção transversal e causa deslizamento entre as partes do corpo, provocando cisalhamento.</li>
-        <li><strong>Momento Fletor (M):</strong> Momento que provoca a flexão do corpo em relação ao eixo da seção, causando curvatura.</li>
-        <li><strong>Torque (T):</strong> Resultante de forças externas que tendem a torcer a estrutura em torno de seu eixo longitudinal.</li>
+        <li><strong>Somatório das forças horizontais igual a zero:</strong> ΣF<sub>x</sub> = 0 (somatório das forças em x igual a zero).</li>
+        <li><strong>Somatório das forças verticais igual a zero:</strong> ΣF<sub>y</sub> = 0 (somatório das forças em y igual a zero).</li>
+        <li><strong>Somatório dos momentos em relação a um ponto igual a zero:</strong> ΣM = 0 (somatório dos momentos igual a zero).</li>
     </ul>
 
-    <h3>Procedimento:</h3>
-    <ul>
-        <li>Escolher um ponto de interesse.</li>
-        <li>Cortar o corpo na seção que passa pelo ponto.</li>
-        <li>Aplicar as equações de equilíbrio para a porção restante.</li>
-    </ul>
+    <h3>3. Aplicação das Equações de Equilíbrio:</h3>
+    <p>Substitua as forças e momentos conhecidos nas equações. Para cargas distribuídas, calcule a força equivalente e sua posição a partir do centro de gravidade da distribuição. Se houver múltiplas incógnitas, escolha um ponto conveniente para calcular os momentos, de modo a eliminar algumas incógnitas nas equações.</p>
 
-    <h3>Cálculo da Tensão no Material</h3>
-    <p>Uma vez determinadas as forças internas, o próximo passo é calcular as tensões no material, que são diretamente relacionadas às forças internas e à geometria da seção.</p>
+    <h3>4. Resolução das Incógnitas:</h3>
+    <p>Resolva o sistema de equações simultâneas para encontrar as reações de apoio. Certifique-se de verificar a consistência das respostas, garantindo que elas satisfaçam todas as equações de equilíbrio.</p>
 
-    <ul>
-        <li><strong>Tensão Normal Média (σ):</strong> É a razão entre a força normal e a área da seção transversal. Pode ser uma tensão de tração (quando puxa) ou tensão de compressão (quando empurra).</li>
-        <li><strong>Tensão de Cisalhamento Média (τ):</strong> Relaciona-se à força cortante aplicada paralelamente à seção transversal.</li>
-        <li><strong>Tensão Admissível:</strong> A tensão máxima que o material pode suportar sem falhar, geralmente na região de deformação elástica, e é calculada com base no coeficiente de segurança.</li>
-    </ul>
+    <h3>5. Verificação Final:</h3>
+    <p>Revise as unidades e direções das reações obtidas. Caso o resultado de uma força ou momento seja negativo, o sentido da reação é oposto ao assumido inicialmente no DCL.</p>
 
-    <h3>Considerações Finais:</h3>
-    <ul>
-        <li>Para garantir a segurança estrutural, a tensão admissível nunca deve ser excedida.</li>
-        <li>Em casos de cargas dinâmicas, o coeficiente de segurança deve ser maior.</li>
-        <li>Materiais dúcteis e frágeis possuem critérios de falha diferentes para dimensionamento.</li>
-    </ul>
+ 
 </div>
 
 </body>

@@ -42,59 +42,56 @@
         <a class="btn btn-default btn-sm" href="/3-mec_resistencia_materiais/Aula2-Momentodeumaforça.html">
             <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
         </a>
-        <h2>Pré Aula 4 - Forças Internas e Tensões</h2>
+        <h2>Pré Aula 2 - Equilíbrio e Momento de uma Força</h2>
 <div class="container">
 
-    <h3>Forças Externas e Reações de Apoio:</h3>
-    <p>Antes de calcular as forças internas e as tensões, é crucial determinar as forças externas atuantes sobre o corpo e as reações de apoio. Esse passo envolve:</p>
+    <h3>Equilíbrio de uma Partícula</h3>
+    <p>O equilíbrio de uma partícula ocorre quando ela está em repouso ou em movimento retilíneo uniforme, ou seja, com velocidade constante. Esse conceito deriva da Primeira Lei de Newton, que afirma que a soma das forças que atuam sobre uma partícula em equilíbrio é zero. Assim, a equação fundamental do equilíbrio é o <strong>somatório das forças igual a zero</strong>.</p>
+    <p>Se uma partícula está sujeita a múltiplas forças, a resultante dessas forças precisa ser zero para garantir o equilíbrio.</p>
 
+    <h3>Diagrama de Corpo Livre (DCL)</h3>
+    <p>O diagrama de corpo livre é uma representação gráfica usada para visualizar todas as forças que atuam sobre uma partícula ou corpo. Para construir um DCL:</p>
     <ul>
-        <li><strong>Diagrama de Corpo Livre (DCL):</strong> Representar o corpo isolado, indicando todas as forças externas e as reações nos apoios.</li>
-        <li><strong>Equações de Equilíbrio:</strong>
-            <ul>
-                <li><strong>Somatório das forças horizontais:</strong> Somatório das forças em X, igual a zero.</li>
-                <li><strong>Somatório das forças verticais:</strong> Somatório das forças em Y, igual a zero.</li>
-                <li><strong>Somatório dos momentos em torno de um ponto:</strong> Somatório dos momentos no ponto, igual a zero.</li>
-            </ul>
-        </li>
+        <li>Desenhe o contorno do ponto ou corpo.</li>
+        <li>Adicione todas as forças conhecidas e desconhecidas que atuam sobre ele.</li>
+        <li>Identifique claramente cada força (magnitude, direção e sentido).</li>
+        <li>Evite detalhes desnecessários no desenho para manter a clareza do DCL.</li>
     </ul>
 
-    <p>Essas equações permitem calcular as reações de apoio necessárias para manter o equilíbrio.</p>
+    <h3>Sistemas de Forças Coplanares</h3>
+    <p>Para um corpo sujeito a forças em um único plano, as equações de equilíbrio no plano são:</p>
+    <p class="formula">Somatório das forças em x igual a zero</p>
+    <p class="formula">Somatório das forças em y igual a zero</p>
+    <p>Cada componente de força deve ser decomposta ao longo dos eixos coordenados. A soma das forças nas direções horizontal e vertical deve ser igual a zero para o corpo permanecer em equilíbrio.</p>
 
-    <h3>Cálculo das Forças Internas: Método das Seções</h3>
-    <p>As forças internas são aquelas que atuam dentro de uma estrutura e garantem que ela resista às forças externas aplicadas. Quando uma estrutura está submetida a forças externas, como cargas, essas forças criam esforços internos que mantêm o corpo coeso. Esses esforços são fundamentais para determinar se o material ou a estrutura pode suportar as cargas sem falhar.</p>
-
-    <p>O cálculo das forças internas ajuda a prever onde podem ocorrer falhas, garantir a segurança e dimensionar corretamente componentes estruturais. O método das seções é utilizado para determinar essas forças em pontos específicos da estrutura. Ele envolve dividir a estrutura em partes e aplicar as equações de equilíbrio em cada uma. As forças internas calculadas são:</p>
-
+    <h3>Momento de uma Força</h3>
+    <p>O momento de uma força é a tendência dessa força em causar rotação em torno de um ponto ou eixo. A fórmula do momento é:</p>
+    <p class="formula">Momento igual à força multiplicada pela distância perpendicular</p>
+    <p>Onde:</p>
     <ul>
-        <li><strong>Força Normal (N):</strong> Atua perpendicularmente à seção transversal e é gerada por forças externas que puxam (tração) ou empurram (compressão) as partes do corpo.</li>
-        <li><strong>Força Cortante (V):</strong> Atua no plano da seção transversal e causa deslizamento entre as partes do corpo, provocando cisalhamento.</li>
-        <li><strong>Momento Fletor (M):</strong> Momento que provoca a flexão do corpo em relação ao eixo da seção, causando curvatura.</li>
-        <li><strong>Torque (T):</strong> Resultante de forças externas que tendem a torcer a estrutura em torno de seu eixo longitudinal.</li>
+        <li><span class="formula">Força</span> é a magnitude da força;</li>
+        <li><span class="formula">Distância perpendicular</span> é a distância entre a linha de ação da força e o ponto de rotação.</li>
     </ul>
+    <p>A equação vetorial que define o momento é:</p>
+    <p class="formula">Momento igual ao vetor posição multiplicado vetorialmente pela força</p>
+    <p>O momento é máximo quando a força atua perpendicularmente ao braço de alavanca.</p>
 
-    <h3>Procedimento:</h3>
-    <ul>
-        <li>Escolher um ponto de interesse.</li>
-        <li>Cortar o corpo na seção que passa pelo ponto.</li>
-        <li>Aplicar as equações de equilíbrio para a porção restante.</li>
-    </ul>
+    <h3>Teorema de Varignon</h3>
+    <p>Este teorema afirma que o momento de uma força em torno de um ponto é igual à soma dos momentos das componentes da força em relação ao mesmo ponto.</p>
 
-    <h3>Cálculo da Tensão no Material</h3>
-    <p>Uma vez determinadas as forças internas, o próximo passo é calcular as tensões no material, que são diretamente relacionadas às forças internas e à geometria da seção.</p>
+    <h3>Binário de Força</h3>
+    <p>Um binário é formado por duas forças de mesma magnitude, porém de direções opostas, aplicadas em pontos diferentes de um corpo. O efeito de um binário é exclusivamente rotacional, sem causar translação do corpo. A equação do momento de um binário é:</p>
+    <p class="formula">Momento igual à força multiplicada pela distância entre as forças</p>
+    <p>O binário é equivalente a uma rotação pura, sem translação.</p>
 
-    <ul>
-        <li><strong>Tensão Normal Média (σ):</strong> É a razão entre a força normal e a área da seção transversal. Pode ser uma tensão de tração (quando puxa) ou tensão de compressão (quando empurra).</li>
-        <li><strong>Tensão de Cisalhamento Média (τ):</strong> Relaciona-se à força cortante aplicada paralelamente à seção transversal.</li>
-        <li><strong>Tensão Admissível:</strong> A tensão máxima que o material pode suportar sem falhar, geralmente na região de deformação elástica, e é calculada com base no coeficiente de segurança.</li>
-    </ul>
-
-    <h3>Considerações Finais:</h3>
-    <ul>
-        <li>Para garantir a segurança estrutural, a tensão admissível nunca deve ser excedida.</li>
-        <li>Em casos de cargas dinâmicas, o coeficiente de segurança deve ser maior.</li>
-        <li>Materiais dúcteis e frágeis possuem critérios de falha diferentes para dimensionamento.</li>
-    </ul>
+    <h3>Resolução de Exercícios Passo a Passo</h3>
+    <ol>
+        <li><strong>Identificação do problema:</strong> Compreenda o enunciado e identifique as forças atuantes.</li>
+        <li><strong>Diagrama de Corpo Livre:</strong> Esboce o DCL para isolar o corpo ou partícula e representar as forças aplicadas.</li>
+        <li><strong>Equações de Equilíbrio:</strong> Escreva as equações de equilíbrio aplicáveis: <span class="formula">Somatório das forças em x igual a zero</span>, <span class="formula">Somatório das forças em y igual a zero</span>, <span class="formula">Somatório dos momentos igual a zero</span>.</li>
+        <li><strong>Resolução de incógnitas:</strong> Use as equações para resolver as forças desconhecidas ou momentos. Se houver mais incógnitas do que equações, equações adicionais (como de deformação de molas) podem ser necessárias.</li>
+        <li><strong>Verificação:</strong> Verifique as unidades e reavalie o sentido das forças ou momentos obtidos, especialmente se o resultado for negativo.</li>
+    </ol>
 </div>
 
 </body>

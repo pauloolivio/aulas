@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Momentos em uma Viga</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        canvas {
+            width: 100%;
+            max-width: 600px;
+            height: auto; /* Permite que a altura se ajuste automaticamente */
+
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        label {
+            margin: 5px;
+            text-align: center;
+            width: 100%; /* Ajustado para 100% */
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            max-width: 600px;
+            background-color: #007bff;
+            color: white;
+            display: block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px auto; /* Centraliza o botão */
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px; /* Aumentado para melhor legibilidade */
+                text-align: center; /* Centraliza o título */
+            }
+            label {
+                font-size: 16px; /* Aumentado para melhor legibilidade */
+            }
+            input {
+                width: 90%;
+            }
+            button {
+                max-width: 90%; /* Botão ocupa 100% da largura */
+            }
+            canvas {
+                height: 150px; /* Aumenta a altura do canvas em telas pequenas */
+            }
+            #result {
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Momentos de Viga</h1>
+    <canvas id="viga" width="600" height="200"></canvas>
+    <div class="input-container">
+        <label>Força (N):
+            <input type="number" id="forca" />
+        </label>
+        <label>Posição (m):
+            <input type="number" id="posicao" min="0" max="1" step="0.1" />
+        </label>
+        <button onclick="adicionarForca()">Adicionar Força</button>
+        <button onclick="calcularMomentos()">Calcular Momentos</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const canvas = document.getElementById('viga');
+        const ctx = canvas.getContext('2d');
+        const forcas = [];
+
+        function desenharViga() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Criar gradiente azul vertical
+            const gradiente = ctx.createLinearGradient(50, 40, 50, 60);
+            gradiente.addColorStop(0, '#00f'); // Azul mais claro
+            gradiente.addColorStop(1, '#005'); // Azul mais escuro
+
+            // Desenhar o retângulo da viga
+            ctx.fillStyle = gradiente;
+            ctx.fillRect(50, 70, 500, 20); // Retângulo da viga
+
+            // Desenhar os apoios
+            desenharApoio(52, 85, 'A');
+            desenharApoio(547, 85, 'B');
+
+            for (let i = 0; i < forcas.length; i++) {
+                const { posicao, forca } = forcas[i];
+                const x = 50 + posicao * 500; // Escala para o canvas
+                
+                // Configurar estilo de fonte
+                ctx.font = '16px Arial'; // Aumenta o tamanho da fonte
+                ctx.fillStyle = 'black'; // Cor do texto
+                ctx.beginPath();
+                ctx.moveTo(x, 30);
+                ctx.lineTo(x, 70);
+                ctx.strokeStyle = 'red';
+                ctx.stroke();
+                ctx.fillText(`${forca} N`, x + 5, 35); // Exibe o valor da força
+            }
+
+            // Desenhar a linha da cota
+            ctx.beginPath();
+            ctx.moveTo(50, 130); // Posição inicial
+            ctx.lineTo(550, 130); // Posição final
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            
+            // Adicionar texto "1 m"
+            ctx.font = '18px Arial';
+            ctx.fillText("1 m", 280, 145); // Posição do texto
+        }
+
+        function desenharApoio(x, y, letra) {
+            // Desenhar triângulo
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x - 10, y + 20);
+            ctx.lineTo(x + 10, y + 20);
+            ctx.closePath();
+            ctx.fillStyle = 'black';
+            ctx.fill();
+
+            // Desenhar letra
+            ctx.font = '18px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText(letra, x - 5, y + 35); // Ajusta a posição da letra
+        }
+
+        function adicionarForca() {
+            const forca = parseFloat(document.getElementById('forca').value);
+            const posicao = parseFloat(document.getElementById('posicao').value);
+            if (forcas.length < 4 && !isNaN(forca) && !isNaN(posicao) && posicao <= 1) {
+                forcas.push({ forca, posicao });
+                desenharViga();
+            } else {
+                alert("A posição deve estar entre 0 e 1 metro.");
+            }
+        }
+
+        function calcularMomentos() {
+            let momentoA = 0;
+            let momentoB = 0;
+
+            for (const { forca, posicao } of forcas) {
+                momentoA += forca * posicao;  // Momento em A
+                momentoB += forca * (1 - posicao);  // Momento em B
+            }
+
+            // Atualiza o resultado em linhas separadas
+            document.getElementById('result').innerText = `Momento A: ${momentoA.toFixed(2)} Nm (SENTIDO ANTIHORÁRIO)\nMomento B: ${momentoB.toFixed(2)} Nm (SENTIDO HORÁRIO)`;
+        }
+
+        // Desenhar a viga ao carregar a página
+        desenharViga();
+    </script>
+</body>
+</html>

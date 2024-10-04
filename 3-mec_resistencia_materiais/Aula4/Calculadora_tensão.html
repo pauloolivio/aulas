@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tensão Normal em Vigas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, input[type="number"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e2e3e5;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .dimensoes {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora de Tensão Normal - Tração ou Compressão</h1>
+    
+    <label for="tipoViga">Selecione o tipo de viga:</label>
+    <select id="tipoViga" onchange="atualizarDimensoes()">
+        <option value="I">Perfil I </option>
+        <option value="C">Perfil U ou C</option>
+        <option value="L">Perfil L</option>
+        <option value="quadrada">Perfil Quadrado Maciço</option>
+        <option value="circular">Perfil Circular Maciço</option>
+        <option value="tuboQuadrado">Tubo Quadrado</option>
+        <option value="tuboCircular">Tubo Circular</option>
+    </select>
+
+    <div id="dimensoes" class="dimensoes">
+        <label for="largura">Largura (b) [mm]:</label>
+        <input type="number" id="largura" step="any">
+
+        <label for="altura">Altura (h) [mm]:</label>
+        <input type="number" id="altura" step="any">
+
+        <label for="espessura">Espessura da alma (t) [mm]:</label>
+        <input type="number" id="espessura" step="any" value="0">
+
+        <label for="forca">Força (F) [N]:</label>
+        <input type="number" id="forca" step="any">
+
+        <div id="raioDiametro">
+            <label for="diametro">Diâmetro externo (D) [mm]:</label>
+            <input type="number" id="diametro" step="any" placeholder="Para circular ou tubo">
+        </div>
+    </div>
+    
+    <button onclick="calcularTensao()">Calcular Tensão Normal</button>
+
+    <div class="result" id="resultado"></div>
+</div>
+
+<script>
+    function atualizarDimensoes() {
+        const tipoViga = document.getElementById("tipoViga").value;
+        const dimensoesDiv = document.getElementById("dimensoes");
+        const raioDiametroDiv = document.getElementById("raioDiametro");
+
+        dimensoesDiv.style.display = "block";
+
+        if (tipoViga === "circular" || tipoViga === "tuboCircular") {
+            raioDiametroDiv.style.display = "block";
+            document.getElementById("largura").style.display = "none";
+            document.getElementById("altura").style.display = "none";
+            document.getElementById("espessura").style.display = "none";
+        } else {
+            raioDiametroDiv.style.display = "none";
+            document.getElementById("largura").style.display = "block";
+            document.getElementById("altura").style.display = "block";
+            document.getElementById("espessura").style.display = "block";
+        }
+    }
+
+    function calcularTensao() {
+        const tipoViga = document.getElementById("tipoViga").value;
+        const largura = parseFloat(document.getElementById("largura").value) || 0;
+        const altura = parseFloat(document.getElementById("altura").value) || 0;
+        const espessura = parseFloat(document.getElementById("espessura").value) || 0;
+        const forca = parseFloat(document.getElementById("forca").value) || 0;
+        const diametro = parseFloat(document.getElementById("diametro").value) || 0;
+
+        let area = 0;
+
+        if (tipoViga === "I") {
+            area = (largura * altura) - ((largura - espessura) * (altura - espessura)); // Área da seção I
+        } else if (tipoViga === "C") {
+            area = largura * altura; // Aproximação para a seção C
+        } else if (tipoViga === "L") {
+            area = largura * altura; // Aproximação para a seção L
+        } else if (tipoViga === "quadrada") {
+            area = largura * largura; // Área da seção quadrada
+        } else if (tipoViga === "circular") {
+            area = Math.PI * Math.pow((diametro / 2), 2); // Área da seção circular
+        } else if (tipoViga === "tuboQuadrado") {
+            area = Math.pow(largura, 2) - Math.pow((largura - espessura), 2); // Área do tubo quadrado
+        } else if (tipoViga === "tuboCircular") {
+            area = Math.PI * Math.pow((diametro / 2), 2) - Math.PI * Math.pow(((diametro - espessura) / 2), 2); // Área do tubo circular
+        }
+
+        const tensao = forca / area; // Tensão em N/mm²
+        document.getElementById("resultado").innerText = `Tensão Normal: ${tensao.toFixed(2)} N/mm²`;
+    }
+</script>
+
+</body>
+</html>
