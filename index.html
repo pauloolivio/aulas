@@ -28,14 +28,13 @@
         
         .jumbotron {
             position: relative;
-            height: 80vh; 
+            height: 80vh; /* Ajusta a altura para ser responsiva */
             padding-top: 75px;
-            background-image: url('assets/background1.jpg');
-            background-size: cover; 
-            background-position: center center; 
-            background-repeat: no-repeat; 
+            background-image: url('assets/background1.jpg'); /* Imagem de fundo */
+            background-size: cover; /* Faz a imagem cobrir todo o jumbotron */
+            background-position: center center; /* Centraliza a imagem */
+            background-repeat: no-repeat; /* Evita repetição da imagem */
             color: white;
-            transition: background-image 1s ease; /* Transição suave */
         }
 
         .img-circle {
@@ -263,47 +262,23 @@
         }
 
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-    $(document).ready(function() {
-        var images = [
-            'assets/background1.jpg',
-            'assets/background2.jpg',
-            'assets/background3.jpg'
-        ];
-        var currentIndex = 0;
-        var loadedImages = [];
+        $(document).ready(function() {
+            // Toggle the navigation menu on click
+            $('.navbar-toggle').click(function() {
+                $('#navbar').collapse('toggle');
+            });
 
-        // Pré-carregar as imagens
-        images.forEach(function(image) {
-            var img = new Image();
-            img.src = image;
-            loadedImages.push(img);
-        });
-
-        function changeBackground() {
-            currentIndex = (currentIndex + 1) % loadedImages.length;
-            $('.jumbotron').css('background-image', 'url(' + loadedImages[currentIndex].src + ')');
-        }
-
-        // Aguardar até que todas as imagens estejam carregadas
-        $(loadedImages).each(function(index, img) {
-            img.onload = function() {
-                // Iniciar a troca de imagens após o carregamento da primeira imagem
-                if (index === 0) {
-                    changeBackground(); // Definir a imagem inicial
-                    setInterval(changeBackground, 3000); // Mudar de imagem a cada 3 segundos
+            // Close the menu when a link is clicked (for mobile devices)
+            $('.navbar-nav > li > a').click(function() {
+                if ($('.navbar-toggle').is(':visible') && $('#navbar').hasClass('in')) {
+                    $('.navbar-toggle').click();
                 }
-            };
+            });
         });
-
-        // Trocar imagem de fundo ao selecionar
-        $('#backgroundSelector').change(function() {
-            currentIndex = $(this).prop('selectedIndex');
-            $('.jumbotron').css('background-image', 'url(' + loadedImages[currentIndex].src + ')');
-        });
-    });
-</script>
+    </script>
 </head>
 <body>
         <div class="wrap">
@@ -340,7 +315,7 @@
                 </div>
             </nav>
 
-            <div class="jumbotron vertical-align">
+        <div class="jumbotron vertical-align">
             <div class="container">
                 <div class="row">                
                 </div>
@@ -350,6 +325,7 @@
                 </div>
             </div>
         </div>      
+     
                 <div class="row ">
                     <h2 class="text-center buffer-bottom ">DISCIPLINAS E PROJETOS</h2>
                     <div class="col-sm-6 col-md-3 ">
