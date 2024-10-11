@@ -83,7 +83,9 @@
         <button onclick="calcularSimples()">Calcular Relação Simples</button>
         
         <canvas id="canvasSimple" width="600" height="150"></canvas>
-
+    </div>
+    <p id="resultado1"></p>
+    <div>
         <h2>Sistema Composto</h2>
         <label for="numEngrenagensComposto">Número de Engrenagens (par):</label>
         <input type="number" id="numEngrenagensComposto" min="2" value="2">
@@ -94,7 +96,6 @@
         
         <canvas id="canvasComposto" width="600" height="150"></canvas>
     </div>
-
     <p id="resultado"></p>
 </div>
 
@@ -127,7 +128,7 @@
             relacaoComp *= relacao;
         }
 
-        document.getElementById('resultado').innerText = `\n\nSistema Simples:\nRelações individuais: ${relacoes.join(', ')}\nRelação do Sistema Simples: ${relacaoComp}`;
+        document.getElementById('resultado1').innerText = `\n\nSistema Simples:\nRelações individuais: ${relacoes.join(', ')}\nRelação do Sistema Simples: ${relacaoComp}`;
         desenharEngrenagensSimples(diametros);
     }
 
