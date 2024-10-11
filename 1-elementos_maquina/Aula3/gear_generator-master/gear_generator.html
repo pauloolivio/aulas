@@ -1,0 +1,651 @@
+<html>
+<head>
+<style type="text/css">
+body {
+    display: flex; /* Usamos Flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    height: 100vh; /* Define a altura do body para 100% da altura da viewport */
+    margin: 0; /* Remove margens padrões */
+}
+canvas {
+    width: 100%; /* Para garantir que o canvas seja responsivo */
+    max-width: 500px; /* Limita a largura máxima */
+    height: auto; /* Mantém a proporção */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+}
+.rTableCells {
+            display: table-cell; 
+            padding: 3px 10px; 
+            border: 0px solid #999999; 
+            font-size: 12pt; 
+            color: #000; 
+            background-color: #aaa; 
+            vertical-align: top;
+			height: 500px;
+        }
+table { border: 0px; border-spacing: 2px; border-collapse: collapse; }
+td { border: 0px; padding: 2px; font-size: 12px; font-family: helvetica; }
+.rTable {   		display: table;} 
+.rTableRow {   		display: table-row; } 
+.rTableHeading {   	display: table-header-group; background-color: #f00; } 
+.rTableCell {   	display: table-cell;   	padding: 3px 10px;   	border: 0px solid #999999; font-size:12pt; font-family: helvetica; color:#000; background-color: #aaa;} 
+.rTableCells {   	display: table-cell;   	padding: 3px 10px;   	border: 0px solid #999999; font-size:12pt; font-family: helvetica; color:#000; background-color: #aaa;} 
+.rTableHead {   	display: table-cell;   	padding: 3px 10px;   	border: 0px solid #999999; font-size:12pt; font-family: helvetica; font-weight: bold; color:#000; background-color: #aaa } 
+.rTableHeading {   	display: table-header-group;   	background-color: #ddd;   font-color: #000; font-weight: bold; } 
+.rTableFoot {   	display: table-footer-group;   	font-weight: bold;   	background-color: #aaa; } 
+.rTableBody {   	display: table-row-group; }
+.ni { padding: 0px; width: 50px; height: 20px; font-size: 12px; color: #f00;}
+a.dl:link { color:#00F; text-decoration:none; font-weight:normal; }
+a.dl:visited { color: #00F; text-decoration:none; font-weight:normal; }
+a.dl:hover { color: #00F; text-decoration:underline; font-weight:normal; }
+a.dl:active { color: #00F; text-decoration:none; font-weight:normal; }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+	
+var graphics = {
+
+	component_to_hex: function(c) {
+	    var hex = c.toString(16);
+	    return hex.length == 1 ? "0" + hex : hex;
+	},
+
+	rgb_to_hex: function(r, g, b) {
+	    return "#" + this.component_to_hex(r) + this.component_to_hex(g) + this.component_to_hex(b);
+	},
+
+	init: function( canvas, bounds ){
+		var gctx = { 
+			canvas: canvas, 
+			context: canvas.getContext("2d"), 
+			width: canvas.width, 
+			height: canvas.height, 
+			bounds: bounds, 
+			colour: this.rgb_to_hex(0,0,0) 
+		};
+		return gctx;
+	}, 
+
+	resize: function( gctx, width, height ){
+		gctx.canvas.width = width;
+		gctx.canvas.height = height;
+		gctx.width = width;
+		gctx.height = height;
+	},
+
+	clear: function( gctx ){
+		gctx.context.clearRect(0, 0, gctx.canvas.width, gctx.canvas.height );
+		gctx.canvas.width = gctx.canvas.width;
+		gctx.context.fillStyle='white';
+		gctx.context.fillRect( 0, 0, gctx.canvas.width, gctx.canvas.height );
+		gctx.context.fillStyle='none';
+	},  
+
+	color: function( gctx, r, g, b ){
+		gctx.colour = this.rgb_to_hex( r, g, b );
+	},
+
+	map_point: function( gctx, pnt ){
+		var mp = [ gctx.width*(pnt[0]-gctx.bounds[0])/(gctx.bounds[1]-gctx.bounds[0]), gctx.height*(pnt[1]-gctx.bounds[2])/(gctx.bounds[3]-gctx.bounds[2]) ];
+		return mp;
+	},
+
+	rotate_point: function( cen, pnt, theta ){
+		var tpnt = [ pnt[0]-cen[0], pnt[1]-cen[1] ];
+		var rpnt = [ Math.cos(theta)*tpnt[0] + Math.sin(theta)*tpnt[1], -Math.sin(theta)*tpnt[0]+Math.cos(theta)*tpnt[1] ];
+		return [ rpnt[0]+cen[0], rpnt[1]+cen[1] ];
+	},
+
+	rotate_curve: function( cen, pnts, theta ){
+		var s = Math.sin(theta);
+		var c = Math.cos(theta);
+		var ret = [];
+		for( var i=0; i<pnts.length; i++ ){
+			x = pnts[i][0]-cen[0];
+			y = pnts[i][1]-cen[1];
+			ret[i] = [ c*x + s*y + cen[0], -s*x + c*y + cen[1] ];
+		}
+		return ret;
+	},
+
+	circle: function( gctx, center, rad ){
+		var cen = this.map_point( gctx, center );
+		var beg = this.map_point( gctx, [center[0]+rad, center[1]] );
+		gctx.context.beginPath();
+		gctx.context.arc( cen[0], cen[1], beg[0]-cen[0], beg[1]-cen[1], 2*Math.PI );
+		gctx.context.strokeStyle = gctx.colour;
+		gctx.context.stroke();
+	},
+
+	line: function( gctx, p0, p1 ){
+		var mp0 = this.map_point( gctx, p0 );
+		var mp1 = this.map_point( gctx, p1 );
+		gctx.context.beginPath();
+		gctx.context.moveTo( mp0[0], mp0[1] );
+		gctx.context.lineTo( mp1[0], mp1[1] );
+		gctx.context.strokeStyle = gctx.colour;
+		gctx.context.stroke();
+	},
+
+	polyline: function( gctx, pnts, close ){
+		gctx.context.fillStyle = gctx.colour;
+		gctx.context.beginPath();
+		var p = this.map_point( gctx, pnts[0] );
+		gctx.context.moveTo( p[0], p[1] );
+		for( var i=1; i<pnts.length; i++ ){
+			p = this.map_point( gctx, pnts[i] );
+			gctx.context.lineTo( p[0], p[1] );
+		}
+		gctx.context.closePath();
+		gctx.context.fill();
+		gctx.context.stroke();
+	}
+
+
+};
+	
+	/*
+	gears.js
+	James Gregson (2015)
+	Library of spur gear utility routines
+*/
+var gears = {
+
+	dupliate_points: function( pnts ){
+		var ret = [];
+		for( var i=0; i<pnts.length; i++ ){
+			ret[i] = [ pnts[i][0], pnts[i][1] ];
+		}
+		return ret;
+	},
+
+	point_radius: function( pnt ){
+		return Math.sqrt( pnt[0]*pnt[0] + pnt[1]*pnt[1] );
+	},
+
+	lerp: function( val, v0, p0, v1, p1 ){
+		var w = (val - v0)/(v1-v0);
+		return [p1[0]*w+p0[0]*(1.0-w), p1[1]*w+p0[1]*(1.0-w)];
+	},
+
+	rotate_point: function( cen, pnt, theta ){
+		var tpnt = [ pnt[0]-cen[0], pnt[1]-cen[1] ];
+		var rpnt = [ Math.cos(theta)*tpnt[0] + Math.sin(theta)*tpnt[1], -Math.sin(theta)*tpnt[0]+Math.cos(theta)*tpnt[1] ];
+		return [ rpnt[0]+cen[0], rpnt[1]+cen[1] ];
+	},
+
+	involute_point: function( r, theta ){
+		return [ r*(Math.cos(theta)+theta*Math.sin(theta)), -r*(Math.sin(theta)-theta*Math.cos(theta)) ]; 
+	},
+
+	involute_bisect: function( r_base, r_target ){
+		var theta_lo = 0.0;
+		var r_lo = this.point_radius( this.involute_point( r_base, theta_lo ) );
+		var theta_hi = Math.PI;
+		var r_hi = this.point_radius( this.involute_point( r_base, theta_hi ) );
+		// check if the target is achievable
+		if( r_hi < r_target ) 
+			return -1.0;
+
+		var theta_mi = (theta_lo+theta_hi)/2.0;
+		var r_mi;
+		for( i=0; i<20; i++ ){
+			theta_mi = (theta_lo+theta_hi)/2.0;
+			r_mi = this.point_radius( this.involute_point( r_base, theta_mi ) );
+			if( r_mi <= r_target ){
+				r_lo     = r_mi;
+				theta_lo = theta_mi;
+			} else {
+				r_hi     = r_mi;
+				theta_hi = theta_mi;
+			}
+		}
+		return theta_mi;
+	},
+
+	involute_curve: function( r_base, theta_max, r_min, r_max, N ){
+		var theta_lo = 0.0;
+		var theta_hi = this.involute_bisect( r_base, r_max );
+		var curve = [];
+		var cnt=0;
+		if( r_min < r_base ){
+			curve[cnt++] = [ r_min, 0 ];
+		}
+		var dtheta = (theta_hi-theta_lo)/(N-1);
+		for( var i=0; i<N; i++ ){
+			curve[cnt++] = this.involute_point( r_base, i*dtheta+theta_lo );
+		}
+		return curve;
+	},
+
+	pitch_diameter: function( module, pressure_angle, num_teeth ){
+		return module*num_teeth;
+	},
+
+	base_diameter: function( module, pressure_angle, num_teeth ){
+		return this.pitch_diameter(module,pressure_angle,num_teeth)*Math.cos(pressure_angle);
+	},
+
+	dedendum: function( module, pressure_angle, num_teeth ){
+		return 1.25*module;
+	},
+
+	addendum: function( module, pressure_angle, num_teeth ){
+		return 1.0*module;
+	},
+
+	tooth_thickness: function( module, pressure_angle, num_teeth ){
+		return Math.PI*this.pitch_diameter(module,pressure_angle,num_teeth)/(2.0*num_teeth);
+	},
+
+	generate: function( module, pressure_angle, num_teeth ){
+		var Rp = this.pitch_diameter(module,pressure_angle,num_teeth)/2.0;
+		var Rb = this.base_diameter(module,pressure_angle,num_teeth)/2.0;
+		var Rd = Rp - this.dedendum(module,pressure_angle,num_teeth);
+		var Ra = Rp + this.addendum(module,pressure_angle,num_teeth);
+		var t  = this.tooth_thickness(module,pressure_angle,num_teeth);
+
+		// find the crossing point of the involute curve with the pitch circle
+		var p_cross = this.involute_point( Rb, this.involute_bisect( Rb, Rp ) );
+		var theta_cross = Math.atan2( p_cross[1], p_cross[0] );
+		var dtheta = t/Rp;
+
+		// compute whether the gear profile will self-intersect once patterned
+    	var tmp = this.involute_curve( Rb, Math.PI/2, Rd, Ra, 20 );
+		var cnt = 0;
+    	var involute = [];
+    	for( var i=0; i<tmp.length; i++ ){
+    		tpnt = this.rotate_point( [0,0], tmp[i], +theta_cross-dtheta/2 );
+    		angle1 = Math.atan2( tpnt[1], tpnt[0] );
+    		if( angle1 < Math.PI/num_teeth && tpnt[1] > 0 ){
+    			involute[cnt++] = [ tmp[i][0], tmp[i][1] ];
+    		}
+    	}
+
+
+    	var cnt = 0;
+    	var gear = [];
+    	for( var i=0; i<num_teeth; i++ ){
+      		var theta = i*Math.PI*2.0/(num_teeth)+theta_cross-dtheta/2;
+      		var theta2 = i*Math.PI*2.0/(num_teeth)-theta_cross+dtheta/2;
+
+      		for( var j=0; j<involute.length; j++ ){
+      			gear[cnt++] = this.rotate_point( [0,0], [ involute[j][0], involute[j][1] ], theta );
+      		}
+      		for( var j=involute.length-1; j>=0; j-- ){
+      			gear[cnt++] = this.rotate_point( [0,0], [ involute[j][0], -involute[j][1] ], theta2 );
+      		}
+    	}
+    	return gear;
+	}
+
+};
+
+	var saved_file = null;
+	var saved_file_name = null;
+	function save_file( name, data ){
+		var data = new Blob([data],{type:'text/plain'});
+		if( saved_file ){
+			window.URL.revokeObjectURL(saved_file);
+		}
+		saved_file = window.URL.createObjectURL(data);
+		saved_file_name = name;
+		return saved_file;
+	}
+
+	jQuery(document).ready(function( $ ) {
+
+
+	function update_gear(){
+
+		$("#download_link").hide();
+		$("#export").show();
+
+		var pa = $("#pressure_angle").val()*Math.PI/180.0;
+		var m  = $("#module").val();
+		var N  = $("#num_teeth").val();
+
+		var gear = gears.generate( m, pa, N );
+
+    	var Rp = gears.pitch_diameter(m,pa,N)/2.0;
+    	var Ra = Rp + gears.addendum(m,pa,N);
+    	var Rd = Rp - gears.dedendum(m,pa,N);
+		var Rb = gears.base_diameter(m,pa,N)/2.0;
+		var t  = gears.tooth_thickness(m,pa,N);
+
+		$("#pitch_diameter").val( gears.pitch_diameter(m,pa,N) );
+		$("#base_diameter").val( gears.pitch_diameter(m,pa,N)-2.0*gears.dedendum(m,pa,N) );
+		$("#outer_diameter").val( gears.pitch_diameter(m,pa,N)+2.0*gears.addendum(m,pa,N) );
+		$("#addendum").val( gears.addendum(m,pa,N) );
+		$("#dedendum").val( gears.dedendum(m,pa,N) );
+		$("#tooth_thickness").val( Math.floor(gears.tooth_thickness(m,pa,N)*1000)/1000 );
+
+		// start drawing the gear
+    	var ctx = graphics.init( document.getElementById("involute_id"), [-1.1*Ra,1.1*Ra,-1.1*Ra,1.1*Ra] );
+
+    	var ui_width = document.getElementById("gear_generator_controls").offsetWidth-40;
+
+    	graphics.resize( ctx, ui_width, ui_width );
+    	graphics.clear( ctx );
+
+    	// draw the gear
+    	graphics.color( ctx, 128, 128, 128 );
+    	graphics.polyline( ctx, gear, true );
+
+    	// draw the pitch circle as well as some crosshairs
+    	graphics.color( ctx, 0, 0, 0 );
+    	graphics.line( ctx, [-0.1*Rp,0], [0.1*Rp,0] );
+    	graphics.line( ctx, [0,-0.1*Rp], [0,0.1*Rp] );
+
+    	if( $("#show_base_circle").prop('checked') ){
+	    	graphics.color( ctx, 255, 0, 0 );
+    		graphics.circle( ctx, [0,0], Rb );
+    	}
+
+    	if( $("#show_dedendum_circle").prop('checked') ){
+    		graphics.color( ctx, 0, 255, 0 );
+    		graphics.circle( ctx, [0,0], Rd );
+    	}
+
+    	if( $("#show_addendum_circle").prop('checked') ){
+    		graphics.color( ctx, 0, 0, 255 );
+    		graphics.circle( ctx, [0,0], Ra );
+    	}
+
+    	if( $("#show_pitch_circle").prop('checked') ){
+    		graphics.color( ctx, 0, 0, 0 );
+    		graphics.circle( ctx, [0,0], Rp );
+    	}
+
+    	if( $("#show_tooth_sector").prop('checked') ){
+    		var pA = graphics.rotate_point( [0,0], [Ra,0], +0.5*2.0*Math.PI/N );
+    		var pB = graphics.rotate_point( [0,0], [Ra,0], -0.5*2.0*Math.PI/N );
+    		graphics.color( ctx, 0, 0, 0 );
+    		graphics.line( ctx, [0,0], pA );
+    		graphics.line( ctx, [0,0], pB );
+    	}
+	}
+
+    $("#pressure_angle").change(function(){
+    	update_gear();
+    });
+
+    $("#module").change(function(){
+    	update_gear();
+    });
+
+    $("#num_teeth").change(function(){
+    	update_gear();
+    });
+
+    $("#show_pitch_circle").change(function(){
+    	update_gear();
+    });
+
+    $("#show_base_circle").change(function(){
+    	update_gear();
+    });
+
+    $("#show_addendum_circle").change(function(){
+    	update_gear();
+    });
+
+    $("#show_dedendum_circle").change(function(){
+    	update_gear();
+    });
+
+    $("#show_tooth_sector").change(function(){
+    	update_gear();
+    });
+
+    $("#format").change(function(){
+    	update_gear();
+    });
+
+    $("#export").click(function(){
+    	// get the gear parameters
+		var pa = $("#pressure_angle").val()*Math.PI/180.0;
+		var m  = $("#module").val();
+		var N  = $("#num_teeth").val();
+		var fmt = $("#format").val();
+		var Ro = gears.pitch_diameter( m, pa, N )/2.0 + 2.0*gears.addendum( m, pa, N );
+		
+		// create the gear
+		var gear = gears.generate( m, pa, N );
+
+		// create the output
+		var str = "";
+		var filename = "spur_gear_mod" + m + "_pa" + Math.round(pa*180.0/Math.PI) + "_N" + N;
+		if( fmt == "csv" ){
+			filename = filename + ".csv";
+			for( var i=0; i<gear.length; i++ ){
+				str = str + gear[i][0] + ", " + gear[i][1] + "\n";
+			}
+		} else if( fmt == "svg" ){
+			filename = filename + ".svg";
+			str = str + '<?xml version="1.0" standalone="no"?>\n<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">\n';
+			str = str + '<svg width="' + 10*(2*Ro) + 'mm" height="' + 10*(2*Ro) + 'mm" viewbox="' + 0 + ' ' + 0 + ' ' + (2*Ro) + ' ' + (2*Ro) + '" version="1.1" xmlns="http://www.w3.org/2000/svg"><polyline points="';
+			for( var i=0; i<gear.length; i++ ){
+				str = str + (gear[i][0]+Ro) + ',' + (gear[i][1]+Ro) + ' ';
+			}
+			str = str + '\"/></svg>';
+		} else if( fmt == "dxf" ){
+			filename = filename + ".dxf";
+			str = 	"999\n" +
+					"VISION3D DXF\n" +
+					"0\n" +
+					"SECTION\n" +
+					"2\n" +
+					"HEADER\n" +
+					"9\n" +
+					"$ACADVER\n" +
+					"1\n" +
+					"AC1006\n" +
+					"9\n" +
+					"$INSBASE\n" +
+					"10\n" +
+					"0.0\n" +
+					"20\n" +
+					"0.0\n" +
+					"30\n" +
+					"0.0\n" +
+					"9\n" +
+					"$EXTMIN\n" +
+					"10\n" +
+					(-Ro) + "\n" +
+					"20\n" +
+					(-Ro) + "\n" +
+					"9\n" +
+					"$EXTMAX\n" +
+					"10\n" +
+					(Ro) + "\n" +
+					"20\n" +
+					(Ro) + "\n" +
+					"9\n" +
+					"$LINMIN\n" +
+					"10\n" +
+					"0.0\n" +
+					"20\n" +
+					"0.0\n" +
+					"9\n" +
+					"$LINMAX\n" +
+					"10\n" +
+					"1000.0\n" +
+					"20\n" +
+					"1000.0\n" +
+					"0\n" +
+					"ENDSEC\n" + 
+
+					"0\n" + 
+					"SECTION\n" + 
+					"2\n" + 
+					"TABLES\n" + 
+					"0\n" + 
+					"TABLE\n" + 
+					"2\n" + 
+					"LTYPE\n" + 
+					"70\n" + 
+					"1\n" + 
+					"0\n" + 
+					"LTYPE\n" + 
+					"2\n" + 
+					"CONTINUOUS\n" + 
+					"70\n" + 
+					"64\n" + 
+					"3\n" + 
+					"Solid line\n" + 
+					"72\n" + 
+					"65\n" + 
+					"73\n" + 
+					"0\n" + 
+					"40\n" + 
+					"0.000000\n" + 
+					"0\n" + 
+					"ENDTAB\n" + 
+					"0\n" + 
+					"TABLE\n" + 
+					"2\n" + 
+					"LAYER\n" + 
+					"70\n" + 
+					"6\n" + 
+					"0\n" + 
+					"LAYER\n" + 
+					"2\n" + 
+					"1\n" + 
+					"70\n" + 
+					"64\n" + 
+					"62\n" + 
+					"7\n" + 
+					"6\n" + 
+					"CONTINUOUS\n" + 
+					"0\n" + 
+					"ENDTAB\n" + 
+					"0\n" + 
+					"TABLE\n" + 
+					"2\n" + 
+					"STYLE\n" + 
+					"70\n" + 
+					"0\n" + 
+					"0\n" + 
+					"ENDTAB\n" + 
+					"0\n" + 
+					"ENDSEC\n" + 
+					"0\n" + 
+					"SECTION\n" + 
+					"2\n" + 
+					"BLOCKS\n" + 
+					"0\n" + 
+					"ENDSEC\n" +
+
+					"0\n" + 
+					"SECTION\n" +
+					"2\n" +
+					"ENTITIES\n";
+
+		    for( var i=0; i<gear.length; i++ ){
+		        str = str + '0\n';
+		        str = str + 'LINE\n';
+		        str = str + '8\n';
+		        str = str + '1\n';
+		        str = str + '62\n';
+		        str = str + '1\n';
+		        str = str + '10\n';
+		        str = str + gear[i][0] + '\n';
+		        str = str + '20\n';
+		        str = str + gear[i][1] + '\n';
+		        str = str + '30\n';
+		        str = str + '0.0\n';
+		        str = str + '11\n';
+		        str = str + gear[(i+1)%gear.length][0] + '\n';
+		        str = str + '21\n';
+		        str = str + gear[(i+1)%gear.length][1] + '\n'; 
+		        str = str + '31\n';
+		        str = str + '0.0\n';
+		    }
+		    str = str + '0\n';
+		    str = str + 'ENDSEC\n';
+		    str = str + '0\n';
+		    str = str + 'EOF\n';
+		    
+		}
+
+		//$("#download_link").style.display = 'block';
+		$("#export").hide();
+		$("#download_link").attr( 'href', save_file(filename, str ) ).attr('download', filename );
+		$("#download_link").show();
+    });
+
+
+   	update_gear();
+
+});
+</script>
+</head>
+<body>
+	<div class="rTable" id="gear_generator">
+		<!-- header -->	
+		<div class="rTableHeading">
+			<div class="rTableHead">
+				Geradora de Engrenagem de Dente Reto - Sistema Métrico
+			</div>
+		</div>
+		<!-- canvas -->
+		<div class="rTableRow">
+			<div class="rTableCells" style="background-color: #fff;">
+				<center>
+				<div><canvas id="involute_id"></canvas></div>
+				</center>
+			</div>
+		</div>
+
+		<!-- controls -->
+		<div class="rTableRow">
+
+			<div id="gear_generator_controls" class="rTable">
+				<div class="rTableHeading">
+					<div class="rTableHead">Parâmetros de Entrada</div>
+					<div class="rTableHead">Geometria</div>
+					<div class="rTableHead">Desenho</div>
+				</div>
+				<div class="rTableRow">
+					<div class="rTableCell">
+						<!-- adjustable parameters -->
+						<table class="inner_table">
+						<tr><td>Modulo</td><td><input id="module" type="number" min="0.01" max="10.0" value="1.0" style="padding: 0px; width: 50px; font-size: 12px; color: #000"></td></tr>
+						<tr><td>Num. Dentes</td><td><input id="num_teeth" type="number" size="10" min="4" max="200" step="1" value="12" style="padding: 0px; width: 50px; font-size: 12px; color: #000"></td></tr>
+						<tr><td>Ângulo de Pressão</td><td><input id="pressure_angle" type="number" min="1" max="60" value="20" style="padding: 0px; width: 50px; font-size: 12px; color: #000">deg.</td></tr>
+						<tr><td align="right"><select id="format"><option selected="true">dxf</option><option>csv</option><option>svg</option></select></td><td><input type="button" id="export" value="Export" style="padding: 10px; width: 80px; font-size: 12px; color: #000"><a id="download_link" download="gear" class="dl">Download</a></td></tr>
+						</table>
+					</div>
+					<div class="rTableCell">
+						<!-- computed geometry -->
+						<table class="inner_table">
+						<tr><td>Passo Diametral</td><td><input id="pitch_diameter" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						<tr><td>Diâmetro interno</td><td><input id="base_diameter" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						<tr><td>Diametro Externo</td><td><input id="outer_diameter" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						<tr><td>Adendo</td><td><input id="addendum" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						<tr><td>Dedendo</td><td><input id="dedendum" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						<tr><td>Espessura do Dente</td><td><input id="tooth_thickness" type="number" disabled="disabled" style="padding: 0px; width: 50px; font-size: 12px; color: #000">mm</td></tr>
+						</table>
+
+					</div>
+					<div class="rTableCell">
+						<!-- Display options -->
+						<table class="inner_table">
+						<tr><td>Circulo Primitivo</td><td><input id="show_pitch_circle" type="checkbox" value="1"></td></tr>
+						<tr><td>Circulo de Base</td><td><input id="show_base_circle" type="checkbox" value="1"></td></tr>
+						<tr><td>Dedendo</td><td><input id="show_dedendum_circle" type="checkbox" value="1"></td></tr>
+						<tr><td>Adendo</td><td><input id="show_addendum_circle" type="checkbox" value="1"></td></tr>
+						<tr><td>Passo do Dente</td><td><input id="show_tooth_sector" type="checkbox" value="1"></td></tr>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

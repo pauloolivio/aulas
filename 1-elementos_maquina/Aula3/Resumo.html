@@ -3,99 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aços Inoxidáveis Austeníticos não Estabilizados</title>
-    <link rel="stylesheet" media="all" href="../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
-</head>
+    <title>Pré Aula 2 - Introdução a Elementos de Transmissão Mecânica</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+  </head>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #2C3E50;
+  }
+  h1, h2 {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: white;
+  }
+  .container {
+      /*max-width: 95%;*/
+      margin: 0px;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+  }
+  .table-container {
+      overflow-x: auto;
+      margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+      h2, h3 {
+          font-size: 1.2em;
+      }
+  }
+</style>
 <body>
-<div class="user-app">
-        <a class="btn btn-default btn-sm" href="AulaExemplo.html">
-            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
-        </a>
-</div>
-<h2>Soldagem de Aços Inoxidáveis Martensíticos de Baixo Carbono</h2>
+  <a class="btn btn-default btn-sm" href="../Aula2-PotenciaRendimento.html">
+      <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+  </a>
+  <h2>Pré Aula 3 - Trens de Engrenagem</h2>
+<div class="container">
+    <body>
+      <p>As engrenagens são componentes mecânicos essenciais em sistemas de transmissão de potência, convertendo torque e velocidade entre eixos. Elas garantem a sincronização e o controle de movimentos, além de serem amplamente utilizadas em diversas máquinas e veículos.</p>
 
-<p>Os aços martensíticos de baixo carbono com adição de 4-6% de níquel, visando melhorar a tenacidade da estrutura martensítica, diminuir a sensibilidade a trincas a frio e obter uma estrutura praticamente isenta de ferrita delta.</p>
+      <h3>Engrenagens de Dentes Retos</h3>
+      <p>As engrenagens de dentes retos são as mais comuns e fáceis de projetar. Seus dentes são paralelos ao eixo de rotação, permitindo a transmissão de potência e movimento entre dois eixos paralelos. As características principais a serem consideradas no projeto dessas engrenagens incluem o <strong>passo diametral</strong>, o <strong>módulo</strong>, o <strong>adendo</strong>, o <strong>dedendo</strong>, o <strong>círculo de base e o circurlo primitivo</strong>.</p>
+      <h3>O que deve ser calculado para o projeto de uma engrenagem</h3>
+      <ul>
+          <li><strong>Passo Diametral:</strong> O passo diametral é a relação entre o número de dentes da engrenagem e o seu diâmetro primitivo. O <em>Passo diametral é igual ao número de dentes dividido pelo diâmetro primitivo</em>.</li>
+          <li><strong>Módulo:</strong> O módulo é uma medida inversa ao passo diametral, usada principalmente no sistema métrico. O <em>Módulo é igual ao diâmetro primitivo dividido pelo número de dentes</em>.</li>
+          <li><strong>Adendo:</strong> O adendo é a distância entre o círculo primitivo e o topo dos dentes da engrenagem. O <em>Adendo é igual ao módulo</em>.</li>
+          <li><strong>Dedendo:</strong> O dedendo é a distância entre o círculo primitivo e a base do dente (no pé do dente). O <em>Dedendo é igual a 1,25 vezes o módulo</em>.</li>
+          <li><strong>Círculo de Base:</strong> O círculo de base é a base para o desenvolvimento da <strong>envoluta</strong>, a curva usada para o perfil dos dentes da engrenagem. Ele pode ser calculado a partir do círculo primitivo, levando em conta o ângulo de pressão.</li>
+          <li><strong>Círculo Primitivo:</strong> O círculo primitivo é o diâmetro teórico da engrenagem, onde a transmissão efetiva de torque ocorre. Ele é determinado pelo número de dentes e o módulo ou passo diametral.</li>
+          <li><strong>Envoluta:</strong> A envoluta é a curva geométrica que define a forma dos dentes das engrenagens para garantir o contato suave e contínuo entre elas durante a rotação.</li>
+      </ul>
 
-<p>A adição de níquel aumenta fortemente a área de austenita no diagrama de constituição Fe-Cr-Ni. Aços com 12-15%Cr e 4-6%Ni solidificam inicialmente como ferrita delta, que se transforma em austenita entre 1300-1200°C. Pequenas quantidades de ferrita delta podem ficar retidas. A transformação de austenita em martensita leva a uma estrutura com pequenas quantidades de austenita e ferrita delta retidas. Devido ao baixo carbono e adição de níquel, a martensita é "macia", com boa tenacidade e dureza de 350-400 HV. A temperatura de início de transformação martensítica (Ms) é mais baixa que nos aços de cromo puro. Um tratamento térmico posterior pode aumentar ainda mais a tenacidade.</p>
+      <h3>Relação de Transmissão em Sistemas de Transmissão</h3>
+      <p>Em sistemas de transmissão, a relação de transmissão é representada por números que indicam a relação entre as rotações de duas engrenagens.</p>
+      <ul>
+          <li><strong>Redução 5:1:</strong> Isso significa que para cada 5 rotações da engrenagem motora (ou engrenagem de entrada), a engrenagem movida (ou engrenagem de saída) faz 1 rotação. Nesse caso, há uma redução na velocidade, mas um aumento no torque.</li>
+          <li><strong>Redução 1:5:</strong> Isso significa que para cada 1 rotação da engrenagem motora, a engrenagem movida faz 5 rotações. Aqui, a velocidade aumentaria, mas o torque diminuiria.</li>
+      </ul>
 
-<p>As principais ligas são os aços 13%Cr-4%Ni e 13%Cr-6%Ni. Eles são sempre temperados e revenidos, normalmente austenitizados entre 950-1050°C e revenidos a 600°C. Alguns aços com mais de 14%Cr também podem ser endurecidos por precipitação entre 450-580°C após solubilização a 1000-1050°C.</p>
+      <h3>Trem de engrenagem</h3>
+      <p>O trem de engrenagem é uma cadeia cinemática destinada a transmitir potência e rotação, podendo se apresentar como: trem simples, trem composto e trem planetário.</p>
 
-<p>No diagrama de Schaeffler modificado, a adição de 4-6%Ni aumenta substancialmente o níquel equivalente em relação aos aços ferríticos, reduzindo o teor de ferrita delta e aumentando o teor de martensita.</p>
+      <h3>Sistema de Trens Simples</h3>
+      <p>Em um sistema de trens simples com uma engrenagem intermediária, a relação entre a engrenagem motora e a engrenagem movida pode ser expressa pela razão entre os números de dentes.</p>
+      <p><em>Relação de transmissão simples é igual ao número de dentes da engrenagem movida dividido pelo número de dentes da engrenagem motora</em>.</p>
 
-<p>Para metais de solda 13/4 e 13/6, os limites de composição são ainda mais restritos para minimizar a ferrita delta, já que normalmente o metal de solda é apenas revenido, e não temperado e revenido como o metal base.</p>
-
-<h3>As principais vantagens dos aços 13/4 e 13/6 para a soldagem são:</h3>
-<ul>
-  <li>Formação de martensita macia e tenaz na ZTA e metal de solda, reduzindo muito a sensibilidade a trincas a frio.</li>
-  <li>Baixos teores de ferrita delta (1-4% no 13/4 e 1% no 13/6), minimizando o crescimento de grão.</li>
-  <li>Certa sensibilidade da martensita ao hidrogênio. Trincas induzidas por Hidrogênio podem ocorrer se o teor de H difusível no metal de solda for > 5 ml/100g.</li>
-</ul>
-
-<h3>Recomendações para uma soldagem sem trincas:</h3>
-<ul>
-  <li>Usar metal de adição similar com máx. 0,04%C, ~12%Cr, 4-6%Ni, máx. 5% de ferrita delta.</li>
-  <li>Controlar o Hidrogênio difusível para menos de 5 ml/100g, ressecando consumíveis.</li>
-  <li>Pré-aquecer peças espessas (>20mm) a ~100°C.</li>
-  <li>Soldar abaixo de Ms, com interpasse de 100-150°C, para revenir cada passe com os passes subsequentes. Verificar a transformação martensítica com ferritoscópio ou ímã.</li>
-  <li>Para maiores tenacidades, revenir ou temperar e revenir após a soldagem.</li>
-  <li>Se soldar com alto interpasse (250-300°C), resfriar controladamente até ~100°C antes do tratamento térmico para garantir a transformação martensítica.</li>
-  <li>Os aços endurecíveis por precipitação raramente são soldados. Para igualar as propriedades, pode ser necessário o tratamento térmico completo de solubilização, revenimento e envelhecimento após a soldagem.</li>
-</ul>
-
-<h3>Tenacidade e aplicação a baixas temperaturas:</h3>
-<p>O metal de solda martensítico macio já apresenta, como soldado, tenacidade bem superior aos aços ferríticos ao Cr. Com revenimento, obtém-se excelente combinação de resistência e tenacidade, permitindo aplicação até -100°C. Os melhores resultados são obtidos com o processo TIG, devido à maior pureza do metal de solda.</p>
-
-<h3>Baixa formação de carbonetos:</h3>
-<p>Devido aos baixos teores de carbono, esses aços e metais de solda apresentam menor tendência à precipitação de carbonetos que os aços ferríticos 12-17%Cr. O carbono fica em solução na austenita e é mantido em solução forçada na transformação martensítica. Carbonetos só precipitam no revenimento, parcialmente nos contornos de grão, mas principalmente no interior dos grãos, causando sensitização. Por isso, a corrosão não é intergranular, mas generalizada na superfície dos grãos.</p>
-
-<h3>Fragilização não ocorre:</h3>
-<p>Praticamente não há fragilização por fase sigma nesses aços devido ao Cr limitado. Fragilização a 475°C só ocorre após tempos muito longos, sendo máxima a 475°C após 20.000h. Finos carbonetos precipitam no envelhecimento prolongado entre 325-525°C. Normalmente não há perda de tenacidade a 300°C, mesmo após tempos extremamente longos.</p>
-
-<h3>Composição química e desenvolvimento:</h3>
-<ul>
-  <li>Aços inoxidáveis martensíticos Cr-Ni de baixo carbono apresentam melhor soldabilidade e tenacidade em relação aos aços inoxidáveis ferríticos ao Cr.</li>
-  <li>Redução do teor de C para melhorar a tenacidade da martensita e diminuir a sensibilidade a trincas a frio.</li>
-  <li>Adição de 4-6% Ni para obter uma estrutura praticamente isenta de ferrita delta.</li>
-  <li>Composições típicas: aços 13Cr-4Ni e 13Cr-6Ni. Alguns aços com >14%Cr podem ser endurecidos por precipitação.</li>
-</ul>
-
-<h3>Metalurgia da soldagem:</h3>
-<ul>
-  <li>Solidificação inicial como cristais δ. Transformação δ→γ de 1300 a 1200°C. Pequenas quantidades de ferrita δ podem ficar retidas.</li>
-  <li>Transformação γ→α' (martensita) no resfriamento, com pequenas quantidades de austenita e ferrita δ retidas.</li>
-  <li>Estrutura de martensita "macia" com boa tenacidade (350-400 HV) devido ao baixo C e adição de Ni.</li>
-  <li>Temperatura Ms (início da transformação martensítica) de 200-250°C, mais baixa que nos aços ao Cr.</li>
-  <li>Tratamento de revenido pode aumentar a tenacidade, com redução da dureza e resistência.</li>
-</ul>
-
-<h3>Características da soldabilidade:</h3>
-<ul>
-  <li>Boa soldabilidade, especialmente dos aços 13Cr-4Ni e 13Cr-6Ni.</li>
-  <li>Formação de martensita de baixo carbono tenaz na ZAC e metal de solda, reduzindo sensibilidade a trincas a frio.</li>
-  <li>Baixos teores de ferrita δ (1-4% no 13Cr-4Ni, <1% no 13Cr-6Ni), reduzindo tendência a crescimento de grão.</li>
-  <li>Certa sensibilidade da martensita ao hidrogênio. Trincas podem ocorrer com H difusível > 5 ml/100g no metal de solda.</li>
-</ul>
-
-<h3>Propriedades mecânicas do metal de solda:</h3>
-<ul>
-  <li>Tenacidade já maior no estado como soldado comparado a aços ferríticos ao Cr sem Ni.</li>
-  <li>Revenido a 600-620°C produz os maiores valores de tenacidade ao impacto devido à formação de austenita finamente dispersa.</li>
-  <li>Melhores propriedades obtidas por soldagem TIG do aço 12Cr-4Ni devido à maior pureza do metal de solda.</li>
-  <li>Limite de escoamento e resistência ainda maiores em aços endurecíveis por precipitação após solubilização e envelhecimento.</li>
-</ul>
-
-<h3>Fenômenos de precipitação:</h3>
-<ul>
-  <li>Menor tendência à precipitação de carbonetos que aços ferríticos ao Cr devido aos baixos teores de C.</li>
-  <li>Carbonetos precipitam apenas no revenido, parcialmente nos contornos de grão e principalmente no interior como M23C6 e carbonitretos finos.</li>
-  <li>Pouca fragilização por fase sigma devido aos teores limitados de Cr.</li>
-  <li>Fragilização a 475°C ocorre apenas após tempos muito longos devido aos baixos teores de Cr.</li>
-</ul>
-
-<div class="user-app">
-    <a class="btn btn-default btn-sm" href="/aula/AulaConcurso.html">
-        <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
-    </a>
-</div>    
-</body>
-</html>
+      <h3>Engrenagens Intermediárias (Idle Gears)</h3>
+      <p>Engrenagens intermediárias são usadas para alterar a direção de rotação sem afetar a relação de transmissão. Quando se adiciona uma engrenagem intermediária entre duas outras, a relação de transmissão permanece a mesma, mas o sentido de rotação do eixo de saída é invertido.</p> 
+  
+      <h3>Sistema de Trens Composto</h3>
+      <p>No sistema composto, várias engrenagens são montadas em eixos diferentes, e os eixos são conectados em pares. Nesse caso, a relação total de transmissão é o produto das relações de transmissão de cada par de engrenagens consecutivas.</p>
+      <p><em>Relação total de um trem composto é igual ao produto das relações individuais de cada estágio do sistema</em>.</p>
+  
+      <h3>Sistema Planetário</h3>
+      <p>Um sistema de engrenagens planetárias consiste em engrenagens dispostas de maneira que uma engrenagem central (o <strong>sol</strong>) está conectada a engrenagens externas (os <strong>planetas</strong>), que giram em torno dela enquanto estão ligadas a um <strong>anel</strong> externo. Esse sistema permite diferentes relações de transmissão dependendo de qual componente está fixo ou rotativo.</p>
+      <p><em>Relação de transmissão planetária é igual ao número de dentes do anel dividido pelo número de dentes do sol</em>, ajustado para o movimento dos planetas.</p>
+  
+      <h3>Dimensionamento de uma Engrenagem</h3>
+      <ol>
+          <li>Definir o número de dentes e o módulo.</li>
+          <li>Calcular o passo diametral e o diâmetro primitivo.</li>
+          <li>Calcular o adendo e o dedendo com base no módulo.</li>
+          <li>Calcular o diâmetro externo e o diÂmetro interno da engrenagem </li>
+          <li>Definir o círculo de base para o perfil da envoluta.</li>
+      </ol>
+  
+      <h3>Dimensionamento de Trens Simples</h3>
+      <ol>
+          <li>Identificar o número de dentes das engrenagens motora e movida.</li>
+          <li>Calcular a relação de transmissão dividindo o número de dentes da engrenagem movida pelo número de dentes da engrenagem motora.</li>
+          <li>Adicionar engrenagens intermediárias (se necessário) para ajustar o sentido de rotação.</li>
+      </ol>
+  
+      <h3>Dimensionamento de Trens Composto</h3>
+      <ol>
+          <li>Definir o número de dentes de cada engrenagem em cada estágio.</li>
+          <li>Calcular as relações de transmissão individuais para cada par de engrenagens.</li>
+          <li>Multiplicar as relações de transmissão de cada estágio para obter a relação total.</li>
+      </ol>
+  
+      <h3>Dimensionamento de Sistemas Planetários</h3>
+      <ol>
+          <li>Definir os números de dentes do anel, do sol e dos planetas.</li>
+          <li>Escolher qual elemento estará fixo e qual será o movido.</li>
+          <li>Calcular a relação de transmissão com base na configuração escolhida (fixa, motora e movida).</li>
+      </ol>  
+  </body>
+  </html>

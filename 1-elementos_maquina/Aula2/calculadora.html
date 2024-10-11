@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Transmissão</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 10px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        label {
+            margin-bottom: 5px;
+            display: block;
+            color: black;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #45a049;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 5px;
+            padding: 5px;
+            background: #e9ecef;
+            border-radius: 4px;
+        }
+        #results h2 {
+            margin-top: 0;
+        }
+        @media (max-width: 768px) {
+            h1 {
+            font-size: 25px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Transmissão Composta</h1>
+        
+        <div class="input-group">
+            <label for="potencia">Potência do motor (kW):</label>
+            <input type="number" id="potencia" value="5.5" step="0.1">
+        </div>
+        <div class="input-group">
+            <label for="rotacao">Rotação do motor (rpm):</label>
+            <input type="number" id="rotacao" value="1740">
+        </div>
+        <div class="input-group">
+            <label for="d1">Diâmetro da polia 1 (mm):</label>
+            <input type="number" id="d1" value="120">
+        </div>
+        <div class="input-group">
+            <label for="d2">Diâmetro da polia 2 (mm):</label>
+            <input type="number" id="d2" value="280">
+        </div>
+        <div class="input-group">
+            <label for="z1">Número de dentes Z1:</label>
+            <input type="number" id="z1" value="23">
+        </div>
+        <div class="input-group">
+            <label for="z2">Número de dentes Z2:</label>
+            <input type="number" id="z2" value="49">
+        </div>
+        <div class="input-group">
+            <label for="z3">Número de dentes Z3:</label>
+            <input type="number" id="z3" value="27">
+        </div>
+        <div class="input-group">
+            <label for="z4">Número de dentes Z4:</label>
+            <input type="number" id="z4" value="59">
+        </div>
+        <div class="input-group">
+            <label for="nc">Rendimento da correia (nc):</label>
+            <input type="number" id="nc" value="0.97" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="ne">Rendimento das engrenagens (ne):</label>
+            <input type="number" id="ne" value="0.98" step="0.01">
+        </div>
+        <div class="input-group">
+            <label for="nm">Rendimento dos mancais (nm):</label>
+            <input type="number" id="nm" value="0.99" step="0.01">
+        </div>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            const P = parseFloat(document.getElementById('potencia').value);
+            const n = parseFloat(document.getElementById('rotacao').value);
+            const d1 = parseFloat(document.getElementById('d1').value);
+            const d2 = parseFloat(document.getElementById('d2').value);
+            const Z1 = parseFloat(document.getElementById('z1').value);
+            const Z2 = parseFloat(document.getElementById('z2').value);
+            const Z3 = parseFloat(document.getElementById('z3').value);
+            const Z4 = parseFloat(document.getElementById('z4').value);
+            const nc = parseFloat(document.getElementById('nc').value);
+            const ne = parseFloat(document.getElementById('ne').value);
+            const nm = parseFloat(document.getElementById('nm').value);
+
+            const PI = Math.PI;
+
+            const P1 = P * nc * nm;
+            const P2 = P1 * ne * nm;
+            const P3 = P2 * ne * nm;
+
+            const Pd1 = P - P1;
+            const Pd2 = P1 - P2;
+            const Pd3 = P2 - P3;
+
+            const n1 = n;
+            const n2 = n1 * (d1 / d2);
+            const n3 = n2 * (Z1 / Z2);
+            const n4 = n3 * (Z3 / Z4);
+
+            const T1 = (P1 * 1000) / (n1 * 2 * PI / 60);
+            const T2 = (P2 * 1000) / (n2 * 2 * PI / 60);
+            const T3 = (P3 * 1000) / (n3 * 2 * PI / 60);
+
+            const Pu = P3;
+            const Pd = P - Pu;
+
+            const rendimento = Pu / P;
+
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <h2>Resultados:</h2>
+                <p>Potência útil na árvore I: ${P1.toFixed(2)} kW</p>
+                <p>Potência útil na árvore II: ${P2.toFixed(2)} kW</p>
+                <p>Potência útil na árvore III: ${P3.toFixed(2)} kW</p>
+                <p>Potência dissipada no estágio 1: ${Pd1.toFixed(2)} kW</p>
+                <p>Potência dissipada no estágio 2: ${Pd2.toFixed(2)} kW</p>
+                <p>Potência dissipada no estágio 3: ${Pd3.toFixed(2)} kW</p>
+                <p>Rotação da árvore I: ${n1.toFixed(2)} rpm</p>
+                <p>Rotação da árvore II: ${n2.toFixed(2)} rpm</p>
+                <p>Rotação da árvore III: ${n4.toFixed(2)} rpm</p>
+                <p>Torque na árvore I: ${T1.toFixed(2)} N·m</p>
+                <p>Torque na árvore II: ${T2.toFixed(2)} N·m</p>
+                <p>Torque na árvore III: ${T3.toFixed(2)} N·m</p>
+                <p>Potência útil do sistema: ${Pu.toFixed(2)} kW</p>
+                <p>Potência dissipada do sistema: ${Pd.toFixed(2)} kW</p>
+                <p>Rendimento da transmissão: ${(rendimento * 100).toFixed(2)}%</p>
+            `;
+        }
+    </script>
+</body>
+</html>

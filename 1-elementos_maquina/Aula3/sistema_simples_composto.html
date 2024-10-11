@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Engrenagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #eaeaea;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 600px; /* Largura máxima do container para desktops */
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        canvas {
+            border: 1px solid #000;
+            margin: 20px 0;
+            display: block;
+            width: 100%; /* Ocupa 100% da largura do container */
+            height: auto; /* Altura automática para manter a proporção */
+        }
+        #form {
+            text-align: center;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: 60px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Media Query para telas menores */
+        @media (max-width: 600px) {
+            .container {
+                max-width: 100%; /* Container ocupa 100% da tela em dispositivos móveis */
+            }
+            canvas {
+                max-width: 280px; /* Largura máxima do canvas em telas pequenas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Calculadora de Engrenagens</h1>
+
+    <div id="form">
+        <h2>Sistema Simples</h2>
+        <label for="numEngrenagensSimples">Número de Engrenagens:</label>
+        <input type="number" id="numEngrenagensSimples" min="2" value="2">
+        <button onclick="adicionarEntradasSimples()">Adicionar Entradas</button>
+        <br>
+        <div id="entradasSimples"></div>
+        <button onclick="calcularSimples()">Calcular Relação Simples</button>
+        
+        <canvas id="canvasSimple" width="600" height="150"></canvas>
+
+        <h2>Sistema Composto</h2>
+        <label for="numEngrenagensComposto">Número de Engrenagens (par):</label>
+        <input type="number" id="numEngrenagensComposto" min="2" value="2">
+        <button onclick="adicionarEntradasComposto()">Adicionar Entradas</button>
+        <br>
+        <div id="entradasComposto"></div>
+        <button onclick="calcularComposto()">Calcular Relação Composta</button>
+        
+        <canvas id="canvasComposto" width="600" height="150"></canvas>
+    </div>
+
+    <p id="resultado"></p>
+</div>
+
+<script>
+    function adicionarEntradasSimples() {
+        const numEngrenagens = document.getElementById('numEngrenagensSimples').value;
+        const entradasDiv = document.getElementById('entradasSimples');
+        entradasDiv.innerHTML = '';
+
+        for (let i = 0; i < numEngrenagens; i++) {
+            entradasDiv.innerHTML += `<input type="number" id="diametroSimples${i}" placeholder="Diâmetro ${i + 1}">`;
+        }
+    }
+
+    function calcularSimples() {
+        const numEngrenagens = document.getElementById('numEngrenagensSimples').value;
+        let diametros = [];
+
+        for (let i = 0; i < numEngrenagens; i++) {
+            const diametro = document.getElementById(`diametroSimples${i}`).value;
+            diametros.push(parseFloat(diametro));
+        }
+
+        let relacaoComp = 1;
+        let relacoes = [];
+
+        for (let i = 0; i < numEngrenagens - 1; i++) {
+            const relacao = diametros[i + 1] / diametros[i];
+            relacoes.push(relacao);
+            relacaoComp *= relacao;
+        }
+
+        document.getElementById('resultado').innerText = `\n\nSistema Simples:\nRelações individuais: ${relacoes.join(', ')}\nRelação do Sistema Simples: ${relacaoComp}`;
+        desenharEngrenagensSimples(diametros);
+    }
+
+    function adicionarEntradasComposto() {
+        const numEngrenagens = document.getElementById('numEngrenagensComposto').value;
+        const entradasDiv = document.getElementById('entradasComposto');
+        entradasDiv.innerHTML = '';
+
+        for (let i = 0; i < numEngrenagens; i++) {
+            entradasDiv.innerHTML += `<input type="number" id="diametroComposto${i}" placeholder="Diâmetro ${i + 1}">`;
+        }
+    }
+
+    function calcularComposto() {
+        const numEngrenagens = document.getElementById('numEngrenagensComposto').value;
+        let diametros = [];
+
+        for (let i = 0; i < numEngrenagens; i++) {
+            const diametro = document.getElementById(`diametroComposto${i}`).value;
+            diametros.push(parseFloat(diametro));
+        }
+
+        let relacaoComp = 1;
+        let relacoes = [];
+
+        for (let i = 0; i < numEngrenagens; i += 2) {
+            const relacao = diametros[i + 1] / diametros[i];
+            relacoes.push(relacao);
+            relacaoComp *= relacao;
+        }
+
+        document.getElementById('resultado').innerText += `\n\nSistema Composto:\nRelações individuais: ${relacoes.join(', ')}\nRelação do Sistemas Composto: ${relacaoComp}`;
+        desenharEngrenagensComposto(diametros);
+    }
+
+    function desenharEngrenagensSimples(diametros) {
+        const canvas = document.getElementById('canvasSimple');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        let x = 50;
+        const y = canvas.height / 2;
+
+        diametros.forEach(diametro => {
+            ctx.beginPath();
+            ctx.arc(x, y, diametro / 2, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText(diametro, x - 10, y + 5);
+            x += diametro + 20; // Espaço entre engrenagens
+        });
+    }
+
+    function desenharEngrenagensComposto(diametros) {
+        const canvas = document.getElementById('canvasComposto');
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        let x = 50;
+        const y = canvas.height / 2;
+
+        for (let i = 0; i < diametros.length; i += 2) {
+            // Engrenagem 1
+            ctx.beginPath();
+            ctx.arc(x, y, diametros[i] / 2, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText(diametros[i], x - 10, y + 5);
+            x += diametros[i] + 20; // Espaço entre engrenagens
+
+            // Engrenagem 2
+            ctx.beginPath();
+            ctx.arc(x, y, diametros[i + 1] / 2, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText(diametros[i + 1], x - 10, y + 5);
+            x += diametros[i + 1] + 20; // Espaço entre engrenagens
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Criar uma Função em Python</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        @media (max-width: 768px) {
+            h1 {
+            font-size: 25px;
+        }
+            h2 {
+            font-size: 17px;
+        }
+            h3 {
+            font-size: 14px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <h1>Tutorial: Como Criar uma Função em Python</h1>
+
+    <h2>O que é uma Função?</h2>
+    <p>Uma função é um bloco de código que realiza uma tarefa específica. Você pode reutilizar funções em diferentes partes do seu programa, o que ajuda a evitar a repetição de código.</p>
+
+    <h2>Passo a Passo para Criar uma Função</h2>
+
+    <h3>1. Definir a Função</h3>
+    <p>Para criar uma função, você usa a palavra-chave <code>def</code>, seguida pelo nome da função e parênteses <code>()</code>. Se a função aceitar parâmetros, você os inclui dentro dos parênteses.</p>
+    <pre><code>def nome_da_funcao(parametro1, parametro2):</code></pre>
+
+    <h3>2. Adicionar o Corpo da Função</h3>
+    <p>Depois de definir a função, você escreve o código que a função deve executar. Este código deve ser indentado.</p>
+    <pre><code>def nome_da_funcao(parametro1, parametro2):
+    resultado = parametro1 + parametro2
+    return resultado</code></pre>
+
+    <h3>3. Chamar a Função</h3>
+    <p>Para usar a função, você a chama pelo nome, passando os argumentos necessários.</p>
+    <pre><code>resultado = nome_da_funcao(5, 3)
+print(resultado)  # Saída: 8</code></pre>
+
+    <h2>Exemplo Completo</h2>
+    <p>Aqui está um exemplo completo de uma função que soma dois números:</p>
+    <pre><code>def somar(a, b):
+    &nbsp;&nbsp;&nbsp;&nbsp;"""Esta função retorna a soma de dois números."""
+    &nbsp;&nbsp;&nbsp;&nbsp;resultado = a + b
+    &nbsp;&nbsp;&nbsp;&nbsp;return resultado
+
+# Chamada da função
+soma_resultado = somar(10, 5)
+print("A soma é:", soma_resultado)  # Saída: A soma é: 15</code></pre>
+
+    <h2>Dicas</h2>
+    <ul>
+        <li><strong>Documentação:</strong> Use a string de documentação (docstring) logo após a definição da função para descrever o que a função faz.</li>
+        <li><strong>Parâmetros Opcionais:</strong> Você pode definir parâmetros com valores padrão, tornando-os opcionais.</li>
+    </ul>
+    <pre><code>def saudacao(nome, mensagem="Olá"):
+    return f"{mensagem}, {nome}!"
+
+print(saudacao("Maria"))  # Saída: Olá, Maria!
+print(saudacao("João", "Bom dia"))  # Saída: Bom dia, João!</code></pre>
+
+    <h2>Conclusão</h2>
+    <p>Criar funções em Python é uma maneira eficaz de organizar seu código e promover a reutilização. Com a prática, você se tornará mais confortável em definir e usar funções em seus programas!</p>
+</body>
+</html>
