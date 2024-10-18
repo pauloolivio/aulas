@@ -9501,8 +9501,8 @@ Misc
                             flex-direction: column;
                             align-items: center;
                             justify-content: center;
-                            margin-bottom: 20px;
-                            margin-top: 20px;
+                            margin-bottom: 0px;
+                            margin-top: 0px;
                         }
                         
                         .btn_pdf {
