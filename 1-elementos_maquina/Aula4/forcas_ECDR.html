@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Forças em Engrenagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 99%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+            input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Cálculo de Forças em Engrenagens</h1>
+    
+    <label for="potencia">Potência (P em W):</label>
+    <input type="number" id="potencia" placeholder="Insira a potência">
+
+    <label for="velocidade">Velocidade (N em RPM):</label>
+    <input type="number" id="velocidade" placeholder="Insira a velocidade">
+
+    <label for="angulo">Ângulo de Pressão (graus):</label>
+    <input type="number" id="angulo" value="20" placeholder="Insira o ângulo de pressão" step="0.1">
+
+    <label for="modulo">Módulo (m em mm):</label>
+    <input type="number" id="modulo" placeholder="Insira o módulo">
+
+    <label for="numeroDentesPinhao">Número de Dentes do Pinhão:</label>
+    <input type="number" id="numeroDentesPinhao" placeholder="Insira o número de dentes do pinhão">
+
+    <label for="numeroDentesEngrenagem">Número de Dentes da Engrenagem:</label>
+    <input type="number" id="numeroDentesEngrenagem" placeholder="Insira o número de dentes da engrenagem">
+
+    <button onclick="calcularForcas()">Calcular Forças</button>
+
+    <div class="result" id="resultado"></div>
+</div>
+
+<script>
+    function calcularForcas() {
+        const P = parseFloat(document.getElementById('potencia').value);
+        const N = parseFloat(document.getElementById('velocidade').value);
+        const anguloPressao = parseFloat(document.getElementById('angulo').value);
+        const modulo = parseFloat(document.getElementById('modulo').value);
+        const numeroDentesPinhao = parseFloat(document.getElementById('numeroDentesPinhao').value);
+        const numeroDentesEngrenagem = parseFloat(document.getElementById('numeroDentesEngrenagem').value);
+        
+        const radiano = anguloPressao * (Math.PI / 180); // Convertendo para radianos
+
+        // Cálculo da força tangencial (Ft)
+        const Ft = (P * 60) / (2 * Math.PI * N);
+        
+        // Cálculo da força radial (Fr)
+        const Fr = Ft * Math.tan(radiano);
+        
+        // Cálculo da força resultante (Fresultante)
+        const Fresultante = Math.sqrt(Ft**2 + Fr**2);
+
+        // Cálculo da distância entre centros (d)
+        const distancia = (modulo * (numeroDentesPinhao + numeroDentesEngrenagem)) / 2;
+
+        // Exibir resultados
+        document.getElementById('resultado').innerHTML = `
+            <h3>Resultados:</h3>
+            <p>Força Resultante (F): ${Fresultante.toFixed(2)} N</p>
+            <p>Força Tangencial (Ft): ${Ft.toFixed(2)} N</p>
+            <p>Força Radial (Fr): ${Fr.toFixed(2)} N</p>
+            <p>Distância entre Centros: ${distancia.toFixed(2)} mm</p>
+        `;
+    }
+</script>
+
+</body>
+</html>

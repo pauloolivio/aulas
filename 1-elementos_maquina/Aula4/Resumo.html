@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 2 - Introdução a Elementos de Transmissão Mecânica</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+  </head>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #2C3E50;
+  }
+  h1, h2 {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: white;
+  }
+  .container {
+      /*max-width: 95%;*/
+      margin: 0px;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+  }
+  .table-container {
+      overflow-x: auto;
+      margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+      h2, h3 {
+          font-size: 1.2em;
+      }
+  }
+</style>
+<body>
+  <a class="btn btn-default btn-sm" href="../Aula4-EngrenagensDentesRetos.html">
+      <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+  </a>
+  <h2>Pré Aula 4 - Engrenagens Cilindricas de Dentes Retos</h2>
+<div class="container">
+    <body>
+        <p>As engrenagens cilíndricas de dentes retos são amplamente usadas em transmissões mecânicas devido ao design simples, fácil fabricação e alta capacidade de transmitir torque entre eixos paralelos, sendo ideais para diversas aplicações industriais e automotivas.</p>
+        <h3>Conceito Base</h3>
+        <p>A forma dos dentes segue uma curva envolvente, garantindo que a transmissão de movimento ocorra com uma velocidade angular constante entre os eixos. Esse perfil de dente minimiza o impacto e o desgaste, enquanto maximiza a eficiência do sistema.</p>
+    
+        <h3>Forças Atuantes no Dente de uma Engrenagem</h3>
+        <p>Ao projetar um par de engrenagens, é importante estabelecer dados iniciais como: Potência, rotação, medidas de diâmetro, numero de dente e módulo. Esses dados são necessários para o dimensionamento do par e calcular as forças atuantes no dentes. As forças atuante em engrenagem ciclindricas de dentes retos são:</p>
+        <ul>
+            <li><strong>Força resultante (Fr)</strong>: é a componente de força que atua com base no ângulo de pressão do dente.</li>
+            <li><strong>Força tangencial (Ft)</strong>: responsável pela transmissão de torque.</li>
+            <li><strong>Força radial (Fr)</strong>: atua no sentido de afastar as engrenagens.</li>
+        </ul>
+        <p>Essas forças devem ser determinadas para avaliar a resistência dos dentes e, posteriormente, para dimensionar adequadamente eixos e mancais que suportarão essas cargas.</p>
+    
+        <h3>Passo a Passo: Cálculo da Força no Dente de Engrenagem</h3>
+        <ol>
+            <li><strong>Determinar o Torque Transmitido</strong>: Esse valor geralmente é fácil de se obter, visto que a potência do motor e a rotação foram estimado no projeto básico.</li>
+            <li><strong>Calcular a Força Tangencial</strong>: A força tangencial é a responsável por transmitir o torque ao par de engrenagem.</li>    
+            <li><strong>Calcular a Força Radial (Fr)</strong>: A força radial pode ser obtida a partir da força tangencial ou a partir da força resultante, utilizando o ângulo de pressão do dente.</li>
+        </ol>
+    
+        <h3>Aplicação nas Análises dos Componentes Periféricos</h3>
+        <p>As forças tangencial e radial são essenciais para o cálculo dos componentes periféricos, como eixos-arvores e mancais. O eixo-arvore que suporta a engrenagem deve ser dimensionado para resistir às forças de flexão e torção resultantes dessas forças, enquanto os mancais precisam suportar as cargas radiais aplicadas pela engrenagem.</p>
+        <p>Ao calcular a resistência de eixos e mancais, devem-se considerar:</p>
+        <ul>
+            <li><strong>Tensão de flexão</strong> devido à força radial.</li>
+            <li><strong>Tensão de torção</strong> gerada pela força tangencial.</li>
+            <li><strong>Fator de segurança</strong>, que garante que os componentes não falhem sob as condições de carga operacional, promovidas por tensão alternate ou repetida.</li>
+        </ul>
+    
+        <h3>Adelgaçamento no Flanco do Dente (Desgaste)</h3>
+        <p>O flanco do dente da engrenagem é a área de contato entre os dentes acoplados. Durante o funcionamento contínuo, ocorre atrito entre essas superfícies, o que resulta em desgaste, conhecido como adelgaçamento no flanco do dente. Ele pode ser agravado por:</p>
+        <ul>
+            <li><strong>Cargas excessivas</strong>: se a força aplicada no dente exceder a capacidade de suporte do material, ocorrerá um desgaste acelerado.</li>
+            <li><strong>Lubrificação inadequada</strong>: a falta de uma lubrificação eficiente aumenta o atrito entre os dentes.</li>
+            <li><strong>Desalinhamento</strong>: engrenagens mal alinhadas podem gerar contato irregular entre os dentes, concentrando o desgaste em áreas específicas.</li>
+        </ul>
+        <p>Para minimizar o adelgaçamento no flanco do dente, recomenda-se o uso de materiais resistentes ao desgaste, lubrificação e o dimensionamento correto, não utilizando poucos dentes na engrenagem pinhão.</p>
+        
+        <h3>Cálculo do Número Mínimo de Dentes no Pinhão</h3>
+        <p>Um dos problemas mais críticos em sistemas de engrenagens é a interferência, que ocorre quando a ponta do dente de uma engrenagem entra em contato com a base do dente da engrenagem acoplada. Para evitar esse problema, deve-se garantir que o número de dentes do pinhão.</p>
+        <p>Para um ângulo de pressão de 20º, o número mínimo de dentes sem interferência é geralmente de cerca de 17 dentes no pinhão.</p>
+    
+        <h3>Cálculo do Número Máximo de Dentes na Coroa</h3>
+        <p>A relação entre pinhão e coroa deve ser estabelecida de forma que o sistema mantenha uma relação de transmissão eficiente e livre de interferências. O número máximo de dentes na coroa é limitado pela relação de transmissão desejada e pelas características geométricas do sistema.</p>
+        <p>Engrenagens com muitos dentes na coroa podem ser suscetíveis à interferência e podem exigir modificações, como alívio de perfil ou ajustes no ângulo de pressão.</p>
+    
+        <p>O dimensionamento correto das engrenagens, considerando o desgaste no flanco do dente, o número mínimo de dentes no pinhão e o número máximo de dentes na coroa, é essencial para garantir a eficiência e a durabilidade do sistema de transmissão. Esses fatores influenciam diretamente na confiabilidade e no desempenho da engrenagem, afetando a transmissão de potência e a vida útil do conjunto.</p>  
+  </body>
+  </html>
