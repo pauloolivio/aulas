@@ -88,7 +88,7 @@
             <input type="number" id="forca" />
         </label>
         <label>Posição (m):
-            <input type="number" id="posicao" min="0" max="1" step="0.1" />
+            <input type="number" id="posicao" min="0" max="1" step="0.01" />
         </label>
         <label>Ângulo (graus):
             <input type="number" id="angulo" min="-90" max="90" step="1" />
@@ -124,12 +124,12 @@
                 ctx.fillStyle = 'black';
                 ctx.save();
                 ctx.translate(x, 70);
-                ctx.rotate(-angulo * Math.PI / 180);
+                ctx.rotate((-angulo) * Math.PI / 180);
                 ctx.beginPath();
                 ctx.moveTo(0, -40);
                 ctx.lineTo(0, 0);
                 ctx.strokeStyle = 'red';
-                ctx.lineWidth = 3; // Linha mais grossa
+                ctx.lineWidth = 3;
                 ctx.stroke();
                 ctx.restore();
                 ctx.fillText(`${forca} N`, x + 5, 35);
@@ -164,7 +164,7 @@
             const forca = parseFloat(document.getElementById('forca').value);
             const posicao = parseFloat(document.getElementById('posicao').value);
             const angulo = parseFloat(document.getElementById('angulo').value);
-            if (forcas.length < 4 && !isNaN(forca) && !isNaN(posicao) && !isNaN(angulo) && posicao <= 1 && angulo >= -90 && angulo <= 90) {
+            if (forcas.length < 4 && !isNaN(forca) && !isNaN(posicao) && !isNaN(angulo) && posicao >= 0 && posicao <= 1 && angulo >= -90 && angulo <= 90) {
                 forcas.push({ forca, posicao, angulo });
                 desenharViga();
             } else {
@@ -173,25 +173,29 @@
         }
 
         function calcularReacoesEMomentos() {
-            let momentoA = 0;
-            let forcaTotalX = 0;
-            let forcaTotalY = 0;
+            let somaForcasY = 0;
+            let somaForcasX = 0;
+            let somaMomentos = 0;
 
+            // Percorrendo todas as forças adicionadas
             for (const { forca, posicao, angulo } of forcas) {
-                const forcaX = forca * Math.cos(angulo * Math.PI / 180);
-                const forcaY = forca * Math.sin(angulo * Math.PI / 180);
-                forcaTotalX += forcaX;
-                forcaTotalY += forcaY;
-                momentoA += forcaY * posicao - forcaX * 0.1; // Assumindo que a viga tem uma altura de 0.1m
+                const anguloRad = (angulo+90) * Math.PI / 180; // Converter o ângulo para radianos
+                const forcaY = forca * Math.sin(anguloRad); // Componente Y da força
+                const forcaX = forca * Math.cos(anguloRad); // Componente X da força
+                somaForcasY += forcaY;
+                somaForcasX += forcaX;
+
+                // Cálculo do momento (forçaY * distância)
+                somaMomentos += forcaY * posicao * 1; // multiplicando pela distância da força até o ponto A (em metros)
             }
 
-            const reacaoBY = momentoA;
-            const reacaoAY = forcaTotalY - reacaoBY;
-            const reacaoAX = forcaTotalX;
+            // Usando o equilíbrio de forças e momentos para resolver as reações
+            const reacaoBY = - somaMomentos;  // Momento em relação a A
+            const reacaoAY = - somaForcasY - reacaoBY; // Equilíbrio vertical total
+            const reacaoAX = - somaForcasX; // A reação horizontal em A é oposta à soma das forças horizontais
 
             const resultado = `Reação em A: (${reacaoAX.toFixed(2)} N, ${reacaoAY.toFixed(2)} N)\n` +
-                              `Reação em B: (0 N, ${reacaoBY.toFixed(2)} N)\n` +
-                              `Momento em A: ${momentoA.toFixed(2)} Nm (Sentido anti-horário)`;
+                            `Reação em B: (0 N, ${reacaoBY.toFixed(2)} N)\n`;
 
             document.getElementById('result').innerText = resultado;
         }
