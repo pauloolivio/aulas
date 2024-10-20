@@ -34,17 +34,17 @@
             margin-bottom: 20px;
             justify-content: center;
             width: 100%;
-            max-width: 100%; /* Limita a largura do grid */
+            max-width: 100%;
         }
         .letter {
-            padding: 10px; /* Aumenta a área clicável */
+            padding: 10px;
             border: 1px solid #ccc;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             user-select: none;
-            font-size: 1.0em; /* Aumenta o tamanho da letra */
+            font-size: 1.0em;
         }
         .selected {
             background-color: yellow;
@@ -120,11 +120,11 @@
         }
         @media (max-width: 600px) {
             .letter {
-                font-size: 0.8em; /* Ajusta o tamanho da letra em telas pequenas */
-                padding: 5px; /* Reduz o padding em telas pequenas */
+                font-size: 0.8em;
+                padding: 5px;
             }
             #word-grid {
-            gap: 1px;
+                gap: 1px;
             }
         }
     </style>
@@ -132,8 +132,7 @@
 <body>
     <div id="game-container">
         <div id="watermark"></div>
-        <h1>Caça-Palavras: Elemaq
-        </h1>
+        <h1>Caça-Palavras: Elemaq</h1>
         <div id="student-info">
             <input type="text" id="student-name" placeholder="Nome do Aluno">
             <input type="text" id="student-ra" placeholder="RA">
@@ -155,21 +154,20 @@
     </div>
 
     <script>
-        // Código JavaScript permanece o mesmo
         const grid = [
-                    ['A', 'S', 'E', 'D', 'I', 'O', 'P', 'I', 'H', 'A','L','X','R'],
-                    ['E', 'D', 'L', 'A', 'I', 'C', 'N', 'E', 'G', 'N','A','T','A'],
-                    ['M', 'E', 'E', 'A', 'S', 'F', 'A', 'X', 'U', 'C','M','O','Z'],
-                    ['L', 'I', 'U', 'G', 'M', 'O', 'D', 'U', 'L', 'O','M','D','A'],
-                    ['A', 'B', 'F', 'D', 'A', 'F', 'D', 'H', 'O', 'I','O','C','O'],
-                    ['D', 'L', 'M', 'M', 'S', 'L', 'R', 'I', 'C', 'G','O','R','D'],
-                    ['I', 'V', 'W', 'F', 'E', 'A', 'Ç', 'A', 'O', 'N','M','E','C'],
-                    ['O', 'F', 'C', 'H', 'D', 'S', 'S', 'A', 'I', 'P','L','T','O'],
-                    ['C', 'A', 'Q', 'I', 'N', 'T', 'A', 'C', 'M', 'X','F','O','N'],
-                    ['I', 'Z', 'A', 'I', 'C', 'D', 'A', 'C', 'O', 'E','K','D','T'],
-                    ['L', 'L', 'C', 'B', 'C', 'S', 'E', 'F', 'S', 'P','N','X','A'],
-                    ['E', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'O','I','T','T'],
-                    ['H', 'M', 'I', 'P', 'S', 'E', 'R', 'T', 'G', 'E','R','H','O']
+            ['A', 'S', 'E', 'D', 'I', 'O', 'P', 'I', 'H', 'A','L','X','R'],
+            ['E', 'D', 'L', 'A', 'I', 'C', 'N', 'E', 'G', 'N','A','T','A'],
+            ['M', 'E', 'E', 'A', 'S', 'F', 'A', 'X', 'U', 'C','M','O','Z'],
+            ['L', 'I', 'U', 'G', 'M', 'O', 'D', 'U', 'L', 'O','M','D','A'],
+            ['A', 'B', 'F', 'D', 'A', 'F', 'D', 'H', 'O', 'I','O','C','O'],
+            ['D', 'L', 'M', 'M', 'S', 'L', 'R', 'I', 'C', 'G','O','R','D'],
+            ['I', 'V', 'W', 'F', 'E', 'A', 'Ç', 'A', 'O', 'N','M','E','C'],
+            ['O', 'F', 'C', 'H', 'D', 'S', 'S', 'A', 'I', 'P','L','T','O'],
+            ['C', 'A', 'Q', 'I', 'N', 'T', 'A', 'C', 'M', 'X','F','O','N'],
+            ['I', 'Z', 'A', 'I', 'C', 'D', 'A', 'C', 'O', 'E','K','D','T'],
+            ['L', 'L', 'C', 'B', 'C', 'S', 'E', 'F', 'S', 'P','N','X','A'],
+            ['E', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'O','I','T','T'],
+            ['H', 'M', 'I', 'P', 'S', 'E', 'R', 'T', 'G', 'E','R','H','O']
         ];
 
         const wordGrid = document.getElementById('word-grid');
@@ -181,13 +179,13 @@
         const sessionCodeElement = document.getElementById('session-code');
         const watermarkElement = document.getElementById('watermark');
 
-        let isSelecting = false;
         let selectedLetters = [];
         let score = 0;
         let timeLeft = 240;
         let timerInterval;
         let wordsToFind = ['ADEGALÇAMENTO', 'CONICAS', 'ROSCASEMFIM', 'HELICOIDAL', 'HIPOIDES','TRESPIM','RAZAODCONTAT','RADIAL','TANGENCIAL','MODULO'];
         let sessionCode = '';
+        let isSelecting = false;
 
         const questions = [
             { question: "O tipo de desgaste gerado na interferências do par de dentes.", answer: "ADEGALÇAMENTO" },
@@ -212,6 +210,19 @@
                     letterDiv.dataset.row = i;
                     letterDiv.dataset.col = j;
                     wordGrid.appendChild(letterDiv);
+
+                    // Adiciona evento de mouse para seleção
+                    letterDiv.addEventListener('mousedown', (e) => {
+                        e.preventDefault();
+                        isSelecting = true;
+                        toggleLetterSelection(letterDiv);
+                    });
+
+                    letterDiv.addEventListener('mouseover', () => {
+                        if (isSelecting) {
+                            toggleLetterSelection(letterDiv);
+                        }
+                    });
                 }
             }
         }
@@ -224,26 +235,6 @@
                 li.dataset.index = index;
                 questionsElement.appendChild(li);
             });
-        }
-
-        function handleMouseDown(e) {
-            if (e.target.classList.contains('letter')) {
-                isSelecting = true;
-                toggleLetterSelection(e.target);
-            }
-        }
-
-        function handleMouseOver(e) {
-            if (isSelecting && e.target.classList.contains('letter')) {
-                toggleLetterSelection(e.target);
-            }
-        }
-
-        function handleMouseUp() {
-            isSelecting = false;
-            checkSelection();
-            selectedLetters = [];
-            document.querySelectorAll('.letter:not(.found)').forEach(letter => letter.classList.remove('selected'));
         }
 
         function toggleLetterSelection(letter) {
@@ -263,19 +254,24 @@
             const reversedWord = word.split('').reverse().join('');
             
             if (wordsToFind.includes(word) || wordsToFind.includes(reversedWord)) {
-                markWordAsFound(word);
-                updateScore(10); //(word.length)
+                markWordAsFound(word, reversedWord);
+                updateScore(10);
                 checkGameCompletion();
+                selectedLetters = []; // Reseta a seleção após encontrar a palavra
             }
         }
 
-        function markWordAsFound(word) {
+        function markWordAsFound(word, reversedWord) {
             selectedLetters.forEach(letter => letter.classList.add('found'));
-            const questionElement = Array.from(questionsElement.children).find(li => questions[li.dataset.index].answer === word);
+            const foundWord = wordsToFind.includes(word) ? word : reversedWord;
+            const questionElement = Array.from(questionsElement.children).find(li => questions[li.dataset.index].answer === foundWord);
+            
             if (questionElement) {
                 questionElement.style.textDecoration = 'line-through';
             }
-            wordsToFind = wordsToFind.filter(w => w !== word);
+            
+            // Remover a palavra encontrada da lista, seja normal ou reversa
+            wordsToFind = wordsToFind.filter(w => w !== foundWord && w !== reversedWord);
         }
 
         function updateScore(points) {
@@ -321,6 +317,8 @@
             generateSessionCode();
             startTimer();
             printButton.disabled = true;
+            selectedLetters = [];
+            isSelecting = false; // Resetando a seleção
         }
 
         function generateSessionCode() {
@@ -341,9 +339,14 @@
         displayQuestions();
         generateSessionCode();
         startTimer();
-        wordGrid.addEventListener('mousedown', handleMouseDown);
-        wordGrid.addEventListener('mouseover', handleMouseOver);
-        document.addEventListener('mouseup', handleMouseUp);
+        
+        document.addEventListener('mouseup', () => {
+            if (isSelecting) {
+                checkSelection();
+                isSelecting = false; // Finaliza a seleção
+            }
+        });
+        
         restartButton.addEventListener('click', resetGame);
         printButton.addEventListener('click', printGame);
     </script>
