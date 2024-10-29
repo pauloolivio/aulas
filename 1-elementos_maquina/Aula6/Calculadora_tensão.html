@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tensão em Engrenagens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cálculos de Tensão no Dente da Engrenagem</h1>
+        <div class="input-group">
+            <label for="h">Potência (H):</label>
+            <input type="number" id="h" value="3000">
+        </div>
+        <div class="input-group">
+            <label for="ko">Fator de Carga Ko:</label>
+            <input type="number" id="ko" value="1">
+        </div>
+        <div class="input-group">
+            <label for="ks">Fator de Correção Ks:</label>
+            <input type="number" id="ks" value="1">
+        </div>
+        <div class="input-group">
+            <label for="b">Largura da Engrenagem (b):</label>
+            <input type="number" id="b" value="38">
+        </div>
+        <div class="input-group">
+            <label for="mt">Módulo (mt):</label>
+            <input type="number" id="mt" value="2.5">
+        </div>
+        <div class="input-group">
+            <label for="kb">Fator de Concentração de Tensão (kb):</label>
+            <input type="number" id="kb" value="1">
+        </div>
+        <div class="input-group">
+            <label for="yjp">Fator de Sobrecarga do Pinhão (yjp):</label>
+            <input type="number" id="yjp" value="0.3">
+        </div>
+        <div class="input-group">
+            <label for="yjg">Fator de Sobrecarga da Coroa (yjg):</label>
+            <input type="number" id="yjg" value="0.4">
+        </div>
+        <div class="input-group">
+            <label for="a">Constante A:</label>
+            <input type="number" id="a" value="59.77">
+        </div>
+        <div class="input-group">
+            <label for="B">Constante B:</label>
+            <input type="number" id="B" value="0.8255">
+        </div>
+        <div class="input-group">
+            <label for="np">Número de Dentes do Pinhão (Np):</label>
+            <input type="number" id="np" value="20">
+        </div>
+        <div class="input-group">
+            <label for="ng">Número de Dentes da Coroa (Ng):</label>
+            <input type="number" id="ng" value="60">
+        </div>
+        <div class="input-group">
+            <label for="rpm">Rotação (rpm):</label>
+            <input type="number" id="rpm" value="1800">
+        </div>
+        <div class="input-group">
+            <label for="cma">Fator de Acabamento Superficial (cma):</label>
+            <input type="number" id="cma" value="0.1504">
+        </div>
+        <div class="input-group">
+            <label for="ce">Fator de Eficiência (ce):</label>
+            <input type="number" id="ce" value="1">
+        </div>
+        <div class="input-group">
+            <label for="cmc">Fator de Concentração de Tensão (cmc):</label>
+            <input type="number" id="cmc" value="1">
+        </div>
+        <div class="input-group">
+            <label for="cpm">Fator de Distribuição de Carga (cpm):</label>
+            <input type="number" id="cpm" value="1">
+        </div>
+        <button onclick="calcularForcas()">Calcular Forças</button>
+
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularForcas() {
+            var H = parseFloat(document.getElementById("h").value);
+            var ko = parseFloat(document.getElementById("ko").value);
+            var ks = parseFloat(document.getElementById("ks").value);
+            var b = parseFloat(document.getElementById("b").value);
+            var mt = parseFloat(document.getElementById("mt").value);
+            var kb = parseFloat(document.getElementById("kb").value);
+            var yjp = parseFloat(document.getElementById("yjp").value);
+            var yjg = parseFloat(document.getElementById("yjg").value);
+            var A = parseFloat(document.getElementById("a").value);
+            var B = parseFloat(document.getElementById("B").value);
+            var Np = parseFloat(document.getElementById("np").value);
+            var Ng = parseFloat(document.getElementById("ng").value);
+            var rpm = parseFloat(document.getElementById("rpm").value);
+            var cma = parseFloat(document.getElementById("cma").value);
+            var ce = parseFloat(document.getElementById("ce").value);
+            var cmc = parseFloat(document.getElementById("cmc").value);
+            var cpm = parseFloat(document.getElementById("cpm").value);
+
+            var resExer1 = tensaoEng(H, ko, ks, b, mt, kb, yjp, yjg, A, B, Np, Ng, rpm, cma, ce, cmc, cpm);
+
+            // Limpar resultados anteriores
+            var resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = `
+                <h3>Resultados:</h3>
+                <p id="exer1a">Diâmetro primitivo do pinhão: ${resExer1[0].toFixed(3)} mm</p>
+                <p id="exer1b">Diâmetro primitivo da coroa: ${resExer1[1].toFixed(3)} mm</p>
+                <p id="exer1c">Velocidade periférica: ${resExer1[2].toFixed(3)} m/s</p>
+                <p id="exer1d">Força Tangencial: ${resExer1[3].toFixed(3)} N</p>
+                <p id="exer1e">Fator kv: ${resExer1[4].toFixed(3)}</p>
+                <p id="exer1f">Fator cpf do pinhão: ${resExer1[5].toFixed(3)}</p>
+                <p id="exer1g">Fator kH do pinhão: ${resExer1[6].toFixed(3)}</p>
+                <p id="exer1h">Fator cpf da coroa: ${resExer1[7].toFixed(3)}</p>
+                <p id="exer1i">Fator kH da coroa: ${resExer1[8].toFixed(3)}</p>
+                <p id="exer1j">Tensão de Flexão no pinhão: ${resExer1[9].toFixed(3)} MPa</p>
+                <p id="exer1k">Tensão de Flexão na coroa: ${resExer1[10].toFixed(3)} MPa</p>
+            `;
+        }
+
+        function tensaoEng(H, ko, ks, b, mt, kb, yjp, yjg, A, B, Np, Ng, rpm, cma, ce, cmc, cpm) {
+            var dpp = mt * Np;
+            var dpg = mt * Ng;
+            var v = (dpp / (2 * 1000)) * rpm * (Math.PI / 30);
+            var wt = H / v;
+            var kv = ((A + Math.sqrt(200 * v)) / A) ** B;
+            var cpfp = (b / (10 * dpp)) - 0.0375 + ((4.02 * 10 ** -4) * b);
+            var kHp = 1 + cmc * (cpfp * cpm + cma * ce);
+            var cpfg = (b / (10 * dpg)) - 0.0375 + ((4.02 * 10 ** -4) * b);
+            var kHg = 1 + cmc * (cpfg * cpm + cma * ce);
+            var tfp = (wt * ko * kv * ks * kHp * kb) / (b * mt * yjp);
+            var tfg = (wt * ko * kv * ks * kHg * kb) / (b * mt * yjg);
+            return [dpp, dpg, v, wt, kv, cpfp, kHp, cpfg, kHg, tfp, tfg];
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 6 - xxxxx</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+  </head>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #2C3E50;
+  }
+  h1, h2 {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      color: white;
+  }
+  .container {
+      /*max-width: 95%;*/
+      margin: 0px;
+      width: 100%;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+  }
+  .table-container {
+      overflow-x: auto;
+      margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+      h2, h3 {
+          font-size: 1.2em;
+      }
+  }
+</style>
+<body>
+  <a class="btn btn-default btn-sm" href="../Aula6-AnaliseTensao.html">
+      <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+  </a>
+  <h2>Pré Aula 6 - Cálculo de Tensão no Dente Segundo a AGMA 2101-D04</h2>
+    <div class="container">
+    <p>A norma AGMA 2101-D04 é um guia para o cálculo da capacidade de carga em engrenagens cilíndricas de dentes retos e helicoidais, com foco na determinação da tensão de flexão e da tensão de contato nos dentes. Esses cálculos são essenciais para dimensionar engrenagens com segurança e garantir sua durabilidade, com base em uma série de fatores e coeficientes que ajudam a calcular a tensão admissível e a vida útil. Abaixo apresento os principais parâmetro para realizar esses cálculos de acordo com a norma.</p>
+
+    <h3>Cálculo da Tensão de Flexão no Dente</h3>
+    <p>Parâmetros Necessários para o Calculo de Tensão de Flexão no Dente:</p>
+    <ul>
+        <li><strong>Tensão de Flexão:</strong>A tensão gerada no dente devido à flexão no pé do dente.</li>
+        <li><strong>Força Tangencial Transmitida:</strong> Responsável por induzir a flexão no dente no ponto de contato no círculo primitivo.</li>
+        <li><strong>Fator de Sobrecarga (Ko):</strong> Ajusta para picos de carga ou sobrecargas momentâneas.</li>
+        <li><strong>Fator Dinâmico (Kv):</strong> Leva em conta os efeitos de vibração e oscilações de carga.</li>
+        <li><strong>Fator de Tamanho (Ks):</strong> Ajusta a tensão de flexão com base no tamanho do dente.</li>
+        <li><strong>Largura da Face (b):</strong> Necessário para o calculo de tensão e dimensionamento do volume minimo do dente.</li>
+        <li><strong>Fator de Distribuição de Carga (KH):</strong> Corrige para uma distribuição de carga não uniforme ao longo da face do dente.</li>
+        <li><strong>Fator de Espessura de Aro (KB):</strong> Aplicável para a resistência em engrenagens com aro fino.</li>
+        <li><strong>Fator Geométrico para Flexão (YJ):</strong> Leva em conta a forma do dente e a geometria do par engrenagem.</li>
+        <li><strong>Módulo Métrico Transversal (mt):</strong> Define o tamanho dos dentes.</li>
+    </ul>
+
+    <p>A tensão de flexão nominal é calculada a partir da força tangencial Wt, largura e modulo, sendo ajustada pelos fatores Ko, Kv, Ks, KH, KB e YJ, obtendo uma tensão final compatível com as condições reais de operação.</p>
+
+    <h3>Cálculo da Tensão Admissível de Flexão</h3>
+    <p>Os parâmetros necessários para o calculo da tensão de flexão admissível são:</p>
+    <ul>
+        <li><strong>Tensão de Flexão Admissível:</strong> É o limite de tensão seguro para flexão.</li>
+        <li><strong>Resistência à Fadiga na Flexão (St):</strong> Resistência do material à fadiga sob tensões de flexão.</li>
+        <li><strong>Fator de Ciclagem para Flexão (YN):</strong> Corrige a tensão admissível considerando o número de ciclos de carregamento.</li>
+        <li><strong>Fator de Temperatura (Yθ):</strong> Ajusta a tensão para as condições térmicas específicas da aplicação.</li>
+        <li><strong>Fator de Confiabilidade (YZ):</strong> Ajuste adicional para aumentar a confiabilidade do cálculo.</li>
+        <li><strong>Fator de Segurança AGMA (SF):</strong> Representa a margem de segurança para a tensão de flexão, calculada como a razão entre a tensão de flexão admissível e a tensão de flexão calculada .</li>
+    </ul>
+
+    <p>Para o calculo da tensão de flexão admissível, aplicam-se os fatores YN, Yθ, e YZ para corrigir a resistência St, obtendo a tensão de flexão admissível.</p>
+
+    <h3>Cálculo da Tensão de Contato no Dente</h3>
+    <p>Parâmetros Necessários para o Cálculo da Tensão de Contato no Dente</p>
+    <ul>
+        <li><strong>Tensão de Contato:</strong> Representa a tensão de contato na superfície do dente.</li>
+        <li><strong>Fator de Sobrecarga (Ko):</strong> Ajusta para picos de carga ou sobrecargas momentâneas.</li>
+        <li><strong>Fator Dinâmico (Kv):</strong> Leva em conta os efeitos de vibração e oscilações de carga.</li>
+        <li><strong>Fator de Tamanho (Ks):</strong> Ajusta a tensão com base no tamanho do dente.</li>
+        <li><strong>Coeficiente Elástico (ZE):</strong> Influencia o cálculo considerando o módulo de elasticidade dos materiais.</li>
+        <li><strong>Fator de Condição Superficial (ZR):</strong> Ajusta a tensão para o acabamento superficial do dente.</li>
+        <li><strong>Diâmetro Primitivo do Pinhão (dw1):</strong> Diâmetro no círculo primitivo, fundamental para o cálculo da área de contato.</li>
+        <li><strong>Fator Geométrico para Contato (ZI):</strong> Considera a geometria da superfície de contato entre os dentes.</li>
+    </ul>
+
+    <p>A tensão de contato é calculada com base na força tangencial e nos parâmetros ZE, ZR, dw1, e ZI, além dos fatores Ko e Kv para obter um valor final compatível com as condições operacionais.</p>
+
+    <h3>Cálculo da Tensão Admissível de Contato</h3>
+    <p>Parâmetros Necessários para o Cálculo da Tensão Admissível de Contato</p>
+    <ul>
+        <li><strong>Tensão de Contato Admissível:</strong> É o limite seguro para tensão de contato.</li>
+        <li><strong>Resistência à Fadiga na Compressão (Sc):</strong> Resistência à fadiga sob compressão.</li>
+        <li><strong>Fator de Ciclagem para Contato (ZN):</strong> Ajusta a tensão admissível para o número de ciclos de carga.</li>
+        <li><strong>Fator de Razão de Dureza (ZW):</strong> Ajuste relacionado à dureza superficial do material.</li>
+        <li><strong>Fator de Temperatura (Yθ):</strong> Ajusta a tensão para as condições térmicas específicas da operação.</li>
+        <li><strong>Fator de Confiabilidade (YZ):</strong> Adiciona confiabilidade ao cálculo da tensão admissível.</li>
+        <li><strong>Fator de Segurança AGMA (SH):</strong> Razão entre a tensão admissível e a tensão calculada de contato, garantindo a segurança estrutural.</li>
+    </ul>
+
+    <p>A tensão de contato admissível é calculada aplicando os fatores ZN, ZW, Yθ, e YZ sobre esistência à Fadiga na Compressão (Sc), obtemos a tensão admissível de contato com o fator de segurança SH para garantir a resistência e durabilidade sob condições operacionais.</p>
+
+    <h3>Comparação dos Fatores de Segurança</h3>
+    <p><strong>Fator de Segurança para Flexão (SF):</strong> é a razão entre a tensão admissível de flexão σadm e a tensão calculada σ.</p>
+    <p><strong>Fator de Segurança para Contato (SH):</strong> é a razão entre a tensão admissível de contato σcadm e a tensão calculada σC.</p>
+    <p>Ambos os fatores SF e SH devem ser superiores a 1, garantindo margens de segurança para evitar falhas prematuras.</p>
+
+</body>
+</html>
+
+
+
+
+
