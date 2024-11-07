@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Reações e Momentos em uma Viga</title>
+    <title>Calculadora de Reações com Carga Distribuida Retangular</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@
     </style>
 </head>
 <body>
-    <h1>Calculadora de Reações e Momentos de Viga</h1>
+    <h1>Calculadora de Reações com Carga Distribuida Retangular</h1>
     <canvas id="viga" width="600" height="200"></canvas>
     <div class="input-container">
         <label>Intensidade da Carga (N/m):
@@ -121,9 +121,9 @@
                 const largura = extensao * 500;
 
                 ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
-                ctx.fillRect(xInicio, 70, largura, 20);
+                ctx.fillRect(xInicio, 70, largura, -20);
                 ctx.fillStyle = 'black';
-                ctx.fillText(`${intensidade} N/m`, xInicio + 5, 65);
+                ctx.fillText(`${intensidade} N/m`, xInicio + 5, 45);
             }
 
             ctx.beginPath();
