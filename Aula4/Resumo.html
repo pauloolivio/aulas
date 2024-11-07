@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 4 - Forças Internas e Tensões</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="/3-mec_resistencia_materiais/Aula3-Reaçõesdeapoio.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 4 - Cargas Distribuidas</h2>
+<div class="container">
+   
+    <p>Em estruturas e sistemas mecânicos, as cargas distribuídas representam forças aplicadas ao longo de uma área ou comprimento, em vez de atuarem em um ponto específico. Esse tipo de carga é comum em vigas, pontes, paredes e outras estruturas, onde forças como peso próprio ou pressão se distribuem sobre uma superfície.</p>
+
+    <h3>Cargas Distribuídas Retangulares</h3>
+    <p>Em uma carga distribuída retangular, a intensidade da força é constante ao longo de todo o comprimento onde está aplicada. A força concentrada equivalente a essa distribuição é representada pela área da carga, calculada como a base (<em>b</em>) multiplicada pela altura (<em>h</em>) da distribuição.</p>
+    <ul>
+        <li>A força total é <strong>F = b &times; h</strong>, onde <em>h</em> é a intensidade constante da carga por unidade de comprimento.</li>
+        <li>O ponto de aplicação da força concentrada fica no centro do comprimento onde a carga atua, simplificando a análise.</li>
+    </ul>
+
+    <h3>Cargas Distribuídas Triangulares</h3>
+    <p>Em uma carga distribuída triangular, a intensidade da força varia linearmente, de zero em um dos extremos até um valor máximo no outro. A força concentrada equivalente será igual à área do triângulo formado pela distribuição, ou seja, <strong>F = (1/2) &times; b &times; h</strong>, onde <em>b</em> é o comprimento da base e <em>h</em> a altura máxima da carga.</p>
+    <ul>
+        <li>O ponto de aplicação da força resultante está localizado a 1/3 do comprimento total da base do triângulo a partir do ponto onde a intensidade da carga é máxima.</li>
+    </ul>
+
+    <h3>Cargas Complexas e Funções de Carga</h3>
+    <p>Cargas complexas possuem variações não lineares na intensidade, onde a carga é representada por uma função matemática (como uma função polinomial ou exponencial) em vez de uma forma geométrica simples. A força concentrada equivalente é dada pela área sob a curva da função de carga.</p>
+    <ul>
+        <li>Para calcular a força total e o ponto de aplicação da resultante, é necessário integrar a função de carga ao longo do comprimento onde a força se distribui. A integral da função sobre o comprimento fornece a força total, enquanto o cálculo do centroide representa o ponto de aplicação da força resultante.</li>
+    </ul>
+
+    <h3>Aplicação da Decomposição</h3>
+    <p>Para qualquer tipo de carga distribuída, o processo de decomposição visa:</p>
+    <ul>
+        <li><strong>Determinar a Força Concentrada Equivalente</strong>: Em todos os casos, essa força concentrada é igual à área da carga representativa (por exemplo, <em>b &times; h</em> para uma carga retangular, <em>(1/2) &times; b &times; h</em> para uma carga triangular, ou a integral de uma função para cargas complexas).</li>
+        <li><strong>Localizar o Ponto de Aplicação da Resultante</strong>: Esse ponto representa o local onde a força concentrada equivalente atuará, facilitando os cálculos de momentos e reações de apoio.</li>
+    </ul>
+
+    <p>Esses conceitos de decomposição de forças e força concentrada equivalente permitem simplificar a análise estrutural, especialmente na determinação de forças internas e reações de apoio em estruturas.</p>
+
+</body>
+</html>
