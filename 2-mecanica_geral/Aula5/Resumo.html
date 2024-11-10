@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 4 - Forças Internas e Tensões</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="/3-mec_resistencia_materiais/Aula3-Reaçõesdeapoio.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 5 - Análise Estrutural e Treliças</h2>
+<div class="container">
+   
+    <p>Muitas estruturas de máquinas e prediais são formadas por barras interligadas em nós denominadas Treliças, projetadas para suportar cargas aplicadas em suas extremidades e transmitir essas cargas aos apoios. A simplicidade e a eficiência estrutural das treliças tornam-nas comuns em pontes, telhados e estruturas industriais. Nos cálculos de treliças, cada barra é idealizada como sendo capaz de resistir apenas a forças de tração ou compressão, enquanto os momentos fletores e forças cortantes são desprezados. Isso simplifica o cálculo estrutural e permite que as forças internas nas barras sejam determinadas através de métodos específicos.</p>
+
+    <h3>Métodos de Cálculo de Treliças</h3>
+
+    <h3>Método das Seções</h3>
+    <p>No método das seções, divide-se a treliça em duas partes cortando-se um conjunto de barras, expondo as forças internas dessas barras. Essa técnica é útil para calcular as forças em barras específicas, especialmente no meio da estrutura, e consiste em dividir a estrutura em uma seção equilibrada para a análise. A partir do equilíbrio das forças e dos momentos na seção cortada, resolve-se as equações para encontrar as forças internas.</p>
+
+    <h3>Método dos Nós</h3>
+    <p>Esse método se baseia no equilíbrio de cada nó da treliça, considerando as forças aplicadas e as forças das barras conectadas. Como cada nó deve estar em equilíbrio, aplica-se o princípio da estática para criar um sistema de equações baseado na soma das forças horizontais e verticais em cada nó. Esse método é particularmente eficiente para encontrar forças em barras próximas aos apoios.</p>
+
+    <h3>Passo a Passo para Resolver Problemas de Treliças</h3>
+
+    <ol>
+        <li>
+            <strong>Identificação da Treliça e das Condições de Contorno:</strong>
+            <ul>
+                <li>Identifique as forças aplicadas e as reações nos apoios.</li>
+                <li>Verifique se a treliça é isostática, ou seja, se tem o número adequado de barras e nós (usando a fórmula 2n - 3 = m, onde n é o número de nós e m é o número de barras).</li>
+                <p></p>
+            </ul>
+        </li>
+        <li>
+            <strong>Cálculo das Reações de Apoio:</strong>
+            <p>Antes de calcular as forças nas barras, determine as reações de apoio usando o equilíbrio global da estrutura: aplique as condições de equilíbrio para calcular as forças reativas nos apoios.</p>
+        </li>
+
+        <li>
+            <strong>Aplicação do Método dos Nós ou das Seções:</strong>
+            <ul>
+                <li><strong>Método dos Nós:</strong> Se o objetivo é encontrar todas as forças, comece pelos nós onde há no máximo duas barras desconhecidas.</li>
+                <li><strong>Método das Seções:</strong> Para resolver uma barra específica, “corte” a estrutura expondo as barras desejadas e aplique as equações de equilíbrio em uma das partes separadas.</li>
+                <p></p>
+            </ul>
+
+        </li>
+
+        <li>
+            <strong>Resolução das Equações:</strong>
+            <p>Utilize as equações de equilíbrio (somatório das forças em X = 0, somatório das forças em Y = 0 e, no caso do método das seções, somatório dos momentos = 0) para resolver as forças internas. Lembre-se de indicar se cada barra está em tração ou compressão.</p>
+        </li>
+
+        <li>
+            <strong>Verificação dos Resultados:</strong>
+            <p>Revise cada cálculo e verifique se as condições de equilíbrio estão satisfeitas em toda a treliça e nos nós analisados.</p>
+        </li>
+    </ol>
+</body>
+</html>

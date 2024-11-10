@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Treliça</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        canvas {
+            border: 1px solid #000;
+            width: 100%;
+            height: auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0052a3;
+        }
+        input[type="number"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100px;
+        }
+        .results-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .results-table {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        .tension {
+            color: #cc0000;
+        }
+        .compression {
+            color: #0000cc;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .results-container {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Análise de Treliça</h2>
+        <canvas id="trussCanvas" width="750" height="500"></canvas>
+        <div class="controls">
+            <label for="forceInputC">Força em C (kN):</label>
+            <input type="number" id="forceInputC" value="12" min="0" />
+            <label for="forceInputB">Força em B (kN):</label>
+            <input type="number" id="forceInputB" value="8" min="0" />
+            <button onclick="calculateForces()">Calcular Forças</button>
+        </div>
+        <div class="results-container">
+            <div id="results" class="results-table"></div>
+            <div id="memberForces" class="results-table"></div>
+            <div id="angles" class="results-table"></div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('trussCanvas');
+        const ctx = canvas.getContext('2d');
+        const scale = 70;
+
+        const nodes = {
+            'A': {x: 0, y: 0},
+            'B': {x: 3, y: 0},
+            'C': {x: 6, y: 0},
+            'D': {x: 9, y: 0},
+            'E': {x: 6, y: 3},
+            'G': {x: 3, y: 3}
+        };
+
+        const members = [
+            ['A', 'B'], ['B', 'C'], ['C', 'D'],
+            ['A', 'G'], ['G', 'E'], ['E', 'D'],
+            ['G', 'B'], ['G', 'C'], ['E', 'C']
+        ];
+
+        function calculateDistance(node1, node2) {
+            const dx = nodes[node2].x - nodes[node1].x;
+            const dy = nodes[node2].y - nodes[node1].y;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
+        function calculateAngle(node1, node2) {
+            const dx = nodes[node2].x - nodes[node1].x;
+            const dy = nodes[node2].y - nodes[node1].y;
+            return Math.atan2(dy, dx);
+        }
+
+        function drawTruss() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(50, 350);
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 0.5;
+
+            // Desenhar a grade de referência
+            for (let i = 0; i <= 9; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * scale, -4 * scale);
+                ctx.lineTo(i * scale, 0);
+                ctx.stroke();
+            }
+            for (let i = 0; i <= 4; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, -i * scale);
+                ctx.lineTo(9 * scale, -i * scale);
+                ctx.stroke();
+            }
+
+            // Desenhar os membros
+            members.forEach(([n1, n2]) => {
+                ctx.beginPath();
+                ctx.strokeStyle = '#0066cc';
+                ctx.lineWidth = 3;
+                ctx.moveTo(nodes[n1].x * scale, -nodes[n1].y * scale);
+                ctx.lineTo(nodes[n2].x * scale, -nodes[n2].y * scale);
+                ctx.stroke();
+
+                // Adicionar comprimento do membro
+                const midX = (nodes[n1].x + nodes[n2].x) * scale / 2;
+                const midY = -(nodes[n1].y + nodes[n2].y) * scale / 2;
+                const length = calculateDistance(n1, n2);
+                ctx.fillStyle = '#666';
+                ctx.font = '12px Arial';
+                ctx.fillText(`${length.toFixed(2)}m`, midX + 5, midY - 5);
+            });
+
+            // Desenhar os nós
+            for (let node in nodes) {
+                ctx.beginPath();
+                ctx.fillStyle = '#003366';
+                ctx.arc(nodes[node].x * scale, -nodes[node].y * scale, 6, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 14px Arial';
+                ctx.fillText(node, nodes[node].x * scale - 10, -nodes[node].y * scale - 10);
+            }
+
+            // Desenhar apoios e forças
+            drawSupport('A', 'fixed');
+            drawSupport('D', 'roller');
+            drawForce('C', parseFloat(document.getElementById('forceInputC').value));
+            drawForce('B', parseFloat(document.getElementById('forceInputB').value));
+
+            ctx.restore();
+        }
+
+        function drawSupport(node, type) {
+            const x = nodes[node].x * scale;
+            const y = -nodes[node].y * scale;
+            if (type === 'fixed') {
+                ctx.beginPath();
+                ctx.moveTo(x - 15, y + 10);
+                ctx.lineTo(x + 15, y + 10);
+                ctx.lineTo(x + 15, y + 20);
+                ctx.lineTo(x - 15, y + 20);
+                ctx.closePath();
+                ctx.fillStyle = '#666';
+                ctx.fill();
+            } else if (type === 'roller') {
+                ctx.beginPath();
+                ctx.arc(x, y + 15, 5, 0, Math.PI * 2);
+                ctx.fillStyle = '#666';
+                ctx.fill();
+                ctx.beginPath();
+                ctx.moveTo(x - 15, y + 20);
+                ctx.lineTo(x + 15, y + 20);
+                ctx.strokeStyle = '#666';
+                ctx.stroke();
+            }
+        }
+
+        function drawForce(node, magnitude) {
+            const x = nodes[node].x * scale;
+            const y = -nodes[node].y * scale;
+            ctx.beginPath();
+            ctx.strokeStyle = '#ff0000';
+            ctx.lineWidth = 2;
+            ctx.moveTo(x, y);
+            ctx.lineTo(x, y + 40);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x - 6, y + 34);
+            ctx.lineTo(x, y + 40);
+            ctx.lineTo(x + 6, y + 34);
+            ctx.stroke();
+            ctx.fillStyle = '#ff0000';
+            ctx.font = '14px Arial';
+            ctx.fillText(`${magnitude} kN`, x + 10, y + 20);
+        }
+
+        function calculateForces() {
+            const P_C = parseFloat(document.getElementById('forceInputC').value); // Força em C
+            const P_B = parseFloat(document.getElementById('forceInputB').value); // Força em B
+            const L = 9; // Comprimento total
+            const RAy = (P_C * 3 + P_B * 6) / L; // Ajuste nas reações
+            const RDy = (P_C * 6 + P_B * 3) / L; // Ajuste nas reações
+
+            const memberAngles = {};
+            const memberLengths = {};
+            members.forEach(([n1, n2]) => {
+                memberAngles[`${n1}${n2}`] = calculateAngle(n1, n2);
+                memberLengths[`${n1}${n2}`] = calculateDistance(n1, n2);
+            });
+
+            const angleAG = Math.atan2(3, 3); // 45 graus
+            const FAG = RAy / Math.sin(angleAG);
+            const FAB = -FAG * Math.cos(angleAG);
+            const FGB = -FAG * Math.cos(angleAG);
+            const FBC = -FAB;
+
+            const angleGC = Math.atan2(3, 3);
+            const FGC = FAG;
+            const FGE = -FAG;
+            const FCE = -FGC;
+            const FCD = -FBC;
+
+            const FED = FAG;
+
+            const memberForces = {
+                'AB': FAB,
+                'AG': FAG,
+                'GB': FGB,
+                'BC': FBC,
+                'GC': FGC,
+                'GE': FGE,
+                'CE': FCE,
+                'CD': FCD,
+                'ED': FED
+            };
+
+            displayResults(RAy, RDy, memberForces, memberAngles, memberLengths);
+            drawTruss(); // Redesenhar a treliça após os cálculos
+        }
+
+        function displayResults(RAy, RDy, memberForces, memberAngles, memberLengths) {
+            document.getElementById('results').innerHTML = `
+                <h3>Reações nos Apoios</h3>
+                <table>
+                    <tr>
+                        <th>Reação</th>
+                        <th>Valor (kN)</th>
+                    </tr>
+                    <tr>
+                        <td>RAy</td>
+                        <td>${RAy.toFixed(2)}</td>
+                    </tr>
+                    <tr>
+                        <td>RDy</td>
+                        <td>${RDy.toFixed(2)}</td>
+                    </tr>
+                </table>
+            `;
+
+            document.getElementById('memberForces').innerHTML = `
+                <h3>Forças nos Membros</h3>
+                <table>
+                    <tr>
+                        <th>Membro</th>
+                        <th>Força (kN)</th>
+                        <th>Tipo</th>
+                    </tr>
+                    ${Object.entries(memberForces).map(([member, force]) => `
+                        <tr>
+                            <td>F${member}</td>
+                            <td>${Math.abs(force).toFixed(2)}</td>
+                            <td class="${force < 0 ? 'compression' : 'tension'}">
+                                ${force < 0 ? 'Compressão' : 'Tração'}
+                            </td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+
+            document.getElementById('angles').innerHTML = `
+                <h3>Geometria dos Membros</h3>
+                <table>
+                    <tr>
+                        <th>Membro</th>
+                        <th>Ângulo (°)</th>
+                        <th>Comprimento (m)</th>
+                    </tr>
+                    ${Object.entries(memberAngles).map(([member, angle]) => `
+                        <tr>
+                            <td>${member}</td>
+                            <td>${(angle * (180 / Math.PI)).toFixed(2)}</td>
+                            <td>${memberLengths[member].toFixed(2)}</td>
+                        </tr>
+                    `).join('')}
+                </table>
+            `;
+        }
+
+        // Inicialização
+        drawTruss();
+    </script>
+</body>
+</html>
