@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tensão, Diâmetro e Força Mínima</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .calc-container {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"], button {
+            width: 100%; /* Garante que ambos tenham a mesma largura */
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+            }
+            h1, h2 {
+                font-size: 20px;
+            }
+            .result {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Calculadora de Tensão, Diâmetro e Força Mínima</h1>
+
+<div class="calc-container">
+    <h2>Cálculo de Tensão Normal e Cisalhante</h2>
+    <label for="forca">Força (N):</label>
+    <input type="number" id="forca" placeholder="Digite o valor da força" required>
+    
+    <label for="area">Área (m²):</label>
+    <input type="number" id="area" placeholder="Digite a área do material" required>
+    
+    <button onclick="calcularTensao()">Calcular Tensão</button>
+    
+    <div class="result" id="resultadoTensao"></div>
+</div>
+
+<div class="calc-container">
+    <h2>Cálculo do Diâmetro Mínimo</h2>
+    <label for="tensao">Tensão Admissível (Pa):</label>
+    <input type="number" id="tensao" placeholder="Digite a tensão admissível" required>
+    
+    <label for="forcaDiamentro">Força (N):</label>
+    <input type="number" id="forcaDiamentro" placeholder="Digite a força correspondente" required>
+    
+    <button onclick="calcularDiametro()">Calcular Diâmetro Mínimo</button>
+    
+    <div class="result" id="resultadoDiametro"></div>
+</div>
+
+<div class="calc-container">
+    <h2>Cálculo da Força Mínima</h2>
+    <label for="tensaoForca">Tensão Admissível (Pa):</label>
+    <input type="number" id="tensaoForca" placeholder="Digite a tensão admissível" required>
+    
+    <label for="areaForca">Área (m²):</label>
+    <input type="number" id="areaForca" placeholder="Digite a área do material" required>
+    
+    <button onclick="calcularForcaMinima()">Calcular Força Mínima</button>
+    
+    <div class="result" id="resultadoForca"></div>
+</div>
+
+<script>
+    function calcularTensao() {
+        const forca = parseFloat(document.getElementById('forca').value);
+        const area = parseFloat(document.getElementById('area').value);
+        
+        if (area > 0) {
+            const tensaoNormal = forca / area;
+            const tensaoCisalhante = forca / area; // Considerando a mesma fórmula
+            
+            document.getElementById('resultadoTensao').innerText = 
+                `Tensão Normal: ${tensaoNormal.toFixed(2)} Pa\nTensão Cisalhante: ${tensaoCisalhante.toFixed(2)} Pa`;
+        } else {
+            document.getElementById('resultadoTensao').innerText = "Área deve ser maior que zero.";
+        }
+    }
+
+    function calcularDiametro() {
+        const tensao = parseFloat(document.getElementById('tensao').value);
+        const forca = parseFloat(document.getElementById('forcaDiamentro').value);
+
+        if (tensao > 0) {
+            const diametro = Math.sqrt((4 * forca) / (Math.PI * tensao));
+            
+            document.getElementById('resultadoDiametro').innerText = 
+                `Diâmetro Mínimo: ${diametro.toFixed(2)} m`;
+        } else {
+            document.getElementById('resultadoDiametro').innerText = "A tensão admissível deve ser maior que zero.";
+        }
+    }
+
+    function calcularForcaMinima() {
+        const tensao = parseFloat(document.getElementById('tensaoForca').value);
+        const area = parseFloat(document.getElementById('areaForca').value);
+
+        if (tensao > 0 && area > 0) {
+            const forcaMinima = tensao * area;
+            
+            document.getElementById('resultadoForca').innerText = 
+                `Força Mínima: ${forcaMinima.toFixed(2)} N`;
+        } else {
+            document.getElementById('resultadoForca').innerText = "A tensão e a área devem ser maiores que zero.";
+        }
+    }
+</script>
+
+</body>
+</html>
