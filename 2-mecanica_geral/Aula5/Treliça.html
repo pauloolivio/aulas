@@ -258,18 +258,18 @@
             });
 
             const angleAG = Math.atan2(3, 3); // 45 graus
-            const FAG = RAy / Math.sin(angleAG);
-            const FAB = -FAG * Math.cos(angleAG);
-            const FGB = -FAG * Math.cos(angleAG);
-            const FBC = -FAB;
+            const FAG = - RAy / Math.sin(angleAG);
+            const FAB = - FAG * Math.cos(angleAG);
+            const FBC = FAB;
 
             const angleGC = Math.atan2(3, 3);
-            const FGC = FAG;
-            const FGE = -FAG;
-            const FCE = -FGC;
-            const FCD = -FBC;
-
-            const FED = FAG;
+            const FED = - RDy/Math.sin(angleAG);
+            const FCD = - FED * Math.cos(angleAG);
+            const FGC = -(FBC-FCD)/ Math.cos(angleAG);;
+            const FGE = FED * Math.sin(angleAG);
+            const FCE = - FED * Math.cos(angleAG);
+            const FGB = -((FAG+FGC) * Math.sin(angleAG));
+            
 
             const memberForces = {
                 'AB': FAB,
