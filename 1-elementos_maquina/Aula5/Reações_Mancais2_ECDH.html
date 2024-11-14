@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Reações nos Mancais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 25px;
+        }
+        img {
+            width: 350px;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            width: 100%;
+            text-align: left;
+            font-size: 18px;
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #218838; /* Alterada a cor ao passar o mouse */
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            background: #eef;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .section-header {
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            img {
+                width: 230px;
+            }
+            h1 {
+                font-size: 17px;
+            }
+            label, input, .result-item, .section-header {
+                font-size: 13px;
+            }
+            button {
+                padding: 8px;
+            }
+            input {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Reações nos Mancais</h1>
+        <img src="TremComposto.png" alt="Imagem ilustrativa">
+        
+        <label for="H">Potência de Entrada (Watts):</label>
+        <input type="number" id="H" value="7457" placeholder="Ex: 7457 watts">
+
+        <label for="n2">Rotação de Entrada (RPM):</label>
+        <input type="number" id="n2" value="900" placeholder="Ex: 900 rpm">
+
+        <label for="anguloPressao">Ângulo de Pressão Normal (graus):</label>
+        <input type="number" id="anguloPressao" value="20" placeholder="Ex: 20 graus">
+
+        <label for="N2">Número de Dentes Engrenagem 2:</label>
+        <input type="number" id="N2" value="14" placeholder="Ex: 14 dentes">
+
+        <label for="N3">Número de Dentes Engrenagem 3:</label>
+        <input type="number" id="N3" value="54" placeholder="Ex: 54 dentes">
+
+        <label for="N4">Número de Dentes Engrenagem 4:</label>
+        <input type="number" id="N4" value="16" placeholder="Ex: 16 dentes">
+
+        <label for="N5">Número de Dentes Engrenagem 5:</label>
+        <input type="number" id="N5" value="36" placeholder="Ex: 36 dentes">
+
+        <label for="anguloHelice23">Ângulo da Hélice Engrenagem 2-3 (graus):</label>
+        <input type="number" id="anguloHelice23" value="30" placeholder="Ex: 30 graus">
+
+        <label for="moduloNormal23">Modulo Normal da Engrenagem 2-3 (mm):</label>
+        <input type="number" id="moduloNormal23" value="3" placeholder="Ex: 3 mm">
+
+        <label for="anguloHelice45">Ângulo da Hélice Engrenagem 4-5 (graus):</label>
+        <input type="number" id="anguloHelice45" value="25" placeholder="Ex: 25 graus">
+
+        <label for="moduloNormal45">Modulo Normal da Engrenagem 4-5 (mm):</label>
+        <input type="number" id="moduloNormal45" value="2" placeholder="Ex: 2 mm">
+
+
+        <button onclick="calcularReacoes()">Calcular</button>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script>
+        function calcularReacoes() {
+            // Entrada de dados
+            const H = parseFloat(document.getElementById('H').value); // watts
+            const n2 = parseFloat(document.getElementById('n2').value); // rpm 
+            const anguloPressao = parseFloat(document.getElementById('anguloPressao').value); // Ângulo de pressão
+            const anguloHelice23 = parseFloat(document.getElementById('anguloHelice23').value);
+            const anguloHelice45 = parseFloat(document.getElementById('anguloHelice45').value);
+            const N2 = parseFloat(document.getElementById('N2').value);
+            const N3 = parseFloat(document.getElementById('N3').value);
+            const N4 = parseFloat(document.getElementById('N4').value);
+            const N5 = parseFloat(document.getElementById('N5').value);
+            const moduloNormal23 = parseFloat(document.getElementById('moduloNormal23').value);
+            const moduloNormal45 = parseFloat(document.getElementById('moduloNormal45').value);
+
+            const radianoPressao = anguloPressao * (Math.PI / 180);
+            const radianoHelicoidal23 = anguloHelice23 * (Math.PI / 180);
+            const radianoHelicoidal45 = anguloHelice45 * (Math.PI / 180);
+
+            // Módulo Transversal
+            const mt23 = moduloNormal23 / Math.cos(radianoHelicoidal23);
+            const mt45 = moduloNormal45 / Math.cos(radianoHelicoidal45);
+
+            // Diâmetro Primitivo
+            const D2 = mt23 * N2;
+            const D3 = mt23 * N3;
+            const D4 = mt45 * N4;
+            const D5 = mt45 * N5;
+
+            // Relação dos pares
+            const i23 = N3 / N2;
+            const i45 = N5 / N4;
+
+            // Velocidade de Rotação 
+            const n3 = n2 * i23;
+            const n4 = n3;
+            const n5 = n4 * i45;
+
+            // Velocidade periférica e forças nas engrenagens 2-3
+            const v2 = (Math.PI * D2 * 10 ** -3 * n2) / 60; // Convertendo D2 para metros
+            const Wt2 = H / v2;
+            const W2 = Wt2 / (Math.cos(radianoPressao) * Math.cos(radianoHelicoidal23));
+            const Wr2 = W2 * Math.sin(radianoPressao);
+            const Wa2 = W2 * Math.cos(radianoPressao) * Math.sin(radianoHelicoidal23);
+
+            // Torque do sistema
+            const T2 = (30 * H) / (Math.PI * n2);
+            const T3 = T2 * i23;
+            const T4 = T3;
+            const T5 = T4 * i45;
+
+            // Velocidade periférica e forças nas engrenagens 4-5
+            const Wt4 = (2 * T4) / (D4 * 10 ** -3);
+            const W4 = Wt4 / (Math.cos(radianoPressao) * Math.cos(radianoHelicoidal45));
+            const Wr4 = W4 * Math.sin(radianoPressao);
+            const Wa4 = W4 * Math.cos(radianoPressao) * Math.sin(radianoHelicoidal45);
+        
+            // Resultados
+            const resultados = `
+                <div class="section-header">Cálculos Básicos</div>
+                <div class="result-item">Diâmetro Primitivo D2: ${D2.toFixed(2)} mm</div>
+                <div class="result-item">Diâmetro Primitivo D3: ${D3.toFixed(2)} mm</div>
+                <div class="result-item">Diâmetro Primitivo D4: ${D4.toFixed(2)} mm</div>
+                <div class="result-item">Diâmetro Primitivo D5: ${D5.toFixed(2)} mm</div>
+                <div class="result-item">Velocidade de Rotação n2: ${n2.toFixed(2)} rpm</div>
+                <div class="result-item">Velocidade de Rotação n3 e n4: ${n3.toFixed(2)} rpm</div>
+                <div class="result-item">Velocidade de Rotação n5: ${n5.toFixed(2)} rpm</div>
+                <div class="result-item">Velocidade periférica v2: ${v2.toFixed(2)} m/s</div>
+                <div class="result-item">Torque T2: ${T2.toFixed(2)} N*m</div>
+                <div class="result-item">Torque T3 e T4: ${T3.toFixed(2)} N*m</div>
+                <div class="result-item">Torque T5: ${T5.toFixed(2)} N*m</div>
+                
+                <div class="section-header">Forças nas Engrenagens</div>
+                <div class="result-item">Força tangencial Wt2: ${Wt2.toFixed(2)} N</div>
+                <div class="result-item">Força radial Wr2: ${Wr2.toFixed(2)} N</div>
+                <div class="result-item">Força axial Wa2: ${Wa2.toFixed(2)} N</div>
+                <div class="result-item">Força tangencial Wt4: ${Wt4.toFixed(2)} N</div>
+                <div class="result-item">Força radial Wr4: ${Wr4.toFixed(2)} N</div>
+                <div class="result-item">Força axial Wa4: ${Wa4.toFixed(2)} N</div>
+                
+                <div class="section-header">Reações nos Apoios</div>
+               
+            `;
+
+            document.getElementById('results').innerHTML = resultados;
+        }
+    </script>
+</body>
+</html>
