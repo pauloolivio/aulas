@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Deformação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="number"], button {
+            width: 100%; /* Garante que ambos tenham a mesma largura */
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+                padding: 10px;
+            }
+            h1, h2 {
+                font-size: 20px;
+            }
+            .result {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Deformação</h1>
+    <label for="force">Força (N):</label>
+    <input type="number" id="force" value="1000" required>
+
+    <label for="area">Área (m²):</label>
+    <input type="number" id="area" value="0.01" required>
+
+    <label for="modulo">Módulo de Elasticidade (GPa):</label>
+    <input type="number" id="modulo" value="200" required>
+
+    <label for="comprimento">Comprimento Inicial (mm):</label>
+    <input type="number" id="comprimento" value="2000" required>
+
+    <label for="poisson">Coeficiente de Poisson:</label>
+    <input type="number" id="poisson" value="0.3" step="0.01" required>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div class="result" id="result" style="display:none;"></div>
+
+    <script>
+        function calcular() {
+            const F = parseFloat(document.getElementById('force').value);
+            const A = parseFloat(document.getElementById('area').value);
+            const E = parseFloat(document.getElementById('modulo').value) * 1e9; // Convertendo GPa para Pa
+            const L_i_mm = parseFloat(document.getElementById('comprimento').value);
+            const L_i = L_i_mm / 1000; // Convertendo mm para m
+            const nu = parseFloat(document.getElementById('poisson').value);
+
+            // Cálculo da deformação longitudinal
+            const epsilon_L = F / (A * E);
+
+            // Cálculo da deformação lateral
+            const epsilon_T = -nu * epsilon_L;
+
+            // Cálculo do comprimento final em metros
+            const delta_L = L_i * epsilon_L;
+            const L_f_m = L_i + delta_L;
+
+            // Convertendo comprimento final para milímetros
+            const L_f_mm = L_f_m * 1000;
+
+            // Exibir resultados
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `
+                <strong>Resultados:</strong><br>
+                Deformação Longitudinal (ε<sub>L</sub>): ${epsilon_L.toExponential(4)}<br>
+                Deformação Lateral (ε<sub>T</sub>): ${epsilon_T.toExponential(4)}<br>
+                Comprimento Final (L<sub>f</sub>): ${L_f_mm.toFixed(4)} mm
+            `;
+        }
+    </script>
+</body>
+</html>

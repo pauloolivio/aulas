@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aulas | Mec&Resmat</title>
+    <script src="../assets/application-8013fdc35e4c79f95bcb3d655ff61f137ac05bcee52e6d96588427a84eddef12.js" data-turbolinks-track="true"></script>
+    <link rel="stylesheet" media="all" href="../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon-e8bea7a0071e296638a3a1a08be81f0a30b9c945625e5a200fefecd8d9b2ed6c.ico" />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="FZTSZKN7+Fp+uALeFUetKoIurtteRcfikEdYFpJeu80RmmAh5mnIBti9GyO0DoWiT0jWdu/iiJ9PmQoZvqC1eQ==" />
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.worker.min.js"></script>
+</head>
+
+<body>
+
+    <div id="wrapper" class="active">
+
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul id="sidebar_menu" class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">Mecânica e Resistência dos Materiais
+      <span id="menu-toggle" class="main_icon glyphicon glyphicon-align-justify"></span>
+    </a></li>
+            </ul>
+            <ul class="sidebar-nav" id="sidebar">
+                <li><a class=" " href="Aula1-Vetoresdeforça.html">Vetores de Força e Forças Coplanares</a></li>
+                <li><a class=" " href="Aula2-Momentodeumaforça.html">Equilíbrio e Momento de uma Força</a></li>
+                <li><a class=" " href="Aula3-Reaçõesdeapoio.html">Reações de Apoio</a></li>
+                <li><a class=" " href="Aula4-Forçasinternasetensões.html">Forças Internas e Tensões em Sólidos</a></li>
+                <li><a class="current" href="Aula5-TensãoeDeformação.html">Tensão e Deformação em Sólidos</a></li>
+                <li><a class=" " href="Aula6-AnaliseestruturaeMaquinas.html">Análise Estrutural e Máquinas </a></li>
+                <li><a class=" " href="Aula7-CentroideBaricentroeInercia.html">Centroide, Baricentro e Momento de Inércia</a></li>
+                <li><a class=" " href="Aula8-Torcaoemarvores.html">Torção em Eixos-Árvores</a></li>
+                <li><a class=" " href="Aula9-Análisedecargadistribuida.html">Análise de Carga Distribuída</a></li>
+                <li><a class=" " href="Aula10-Flexaoemvigaseeixos.html">Flexão em Eixos e Vigas</a></li>
+                <li><a class=" " href="Aula11-Esforçoscombinados.html">Análise de Esforços Combinados</a></li>
+            </ul>
+        </div>
+
+        <!-- Page content -->
+        <div id="page-content-wrapper">
+            <!-- Keep all page content within the page-content inset div! -->
+            <div class="page-content inset">
+                <div class="row">
+                    <div class="col-md-8 lesson">
+
+                        <div class="user-app">
+                            <a class="btn btn-default btn-sm" href="../index.html">
+                                <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+                            </a>
+                        </div>
+
+                        <div class="lesson-content">
+                            <h3>Tensão e Deformação em Sólidos</h3>
+                            <h3>Conteúdo Abordado neste Tópico</h3>
+                            <p class="lesson-text">
+                                <p>Neste tópico, exploraremos os conceitos fundamentais de tensão e deformação, elementos cruciais na análise de materiais e estruturas submetidos a cargas. Discutiremos as deformações normal e cisalhante, abordando como os materiais respondem a forças aplicadas em diferentes direções. Analisaremos a curva tensão-deformação, que revela o comportamento do material sob carregamento, desde a região elástica até o ponto de ruptura. No contexto da elasticidade, destacaremos a Lei de Hooke, que descreve a relação linear entre tensão e deformação em materiais elásticos, e o coeficiente de Poisson, que quantifica a relação entre deformação longitudinal e transversal.
+                                   </p>
+                                <p>Este tópico é é essencial para projetar componentes que resistam a carregamentos sem falhas, garantindo segurança, eficiência e longevidade em aplicações de engenharia.</p>
+
+                                <div class="pdf_content">
+                                    <script src='/build/pdf.mjs'></script>
+
+                                    <div class="btn_pdf">
+                                        <button id="prev">Página anterior</button>
+                                        <button id="next">Próxima página</button> &nbsp; &nbsp;
+                                        <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                                    </div>
+
+                                    <canvas id="pdf-exemplo"></canvas>
+
+                                    <div class="pdf_content">
+                                        <p>Utilize o link abaixo para realizar o download do arquivo pdf</p>
+                                        <a class="btn btn-warning" href="https://drive.google.com/file/d/1Jf3mATHDaz40XzGS86jS8EbT5sBVEiR4/view?usp=drive_link">link para Download</a>
+                                    </div>
+
+                                    <script>
+                                        var url = 'Aula 5 - Tensão e Deformação.pdf';
+
+                                        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+                                        // Corrected the workerSrc path
+                                        pdfjsLib.GlobalWorkerOptions.workerSrc = '/build/pdf.worker.mjs';
+
+                                        var pdfDoc = null,
+                                            pageNum = 1,
+                                            pageRendering = false,
+                                            pageNumPending = null,
+                                            scale = 1.0,
+                                            canvas = document.getElementById('pdf-exemplo'),
+                                            ctx = canvas.getContext('2d');
+
+                                        function renderPage(num) {
+                                            pageRendering = true;
+                                            pdfDoc.getPage(num).then(function(page) {
+                                                var viewport = page.getViewport({
+                                                    scale: scale
+                                                });
+                                                canvas.height = viewport.height;
+                                                canvas.width = viewport.width;
+                                                var renderContext = {
+                                                    canvasContext: ctx,
+                                                    viewport: viewport
+                                                };
+                                                var renderTask = page.render(renderContext);
+                                                renderTask.promise.then(function() {
+                                                    pageRendering = false;
+                                                    if (pageNumPending !== null) {
+                                                        renderPage(pageNumPending);
+                                                        pageNumPending = null;
+                                                    }
+                                                });
+                                            });
+
+                                            document.getElementById('page_num').textContent = num;
+                                        }
+
+                                        function queueRenderPage(num) {
+                                            if (pageRendering) {
+                                                pageNumPending = num;
+                                            } else {
+                                                renderPage(num);
+                                            }
+                                        }
+
+                                        function onPrevPage() {
+                                            if (pageNum <= 1) {
+                                                return;
+                                            }
+                                            pageNum--;
+                                            queueRenderPage(pageNum);
+                                        }
+
+                                        document.getElementById('prev').addEventListener('click', onPrevPage);
+
+                                        function onNextPage() {
+                                            if (pageNum >= pdfDoc.numPages) {
+                                                return;
+                                            }
+                                            pageNum++;
+                                            queueRenderPage(pageNum);
+                                        }
+
+                                        document.getElementById('next').addEventListener('click', onNextPage);
+
+                                        pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+                                            pdfDoc = pdfDoc_;
+                                            document.getElementById('page_count').textContent = pdfDoc.numPages;
+                                            renderPage(pageNum);
+                                        });
+                                    </script>
+
+                                    <div>
+                                        <p> <b>Referencias:</b>
+                                            <p>HIBBELER, R. C. Estática. 14. ed. São Paulo: Pearson, 2016. ISBN 978-8543004793.</p>
+                                            <p>HIBBELER, R. C. Resistência dos Materiais. 9. ed. São Paulo: Pearson, 2010. ISBN 978-0136022305.</p>
+                                            <p>MERIAM, J. L.; KRAIGE, L. G. Estática. 7. ed. Rio de Janeiro: LTC, 2014. ISBN 978-8521618060.</p>
+                                            <p>BEER, F. P.; JOHNSTON, E. R. Mecânica Vetorial para Engenheiros: Estática. 10. ed. Porto Alegre: McGraw-Hill, 2013. ISBN 978-8580551408.</p>
+                                            <p>BEER, F. P.; JOHNSTON, E. R. Resistência dos Materiais. 6. ed. Porto Alegre: McGraw-Hill, 2015. ISBN 978-0073398235.</p>
+                                        </p>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 practice">
+                        <div class="exercise-content">
+                            <h3>Pré-Aula</h3>
+                            <p>Utilize o materiail de estudo Pré-Aula</p>
+                            <ul>
+                                <li><a href="Aula5/Resumo.html">Highlights em audio-texto.</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="quiz-content">
+                            <h3>Ferramentas e Jogos</h3>
+                            <p>Jogos e calculadoras para aplicação e fixação do conteúdo da aula.</p>
+                            <ul>
+                                <li><a href="Aula5/Calculadora_deformação.html">Calculadora de deformação</a></li>
+                                <li><a href="Aula5/Simulador_deformação.html">Simulador de deformação</a></li>
+                                <li><a href="https://www.youtube.com/watch?v=nYg9H5tG4-I">Ensaio de Tração Padronizado</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="quiz-content">
+                            <h3>Atividades</h3>
+                            <p>Atividades avaliativas a ser entregue no Classroom ou Moodle da disciplina.</p>
+                            <ul>
+                                <li><a href="">MecResmat - Quiz da Aula 5 - Deformação</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="quiz-content">
+                            <h3>Entrega das atividades</h3>
+                            <p>Entregue as atividades no link da disciplina.</p>
+                            <ul id="links-list">
+                              <!-- Os links serão adicionados aqui pelo JavaScript -->
+                            </ul>
+                          </div>
+                          
+                          <script src="links.js"></script>
+                          <script> 
+                             loadLinks();
+                          </script> 
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(optimizeMobile);
+        $(window).on('resize', optimizeMobile);
+
+        function optimizeMobile() {
+            if (($(window).width() <= 767) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+                $("#wrapper ").removeClass("active ");
+            } else {
+                $("#wrapper ").addClass("active ");
+            }
+        }
+
+        $("#menu-toggle ").click(function(e) {
+            e.preventDefault();
+            $("#wrapper ").toggleClass("active ");
+        });
+
+        $("#hint-toggle ").click(function(e) {
+            $("#hint ").toggle();
+        });
+    </script>
+</body>
+</html>

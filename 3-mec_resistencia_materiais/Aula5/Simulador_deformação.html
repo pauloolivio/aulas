@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Deformação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            width: 100%; /* Faz o canvas ocupar 100% da largura disponível */
+            max-width: 600px; /* Define um limite máximo de largura */
+            height: auto; /* Mantém a proporção do canvas */
+        }
+        .slider-container {
+            margin: 20px auto;
+            width: 50%;
+        }
+        .slider {
+            width: 100%;
+        }
+        .bar-container {
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+                padding: 10px;
+            }
+            h1, h2 {
+                font-size: 20px;
+            }
+            .result {
+                font-size: 15px;
+            }
+            .slider-container {
+            width: 80%;
+            }
+            canvas {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulação de Deformação</h1>
+    
+    <div class="bar-container">
+        <h2>Barra Esticando</h2>
+        <canvas id="canvasStretch" width="600" height="50"></canvas>
+        <div class="slider-container">
+            <input type="range" class="slider" id="stretchSlider" min="0" max="100" value="0">
+        </div>
+    </div>
+    
+    <div class="bar-container">
+        <h2>Barra Comprimindo</h2>
+        <canvas id="canvasCompress" width="600" height="50"></canvas>
+        <div class="slider-container">
+            <input type="range" class="slider" id="compressSlider" min="0" max="100" value="0">
+        </div>
+    </div>
+
+    <div class="bar-container">
+        <h2>Barra Cisalhando</h2>
+        <canvas id="canvasShear" width="600" height="50"></canvas>
+        <div class="slider-container">
+            <input type="range" class="slider" id="shearSlider" min="0" max="100" value="0">
+        </div>
+    </div>
+
+    <script>
+        const canvasStretch = document.getElementById('canvasStretch');
+        const ctxStretch = canvasStretch.getContext('2d');
+
+        const canvasCompress = document.getElementById('canvasCompress');
+        const ctxCompress = canvasCompress.getContext('2d');
+
+        const canvasShear = document.getElementById('canvasShear');
+        const ctxShear = canvasShear.getContext('2d');
+
+        const stretchSlider = document.getElementById('stretchSlider');
+        const compressSlider = document.getElementById('compressSlider');
+        const shearSlider = document.getElementById('shearSlider');
+
+        const fixedLength = 300; // Comprimento fixo da barra
+
+        function drawVector(ctx, x, y, direction) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            if (direction === 'right') {
+                ctx.lineTo(x + 15, y); // Vetor para a direita
+                ctx.lineTo(x + 10, y - 5);
+                ctx.moveTo(x + 15, y);
+                ctx.lineTo(x + 10, y + 5);
+            } else if (direction === 'left') {
+                ctx.lineTo(x - 15, y); // Vetor para a esquerda
+                ctx.lineTo(x - 10, y - 5);
+                ctx.moveTo(x - 15, y);
+                ctx.lineTo(x - 10, y + 5);
+            }
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        function drawStretch() {
+            ctxStretch.clearRect(0, 0, canvasStretch.width, canvasStretch.height);
+            const stretchValue = stretchSlider.value;
+            const width = fixedLength + stretchValue * 2; // Aumenta a largura
+            const height = 30 - (stretchValue / 10); // Diminui a altura
+
+            ctxStretch.fillStyle = `rgba(0, 128, 0, 0.5)`; // Verde com transparência
+            ctxStretch.fillRect((canvasStretch.width - width) / 2, 10, width, height); // Centraliza a barra
+            
+            // Desenha vetores nas extremidades
+            drawVector(ctxStretch, (canvasStretch.width - width) / 2, 25, 'left'); // Vetor à esquerda
+            drawVector(ctxStretch, (canvasStretch.width + width) / 2, 25, 'right'); // Vetor à direita
+        }
+
+        function drawCompress() {
+            ctxCompress.clearRect(0, 0, canvasCompress.width, canvasCompress.height);
+            const compressValue = compressSlider.value;
+            const width = fixedLength - compressValue * 2; // Diminui a largura
+            const height = 30 + (compressValue / 10); // Aumenta a altura
+
+            ctxCompress.fillStyle = `rgba(255, 0, 0, 0.5)`; // Vermelho com transparência
+            ctxCompress.fillRect((canvasCompress.width - width) / 2, 10, width, height); // Centraliza a barra
+            
+            // Desenha vetores nas extremidades
+            drawVector(ctxCompress, (canvasCompress.width + width) / 2, 25, 'left'); // Vetor à esquerda
+            drawVector(ctxCompress, (canvasCompress.width - width) / 2, 25, 'right'); // Vetor à direita
+        }
+
+        function drawShear() {
+            ctxShear.clearRect(0, 0, canvasShear.width, canvasShear.height);
+            const shearValue = shearSlider.value;
+            ctxShear.fillStyle = `rgba(0, 0, 255, 0.5)`; // Azul com transparência
+            ctxShear.save();
+            ctxShear.translate(canvasShear.width / 2, 25); // Centraliza a barra
+            ctxShear.transform(1, 0, shearValue * 0.02, 1, 0, 0); // Aplica cisalhamento
+            ctxShear.fillRect(-fixedLength / 2, -15, fixedLength, 30); // Desenha a barra
+            ctxShear.restore();
+            
+            // Desenha vetores nas extremidades
+            drawVector(ctxShear, canvasShear.width / 2 - fixedLength / 2, 13, 'left'); // Vetor à esquerda
+            drawVector(ctxShear, canvasShear.width / 2 + fixedLength / 2, 37, 'right'); // Vetor à direita
+        }
+
+        stretchSlider.addEventListener('input', drawStretch);
+        compressSlider.addEventListener('input', drawCompress);
+        shearSlider.addEventListener('input', drawShear);
+
+        drawStretch(); // Desenha a barra esticando inicialmente
+        drawCompress(); // Desenha a barra comprimindo inicialmente
+        drawShear(); // Desenha a barra cisalhando inicialmente
+    </script>
+</body>
+</html>
