@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 8 - Centróide e Baricentro</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="/2-mecanica_geral/Aula8-CentroideBaricentro.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 8 - Centróide e Baricentro</h2>
+<div class="container">
+    <p>
+        O <strong>centroide</strong> e o <strong>baricentro</strong> são conceitos fundamentais na geometria e na física, utilizados para descrever a localização média de uma área ou de um corpo.
+    </p>
+
+    <h2>Centroide</h2>
+    <p>
+        O <strong>centroide</strong> de uma figura geométrica é o ponto que representa o "centro de massa" da área, considerando que a densidade é uniforme. Ele é calculado utilizando as coordenadas das formas que compõem a figura. Para uma forma plana, as coordenadas do centroide <code>(\bar{x}, \bar{y})</code> podem ser encontradas pelas seguintes fórmulas:
+    </p>
+    <p>
+        <code>\bar{x} = \frac{1}{A} \int x \, dA</code>
+    </p>
+    <p>
+        <code>\bar{y} = \frac{1}{A} \int y \, dA</code>
+    </p>
+    <p>onde <code>A</code> é a área total da forma.</p>
+
+    <h3>Centroide de Formas Comuns</h3>
+    <ul>
+        <li><strong>Retângulo</strong>: <code>(\bar{x}, \bar{y}) = \left(\frac{b}{2}, \frac{h}{2}\right)</code></li>
+        <li><strong>Triângulo</strong>: <code>(\bar{x}, \bar{y}) = \left(\frac{b}{3}, \frac{h}{3}\right)</code> (a partir do vértice)</li>
+        <li><strong>Círculo</strong>: <code>(\bar{x}, \bar{y}) = (r, r)</code></li>
+    </ul>
+
+    <h2>Baricentro</h2>
+    <p>
+        O <strong>baricentro</strong>, por outro lado, é o ponto de equilíbrio de um corpo homogêneo, onde as forças gravitacionais se equilibram. Para corpos de forma irregular, o baricentro pode ser encontrado considerando a distribuição de massa e a geometria do corpo. As coordenadas do baricentro <code>(\bar{x}, \bar{y}, \bar{z})</code> são dadas por:
+    </p>
+    <p>
+        <code>\bar{x} = \frac{1}{M} \int x \, dm</code>
+    </p>
+    <p>
+        <code>\bar{y} = \frac{1}{M} \int y \, dm</code>
+    </p>
+    <p>
+        <code>\bar{z} = \frac{1}{M} \int z \, dm</code>
+    </p>
+    <p>onde <code>M</code> é a massa total do corpo.</p>
+
+    <h2>Aplicações</h2>
+    <p>
+        Tanto o centroide quanto o baricentro são importantes em diversas áreas, como engenharia, arquitetura e física, pois ajudam a entender como as forças atuam sobre estruturas e a calcular a estabilidade de sistemas.
+    </p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 5 - Análise Estrutural e Treliças</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="/2-mecanica_geral/Aula9-MomentodeInercia.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 9 - Momento de Inércia de Área</h2>
+<div class="container">
+    <p>
+        O momento de inércia de área é uma medida geométrica que avalia a distribuição da área de uma seção transversal em relação a um eixo, 
+        influenciando diretamente a resistência à flexão e à torção de componentes estruturais. Ele é calculado por meio de integrais, considerando 
+        cada elemento infinitesimal de área (<i>dA</i>) e sua distância (<i>r</i>) ao eixo de referência:
+    </p>
+    <h3>Cálculo para Geometrias Simples</h2>
+    <p><b>Fórmula geral:</b></p>
+    <p><code>I = ∫ r² dA</code></p>
+    <p>Para eixos principais, o momento de inércia é definido como:</p>
+    <ul>
+        <li><b>Momento de inércia em relação ao eixo x-x:</b> <code>I<sub>xx</sub> = ∫ y² dA</code></li>
+        <li><b>Momento de inércia em relação ao eixo y-y:</b> <code>I<sub>yy</sub> = ∫ x² dA</code></li>
+    </ul>
+    <p>O momento de inércia polar, utilizado para analisar resistência à torção, é dado por:</p>
+    <p><code>I<sub>p</sub> = I<sub>xx</sub> + I<sub>yy</sub></code></p>
+    <p>Para formas geométricas comuns, os valores de momento de inércia são encontrados com base em fórmulas pré-calculadas:</p>
+    <ul>
+        <li><b>Retângulo</b> (<i>b</i>: base, <i>h</i>: altura): 
+            <code>I<sub>xx</sub> = (b h³) / 12</code>, <code>I<sub>yy</sub> = (h b³) / 12</code></li>
+        <li><b>Círculo</b> (<i>r</i>: raio): 
+            <code>I<sub>xx</sub> = I<sub>yy</sub> = (π r⁴) / 4</code>, <code>I<sub>p</sub> = (π r⁴) / 2</code></li>
+        <li><b>Triângulo retângulo</b> (<i>b</i>: base, <i>h</i>: altura): 
+            <code>I<sub>xx</sub> = (b h³) / 36</code>, <code>I<sub>yy</sub> = (h b³) / 36</code></li>
+    </ul>
+    <h3>Cálculo para Geometrias Múltiplas</h2>
+    <p>
+        Quando a seção transversal é composta por várias formas geométricas, o momento de inércia total é obtido somando os momentos de inércia de cada componente, 
+        ajustados para o eixo de interesse. Nesse caso, utilizamos o <b>Teorema de Steiner</b> (ou Teorema dos Eixos Paralelos) para incluir o deslocamento de cada 
+        forma em relação ao eixo principal:
+    </p>
+    <p><b>Fórmula:</b></p>
+    <p>
+        <code>I<sub>total</sub> = Σ (I<sub>i</sub> + A<sub>i</sub>d<sub>i</sub>²)</code>
+    </p>
+    <p>
+        Onde:  
+        <ul>
+            <li><b>I<sub>i</sub></b>: Momento de inércia da forma em relação ao seu eixo central</li>
+            <li><b>A<sub>i</sub></b>: Área da forma</li>
+            <li><b>d<sub>i</sub></b>: Distância entre o eixo central da forma e o eixo principal</li>
+        </ul>
+    </p>
+    <p>
+        Essa abordagem é amplamente utilizada para calcular o momento de inércia de seções compostas, como vigas em I, seções tubulares e perfis estruturais, 
+        garantindo precisão e eficiência no projeto de elementos estruturais.
+    </p>
+</body>
+</html>
