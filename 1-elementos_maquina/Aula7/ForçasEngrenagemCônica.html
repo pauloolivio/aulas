@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Forças em Engrenagens Cônicas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cálculo de Forças em Engrenagens Cônicas</h2>
+        <label for="P">Potência (P) [Watts]:</label>
+        <input type="number" id="P" value="3750" required>
+
+        <label for="r">Raio Primitivo (r) [mm]:</label>
+        <input type="number" id="r" value="32" required>
+
+        <label for="n">Rotação (n) [rpm]:</label>
+        <input type="number" id="n" value="600" required>
+
+        <label for="phi2">Ângulo de Pressão (phi2) [graus]:</label>
+        <input type="number" id="phi2" value="20" required>
+
+        <label for="NG">Número de Dentes da Coroa (NG):</label>
+        <input type="number" id="NG" value="225" required>
+
+        <label for="NP">Número de Dentes do Pinhão (NP):</label>
+        <input type="number" id="NP" value="75" required>
+
+        <button onclick="calcularForcas()">Calcular Forças</button>
+
+        <div class="result">
+            <h3>Resultados:</h3>
+            <p id="resultado"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularForcas() {
+            const P = parseFloat(document.getElementById('P').value);
+            const r = parseFloat(document.getElementById('r').value);
+            const n = parseFloat(document.getElementById('n').value);
+            const phi2 = parseFloat(document.getElementById('phi2').value);
+            const NG = parseFloat(document.getElementById('NG').value);
+            const NP = parseFloat(document.getElementById('NP').value);
+
+            const V = 2 * Math.PI * (r * 1e-3) * (n / 60); // Velocidade periférica [m/s]
+            const tal = Math.atan(NG / NP); // Ângulo primitivo
+            const wt = P / V; // Força tangencial [N]
+            const wr = wt * Math.tan(phi2 * Math.PI / 180) * Math.cos(tal); // Força radial [N]
+            const wa = wt * Math.tan(phi2 * Math.PI / 180) * Math.sin(tal); // Força axial [N]
+
+            const resultado = `
+                Força Tangencial: ${wt.toFixed(2)} N<br>
+                Força Radial: ${wr.toFixed(2)} N<br>
+                Força Axial: ${wa.toFixed(2)} N
+            `;
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Forças em Rosca Sem Fim</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cálculo de Forças em Rosca Sem Fim</h2>
+        <label for="dw">Diâmetro de Engrenagem (dw):</label>
+        <input type="number" id="dw" value="2" required>
+
+        <label for="nw">Rotação da Rosca (nw):</label>
+        <input type="number" id="nw" value="1200" required>
+
+        <label for="H">Potência (H):</label>
+        <input type="number" id="H" value="1" required>
+
+        <label for="phi">Ângulo de Pressão (phi):</label>
+        <input type="number" id="phi" value="20" required>
+
+        <label for="Z">Número de Dentes (Z):</label>
+        <input type="number" id="Z" value="2" required>
+
+        <label for="Pd">Passo Diâmetral (Pd):</label>
+        <input type="number" id="Pd" value="6" required>
+
+        <label for="f">Coeficiente de Atrito (f):</label>
+        <input type="number" id="f" value="0.03" required>
+
+        <button onclick="calcularForcas()">Calcular Forças</button>
+
+        <div class="result">
+            <h3>Resultados:</h3>
+            <p id="resultado"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularForcas() {
+            const dw = parseFloat(document.getElementById('dw').value);
+            const nw = parseFloat(document.getElementById('nw').value);
+            const H = parseFloat(document.getElementById('H').value);
+            const phi = parseFloat(document.getElementById('phi').value);
+            const Z = parseFloat(document.getElementById('Z').value);
+            const Pd = parseFloat(document.getElementById('Pd').value);
+            const f = parseFloat(document.getElementById('f').value);
+
+            const Vw = (Math.PI * dw * nw) / 12;
+            const ft = (33000 * H) / Vw;
+            const px = Math.PI / Pd;
+            const L = px * Z;
+            const lamb = Math.atan((Math.PI / 180) * (L / Math.PI * dw));
+            const w = ft / (Math.cos(phi * Math.PI / 180) * Math.sin(lamb) + f * Math.cos(lamb));
+            const fr = w * Math.sin(phi * Math.PI / 180);
+            const fa = w * (Math.cos(phi * Math.PI / 180) * Math.cos(lamb) - f * Math.sin(lamb));
+
+            const resultado = `
+                Força Tangencial: ${ft.toFixed(2)} N<br>
+                Força Radial: ${fr.toFixed(2)} N<br>
+                Força Axial: ${fa.toFixed(2)} N
+            `;
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>

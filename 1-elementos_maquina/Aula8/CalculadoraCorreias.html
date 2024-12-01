@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Correias</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Correias</h2>
+        
+        <label for="potMotor">Potência do Motor (W ou hp):</label>
+        <input type="number" id="potMotor" required>
+
+        <label for="fatorServico">Fator de Serviço:</label>
+        <input type="number" id="fatorServico" required>
+
+        <button onclick="calcPot()">Calcular Potência Projetada</button>
+        <p id="potProjetada" class="result"></p>
+
+        <label for="dMaior">Diâmetro Maior (mm):</label>
+        <input type="number" id="dMaior" required>
+
+        <label for="dMenor">Diâmetro Menor (mm):</label>
+        <input type="number" id="dMenor" required>
+
+        <button onclick="calcRel()">Calcular Relação de Transmissão (Diâmetro)</button>
+        <p id="RelacaoTrans1" class="result"></p>
+
+        <label for="rMaior">Rotação Maior (rpm):</label>
+        <input type="number" id="rMaior" required>
+
+        <label for="rMenor">Rotação Menor (rpm):</label>
+        <input type="number" id="rMenor" required>
+
+        <button onclick="calcRel1()">Calcular Relação de Transmissão (Rotação)</button>
+        <p id="RelacaoTrans2" class="result"></p>
+
+        <label for="dMaior1">Diâmetro Maior (mm) para Distância:</label>
+        <input type="number" id="dMaior1" required>
+
+        <label for="dMenor1">Diâmetro Menor (mm) para Distância:</label>
+        <input type="number" id="dMenor1" required>
+
+        <button onclick="calcDistanciaCentros()">Calcular Distância Entre Centros</button>
+        <p id="dCentros" class="result"></p>
+
+        <label for="dMaior2">Diâmetro Maior (mm) para Comprimento:</label>
+        <input type="number" id="dMaior2" required>
+
+        <label for="dMenor2">Diâmetro Menor (mm) para Comprimento:</label>
+        <input type="number" id="dMenor2" required>
+
+        <label for="dCentro">Diâmetro do Centro (mm):</label>
+        <input type="number" id="dCentro" required>
+
+        <button onclick="calcCompCorreia()">Calcular Comprimento da Correia</button>
+        <p id="cCorreia" class="result"></p>
+
+        <label for="dMaior3">Diâmetro Maior (mm) para Correia Ajustada:</label>
+        <input type="number" id="dMaior3" required>
+
+        <label for="dMenor3">Diâmetro Menor (mm) para Correia Ajustada:</label>
+        <input type="number" id="dMenor3" required>
+
+        <label for="cCorreiaPadrao">Comprimento Padrão da Correia (mm):</label>
+        <input type="number" id="cCorreiaPadrao" required>
+
+        <button onclick="calcCompCorreiaAjust()">Calcular Comprimento Ajustado da Correia</button>
+        <p id="cCorreiaAJ" class="result"></p>
+
+        <label for="dMaior4">Diâmetro Maior (mm) para Distância Ajustada:</label>
+        <input type="number" id="dMaior4" required>
+
+        <label for="dMenor4">Diâmetro Menor (mm) para Distância Ajustada:</label>
+        <input type="number" id="dMenor4" required>
+
+        <label for="cCorreiaAjust">Comprimento Ajustado da Correia (mm):</label>
+        <input type="number" id="cCorreiaAjust" required>
+
+        <label for="fatorH">Fator H:</label>
+        <input type="number" id="fatorH" required>
+
+        <button onclick="calcDistanciaCentrosAj()">Calcular Distância Entre Centros Ajustada</button>
+        <p id="dCentroAJ" class="result"></p>
+
+        <label for="pBasico">Potência Básica (W):</label>
+        <input type="number" id="pBasico" required>
+
+        <label for="pAdicional">Potência Adicional (W):</label>
+        <input type="number" id="pAdicional" required>
+
+        <label for="fatorComprimento">Fator de Comprimento:</label>
+        <input type="number" id="fatorComprimento" required>
+
+        <label for="fatorCorrecaoArco">Fator de Correção de Arco:</label>
+        <input type="number" id="fatorCorrecaoArco" required>
+
+        <button onclick="calcCapTransmPorCorreia()">Calcular Capacidade de Transmissão</button>
+        <p id="capTransmissao" class="result"></p>
+
+        <label for="pProjetada">Potência Projetada (W):</label>
+        <input type="number" id="pProjetada" required>
+
+        <label for="capTransmissaoCorreia">Capacidade de Transmissão (W):</label>
+        <input type="number" id="capTransmissaoCorreia" required>
+
+        <button onclick="calcNumeroCorreias()">Calcular Número Mínimo de Correias</button>
+        <p id="nCorreias" class="result"></p>
+
+        <label for="potMotor1">Potência do Motor (W):</label>
+        <input type="number" id="potMotor1" required>
+
+        <label for="nPoliaMotora">Rotação da Polia Motora (rpm):</label>
+        <input type="number" id="nPoliaMotora" required>
+
+        <button onclick="calcMomentoTorçor()">Calcular Momento Torçor</button>
+        <p id="mTorque" class="result"></p>
+
+        <label for="mTorque1">Momento Torçor (N.m):</label>
+        <input type="number" id="mTorque1" required>
+
+        <label for="dPoliaMotora">Diâmetro da Polia Motora (mm):</label>
+        <input type="number" id="dPoliaMotora" required>
+
+        <button onclick="calcforçatangencial()">Calcular Força Tangencial</button>
+        <p id="fTangencial" class="result"></p>
+    </div>
+
+    <script>
+        function calcPot() {
+            var potMotor = parseFloat(document.getElementById("potMotor").value);
+            var fatorServico = parseFloat(document.getElementById("fatorServico").value);
+            var result = potMotor * fatorServico;
+            document.getElementById("potProjetada").innerHTML = result.toFixed(3) + " W";
+        }
+
+        function calcRel() {
+            var dMaior = parseFloat(document.getElementById("dMaior").value);
+            var dMenor = parseFloat(document.getElementById("dMenor").value);
+            var result = dMaior / dMenor;
+            document.getElementById("RelacaoTrans1").innerHTML = result.toFixed(3);
+        }
+
+        function calcRel1() {
+            var rMaior = parseFloat(document.getElementById("rMaior").value);
+            var rMenor = parseFloat(document.getElementById("rMenor").value);
+            var result = rMaior / rMenor;
+            document.getElementById("RelacaoTrans2").innerHTML = result.toFixed(3);
+        }
+
+        function calcDistanciaCentros() {
+            var dMaior1 = parseFloat(document.getElementById("dMaior1").value);
+            var dMenor1 = parseFloat(document.getElementById("dMenor1").value);
+            var result = ((3 * dMenor1) + dMaior1) / 2;
+            document.getElementById("dCentros").innerHTML = result.toFixed(3) + " mm";
+        }
+
+        function calcCompCorreia() {
+            var dMaior2 = parseFloat(document.getElementById("dMaior2").value);
+            var dMenor2 = parseFloat(document.getElementById("dMenor2").value);
+            var dCentro = parseFloat(document.getElementById("dCentro").value);
+            var result = ((2 * dCentro) + (1.57 * (dMaior2 + dMenor2)) + ((dMaior2 - dMenor2) ** 2 / (4 * dCentro)));
+            document.getElementById("cCorreia").innerHTML = result.toFixed(3) + " mm";
+        }
+
+        function calcCompCorreiaAjust() {
+            var dMaior3 = parseFloat(document.getElementById("dMaior3").value);
+            var dMenor3 = parseFloat(document.getElementById("dMenor3").value);
+            var cCorreiaPadrao = parseFloat(document.getElementById("cCorreiaPadrao").value);
+            var result = cCorreiaPadrao - (1.57 * (dMaior3 + dMenor3));
+            document.getElementById("cCorreiaAJ").innerHTML = result.toFixed(3) + " mm";
+        }
+
+        function calcDistanciaCentrosAj() {
+            var dMaior4 = parseFloat(document.getElementById("dMaior4").value);
+            var dMenor4 = parseFloat(document.getElementById("dMenor4").value);
+            var cCorreiaAj = parseFloat(document.getElementById("cCorreiaAjust").value);
+            var fatorH = parseFloat(document.getElementById("fatorH").value);
+            var result = (cCorreiaAj - (fatorH * (dMaior4 - dMenor4))) / 2;
+            document.getElementById("dCentroAJ").innerHTML = result.toFixed(3) + " mm";
+        }
+
+        function calcCapTransmPorCorreia() {
+            var pBasico = parseFloat(document.getElementById("pBasico").value);
+            var pAdicional = parseFloat(document.getElementById("pAdicional").value);
+            var fComp = parseFloat(document.getElementById("fatorComprimento").value);
+            var fcArco = parseFloat(document.getElementById("fatorCorrecaoArco").value);
+            var result = (pBasico + pAdicional) * fComp * fcArco;
+            document.getElementById("capTransmissao").innerHTML = result.toFixed(3) + " W";
+        }
+
+        function calcNumeroCorreias() {
+            var potProjetada = parseFloat(document.getElementById("pProjetada").value);
+            var capTransmissaoCorreia = parseFloat(document.getElementById("capTransmissaoCorreia").value);
+            var result = potProjetada / capTransmissaoCorreia;
+            document.getElementById("nCorreias").innerHTML = result.toFixed(3);
+        }
+
+        function calcMomentoTorçor() {
+            var potMotor = parseFloat(document.getElementById("potMotor1").value);
+            var rotacaoPolia = parseFloat(document.getElementById("nPoliaMotora").value);
+            var result = (30 * potMotor) / (Math.PI * rotacaoPolia);
+            document.getElementById("mTorque").innerHTML = result.toFixed(3) + " N.m";
+        }
+
+        function calcforçatangencial() {
+            var momentoTorçor = parseFloat(document.getElementById("mTorque1").value);
+            var diametroPolia = parseFloat(document.getElementById("dPoliaMotora").value);
+            var result = (2 * momentoTorçor) / (diametroPolia * 10 ** -3);
+            document.getElementById("fTangencial").innerHTML = result.toFixed(3) + " N";
+        }
+    </script>
+</body>
+</html>

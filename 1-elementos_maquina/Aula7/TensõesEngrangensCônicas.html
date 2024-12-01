@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo de Tensões em Engrenagens Cônicas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            button {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cálculo de Tensões em Engrenagens Cônicas</h2>
+        
+        <label for="m">Módulo (m) [mM]:</label>
+        <input type="number" id="m" value="6" required>
+
+        <label for="Tp">Torque (Tp) [N.m]:</label>
+        <input type="number" id="Tp" value="164" required>
+
+        <label for="np">Rotação do Pinhão (np) [rpm]:</label>
+        <input type="number" id="np" value="394" required>
+
+        <label for="Np">Número de Dentes do Pinhão (Np):</label>
+        <input type="number" id="Np" value="20" required>
+
+        <label for="Ng">Número de Dentes da Engrenagem (Ng):</label>
+        <input type="number" id="Ng" value="22" required>
+
+        <label for="phi">Ângulo de Pressão (phi) [graus]:</label>
+        <input type="number" id="phi" value="20" required>
+
+        <label for="b">Largura da Face (b) [mm]:</label>
+        <input type="number" id="b" value="25" required>
+
+        <label for="v1">Coeficiente de Poisson (v1):</label>
+        <input type="number" id="v1" value="0.29" step="0.01" required>
+
+        <label for="E1">Módulo de Young (E1) [MPa]:</label>
+        <input type="number" id="E1" value="205000" required>
+
+        <label for="v2">Coeficiente de Poisson (v2):</label>
+        <input type="number" id="v2" value="0.29" step="0.01" required>
+
+        <label for="E2">Módulo de Young (E2) [MPa]:</label>
+        <input type="number" id="E2" value="205000" required>
+
+        <label for="Qv">Qv:</label>
+        <input type="number" id="Qv" value="6" required>
+
+        <label for="HBF">HBF:</label>
+        <input type="number" id="HBF" value="300" required>
+
+        <label for="HBC">HBC:</label>
+        <input type="number" id="HBC" value="300" required>
+
+        <label for="Ka">Fator de Choque (Ka):</label>
+        <input type="number" id="Ka" value="2" required>
+
+        <label for="Zxc">Zxc:</label>
+        <input type="number" id="Zxc" value="1.5" step="0.01" required>
+
+        <label for="Yb">Fator de Tamanho (Yb):</label>
+        <input type="number" id="Yb" value="1" required>
+
+        <label for="Yj">Fator (Yj):</label>
+        <input type="number" id="Yj" value="0.2" step="0.01" required>
+
+        <label for="YNt">YNt:</label>
+        <input type="number" id="YNt" value="2.7" required>
+
+        <label for="Kt">Kt:</label>
+        <input type="number" id="Kt" value="1" required>
+
+        <label for="Yz">Yz:</label>
+        <input type="number" id="Yz" value="1.25" step="0.01" required>
+
+        <label for="SF">SF:</label>
+        <input type="number" id="SF" value="1" required>
+
+        <label for="ZI">ZI:</label>
+        <input type="number" id="ZI" value="0.063" step="0.001" required>
+
+        <label for="ZNt">ZNt:</label>
+        <input type="number" id="ZNt" value="2" required>
+
+        <label for="Zw">Zw:</label>
+        <input type="number" id="Zw" value="1" required>
+
+        <label for="SH">SH:</label>
+        <input type="number" id="SH" value="1" required>
+
+        <label for="Zz">Zz:</label>
+        <input type="number" id="Zz" value="1.12" step="0.01" required>
+
+        <button onclick="calcularTensoes()">Calcular Tensões</button>
+
+        <div class="result">
+            <h3>Resultados:</h3>
+            <p id="resultado"></p>
+        </div>
+    </div>
+
+    <script>
+        function calcularTensoes() {
+            const m = parseFloat(document.getElementById('m').value);
+            const Tp = parseFloat(document.getElementById('Tp').value);
+            const np = parseFloat(document.getElementById('np').value);
+            const Np = parseFloat(document.getElementById('Np').value);
+            const Ng = parseFloat(document.getElementById('Ng').value);
+            const phi = parseFloat(document.getElementById('phi').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const v1 = parseFloat(document.getElementById('v1').value);
+            const E1 = parseFloat(document.getElementById('E1').value);
+            const v2 = parseFloat(document.getElementById('v2').value);
+            const E2 = parseFloat(document.getElementById('E2').value);
+            const Qv = parseFloat(document.getElementById('Qv').value);
+            const HBF = parseFloat(document.getElementById('HBF').value);
+            const HBC = parseFloat(document.getElementById('HBC').value);
+            const Ka = parseFloat(document.getElementById('Ka').value);
+            const Zxc = parseFloat(document.getElementById('Zxc').value);
+            const Yb = parseFloat(document.getElementById('Yb').value);
+            const Yj = parseFloat(document.getElementById('Yj').value);
+            const YNt = parseFloat(document.getElementById('YNt').value);
+            const Kt = parseFloat(document.getElementById('Kt').value);
+            const Yz = parseFloat(document.getElementById('Yz').value);
+            const SF = parseFloat(document.getElementById('SF').value);
+            const ZI = parseFloat(document.getElementById('ZI').value);
+            const ZNt = parseFloat(document.getElementById('ZNt').value);
+            const Zw = parseFloat(document.getElementById('Zw').value);
+            const SH = parseFloat(document.getElementById('SH').value);
+            const Zz = parseFloat(document.getElementById('Zz').value);
+
+            // Funções de cálculo
+            const Projeto_Basico = (Tp, np, Np, Ng, m) => {
+                const dpp = m * Np; // mM
+                const Alfa_p = (Math.atan(Np / Ng) * 180) / Math.PI; // Cone pinhão
+                const pp = dpp / Np; // [dente/mm] passo do pinhão
+                const dpg = m * Ng; // mm
+                const Alfa_g = (Math.atan(Ng / Np) * 180) / Math.PI; // Cone engrenagem
+                const pg = dpg / Ng; // [dente/mm] passo da engrenagem
+                const i = dpg / dpp; // razão de engrenamento
+                const L = dpp / (2 * Math.sin((Alfa_p * Math.PI) / 180)); // comprimento do cone em mm
+                const vt = ((Math.PI * dpp * np) / 60) / 1000; // Velocidade periférica [m/s]
+                const Pot = 30 * Tp / (Math.PI * np);
+                return { Pot, vt, dpp, dpg, b: L / 3, i, Alfa_p, Alfa_g, pp, pg };
+            };
+
+            const forca_EC = (Pot, vt, Ng, Np, dpp, np, phi) => {
+                const gama = Math.atan(Np / Ng);
+                const wt = Pot / vt; // Força tangencial [N]
+                const wr = wt * Math.tan(phi * Math.PI / 180) * Math.cos(gama); // Força radial [N]
+                const wa = wt * Math.tan(phi * Math.PI / 180) * Math.sin(gama); // Força axial [N]
+                return { wt, wr, wa };
+            };
+
+            const Potenciais = Projeto_Basico(Tp, np, Np, Ng, m);
+            const forcas = forca_EC(Potenciais.Pot, Potenciais.vt, Ng, Np, Potenciais.dpp, np, phi);
+
+            const resultado = `
+                Potência: ${Potenciais.Pot.toFixed(2)} W<br>
+                Velocidade Periférica: ${Potenciais.vt.toFixed(2)} m/s<br>
+                Diâmetro Primitivo do Pinhão: ${Potenciais.dpp.toFixed(2)} mm<br>
+                Diâmetro Primitivo da Engrenagem: ${Potenciais.dpg.toFixed(2)} mm<br>
+                Largura da Face: ${Potenciais.b.toFixed(2)} mm<br>
+                Razão de Engrenamento: ${Potenciais.i.toFixed(2)}<br>
+                Ângulo de Pressão do Pinhão: ${Potenciais.Alfa_p.toFixed(2)}°<br>
+                Ângulo de Pressão da Engrenagem: ${Potenciais.Alfa_g.toFixed(2)}°<br>
+                Passo do Pinhão: ${Potenciais.pp.toFixed(2)} mm<br>
+                Passo da Engrenagem: ${Potenciais.pg.toFixed(2)} mm<br>
+                Força Tangencial: ${forcas.wt.toFixed(2)} N<br>
+                Força Radial: ${forcas.wr.toFixed(2)} N<br>
+                Força Axial: ${forcas.wa.toFixed(2)} N<br>
+            `;
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
