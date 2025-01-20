@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 8 - Centróide e Baricentro</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../Aula7-CentroideBaricentroe.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 7 - Centróide e Baricentro</h2>
+<div class="container">
+    <p>
+        O estudo de centroides e baricentros é essencial em áreas como mecânica, engenharia estrutural e análise de sistemas. 
+        Esses conceitos estão relacionados à localização do ponto de equilíbrio de um objeto, sendo aplicados em cálculos de momento de inércia, estabilidade de estruturas e projetos de engenharia.
+    </p>
+    <p>
+        O <strong>centroide</strong> é o ponto médio geométrico de uma figura bidimensional ou volume tridimensional. 
+        O <strong>baricentro</strong>, em contextos físicos, é o ponto de equilíbrio do peso de um corpo, considerando a distribuição de massa. 
+        Em materiais homogêneos, o centroide e o baricentro coincidem.
+    </p>
+
+    <h3>Centroide de geométricas simples:</h3>
+    <p>
+        O centroide de uma figura geométrica é o ponto médio de suas dimensões, determinado pelas propriedades geométricas. 
+        Ele pode ser calculado utilizando fórmulas específicas para cada forma geométrica.
+    </p>
+    <ul>
+        <li>
+            <h3>Triângulo:</h3>
+            <p>
+                O centroide de um triângulo está localizado na interseção de suas medianas, a 1/3 da altura em direção à base e a 1/3 da base em direção ao vértice oposto.
+            </p>
+            <div class="formula">
+                x<sub>c</sub> = b / 3, &nbsp; y<sub>c</sub> = h / 3
+            </div>
+        </li>
+        <li>
+            <h3>Retângulo:</h3>
+            <p>
+                O centroide de um retângulo está no ponto de interseção de suas diagonais.
+            </p>
+            <div class="formula">
+                x<sub>c</sub> = b / 2, &nbsp; y<sub>c</sub> = h / 2
+            </div>
+        </li>
+        <li>
+            <h3>Círculo:</h3>
+                <p>
+                    O centroide de um círculo coincide com seu centro geométrico (se o centro do círculo estiver na origem do sistema de coordenadas).
+                </p>
+                <div class="formula">
+                    x<sub>c</sub> = 0, &nbsp; y<sub>c</sub> = 0
+                </div>
+        </li>
+        <li>
+            <h3>Trapézio:</h4>
+                <p>
+                    O centroide de um trapézio está localizado a uma altura proporcional à diferença entre as bases maior e menor, medido a partir da base maior.
+                </p>
+                <div class="formula">
+                    y<sub>c</sub> = (h / 3) * (2b<sub>1</sub> + b<sub>2</sub>) / (b<sub>1</sub> + b<sub>2</sub>)
+                </div>
+                &nbsp;
+                <p>
+                    Se o trapézio for simétrico, a coordenada x<sub>c</sub> estará no meio das bases:
+                </p>
+                <div class="formula">
+                    x<sub>c</sub> = (b<sub>1</sub> + b<sub>2</sub>) / 2
+                </div>
+        </li>
+    </ul>
+
+    <h3>
+
+    <h3>
+
+    <h3>Baricentro</h2>
+        <p>O baricentro, por outro lado, é o ponto onde as forças atuantes em um corpo se equilibram, levando em consideração a massa distribuída do objeto. É o ponto de equilíbrio de um corpo físico, onde, se o corpo for apoiado, ele não cairá. O baricentro é especialmente relevante em mecânica e física, pois ajuda a entender o comportamento de objetos sob forças externas.</p>
+</div>
+</body>
+</html>

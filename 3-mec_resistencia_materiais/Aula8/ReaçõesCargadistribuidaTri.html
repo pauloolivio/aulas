@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Reações com Carga Distribuida Triangular</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+        canvas {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        label {
+            margin: 5px;
+            text-align: center;
+            width: 100%;
+        }
+        input {
+            margin: 5px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            max-width: 600px;
+            background-color: #007bff;
+            color: white;
+            display: block;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 24px;
+                text-align: center;
+            }
+            label {
+                font-size: 16px;
+            }
+            input {
+                width: 90%;
+            }
+            button {
+                max-width: 90%;
+            }
+            canvas {
+                height: 150px;
+            }
+            #result {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Reações com Carga Distribuida Triangular</h1>
+    <canvas id="viga" width="600" height="200"></canvas>
+    <div class="input-container">
+        <label>Intensidade Máxima (N/m):
+            <input type="number" id="intensidade" />
+        </label>
+        <label>Posição Inicial (m):
+            <input type="number" id="posicaoInicio" min="0" max="1" step="0.1" />
+        </label>
+        <label>Extensão da Carga (m):
+            <input type="number" id="extensao" min="0" max="1" step="0.1" />
+        </label>
+        <button onclick="adicionarCargaTriangular()">Adicionar Carga Triangular</button>
+        <button onclick="calcularReacoesEMomentos()">Calcular Reações e Momentos</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const canvas = document.getElementById('viga');
+        const ctx = canvas.getContext('2d');
+        const cargasTriangulares = [];
+
+        function desenharViga() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00f';
+            ctx.fillRect(50, 70, 500, 20); // Viga
+
+            desenharApoio(52, 85, 'A');
+            desenharApoio(547, 85, 'B');
+
+            for (const { intensidade, posicaoInicio, extensao } of cargasTriangulares) {
+                const xInicio = 50 + posicaoInicio * 500;
+                const largura = extensao * 500;
+
+                // Desenhar triângulo
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+                ctx.beginPath();
+                ctx.moveTo(xInicio, 70);
+                ctx.lineTo(xInicio + largura, 70);
+                ctx.lineTo(xInicio + largura, 50);
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.fillStyle = 'black';
+                ctx.fillText(`${intensidade} N/m`, xInicio + 5, 45);
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(50, 130);
+            ctx.lineTo(550, 130);
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+            
+            ctx.font = '18px Arial';
+            ctx.fillText("1 m", 280, 145);
+        }
+
+        function desenharApoio(x, y, letra) {
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            ctx.lineTo(x - 10, y + 20);
+            ctx.lineTo(x + 10, y + 20);
+            ctx.closePath();
+            ctx.fillStyle = 'black';
+            ctx.fill();
+
+            ctx.font = '18px Arial';
+            ctx.fillStyle = 'black';
+            ctx.fillText(letra, x - 5, y + 35);
+        }
+
+        function adicionarCargaTriangular() {
+            const intensidade = parseFloat(document.getElementById('intensidade').value);
+            const posicaoInicio = parseFloat(document.getElementById('posicaoInicio').value);
+            const extensao = parseFloat(document.getElementById('extensao').value);
+
+            if (cargasTriangulares.length < 4 && !isNaN(intensidade) && !isNaN(posicaoInicio) && !isNaN(extensao) && posicaoInicio + extensao <= 1) {
+                cargasTriangulares.push({ intensidade, posicaoInicio, extensao });
+                desenharViga();
+            } else {
+                alert("Verifique os valores inseridos. A posição final da carga não deve exceder 1 metro.");
+            }
+        }
+
+        function calcularReacoesEMomentos() {
+            let momentoA = 0;
+            let momentoB = 0;
+            let forcaTotal = 0;
+
+            for (const { intensidade, posicaoInicio, extensao } of cargasTriangulares) {
+                const forca = (intensidade * extensao) / 2; // Área do triângulo
+                const posicaoMedio = posicaoInicio + (extensao / 3); // Centroide do triângulo
+
+                momentoA += forca * posicaoMedio;
+                momentoB += forca * (1 - posicaoMedio);
+                forcaTotal += forca;
+            }
+
+            const reacaoB = -momentoA; // Equilíbrio de momentos
+            const reacaoA = forcaTotal + reacaoB; // Equilíbrio de forças
+
+            const resultado = `Reação em A: ${reacaoA.toFixed(2)} N \n` +
+                              `Reação em B: ${reacaoB.toFixed(2)} N \n` +
+                              `Momento em A: ${momentoA.toFixed(2)} Nm (Sentido anti-horário)\n` +
+                              `Momento em B: ${momentoB.toFixed(2)} Nm (Sentido horário)`;
+
+            document.getElementById('result').innerText = resultado;
+        }
+
+        desenharViga();
+    </script>
+</body>
+</html>
