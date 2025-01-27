@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 9 - Momento de Inércia</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../Aula9-MomentodeInercia.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 9 - Momento de Inércia</h2>
+<div class="container">
+
+    <p>O momento de inércia é uma propriedade fundamental em mecânica e engenharia, relacionada à distribuição da massa em torno de um eixo e à resistência de um corpo à rotação. Ele é crucial em análises estruturais, dinâmica de corpos rígidos e na determinação da estabilidade de estruturas. O momento de inércia pode ser calculado em relação a diferentes eixos, sendo os mais comuns os eixos x-x e y-y, além do momento de inércia polar.</p>
+
+    <h3>Momento de Inércia em Relação aos Eixos x-x e y-y</h2>
+
+    <p>O momento de inércia em relação ao eixo x-x (I<sub>x</sub>) e ao eixo y-y (I<sub>y</sub>) mede a resistência de uma seção transversal à flexão em suas respectivas direções. Para formas geométricas simples, as fórmulas são:</p>
+
+    <ul>
+        <li><strong>Retângulo:</strong>
+            I<sub>x</sub> = b h<sup>3</sup> / 12
+            I<sub>y</sub> = h b<sup>3</sup> / 12
+        </li>
+        <li><strong>Círculo:</strong>
+            I<sub>x</sub> = I<sub>y</sub> = π r<sup>4</sup> / 4
+        </li>
+        <li><strong>Triângulo:</strong>
+            I<sub>x</sub> = b h<sup>3</sup> / 36
+            I<sub>y</sub> = h b<sup>3</sup> / 36
+        </li>
+    </ul>
+
+    <p>Esses momentos de inércia são essenciais para o cálculo de tensões e deformações em estruturas submetidas a cargas.</p>
+
+    <h3>Momento de Inércia Polar</h2>
+
+    <p>O momento de inércia polar (I<sub>z</sub>) é utilizado para descrever a resistência de um corpo à rotação em torno de um eixo perpendicular ao plano da seção. Ele é definido como a soma dos momentos de inércia em relação aos eixos x-x e y-y:</p>
+    <ul>
+        I<sub>z</sub> = I<sub>x</sub> + I<sub>y</sub>
+    </ul>
+
+    <p>Para seções circulares, por exemplo, o momento de inércia polar é dado por:</p>
+    <ul><li>
+Círculo:
+I<sub>z</sub> = π r<sup>4</sup> / 2</li>
+</ul>
+    <h3>Momento de Inércia de Área em Tubos Cilindricos</h2>
+
+    <p>No caso de tubos, o cálculo do momento de inércia leva em conta a geometria oca. Para um tubo cilíndrico, as fórmulas são adaptadas para considerar tanto o raio interno (<code>r<sub>i</sub></code>) quanto o raio externo (<code>r<sub>e</sub></code>):</p>
+<ul><li>
+Tubos Cilindricos:
+I<sub>x</sub> = I<sub>y</sub> = π / 4 (r<sub>e</sub><sup>4</sup> - r<sub>i</sub><sup>4</sup>)
+</li></ul>
+
+    <h3>Cálculo do Momento de Inércia para Geometrias Compostas</h2>
+
+    <p>Para calcular o momento de inércia de geometrias compostas, utiliza-se o Teorema de Steiner (ou Teorema dos Eixos Paralelos), que permite determinar o momento de inércia de uma figura composta a partir dos momentos de inércia de suas partes e a distância do eixo:</p>
+
+<ul><li>
+Fórmula Geral:
+I = I<sub>cm</sub> + A d<sup>2</sup></li>
+</ul>
+
+    <p>Onde:</p>
+    <ul>
+        <li><strong>I</strong> = momento de inércia total em relação ao eixo desejado</li>
+        <li><strong></strong>I<sub>cm</sub></strong> = momento de inércia da seção em relação ao seu centroide</li>
+        <li><strong></strong>A</strong> = área da seção</li>
+        <li><strong>d</strong> = distância entre o eixo do centroide e o eixo desejado</li>
+    </ul>
+
+    <p>Esse conceito é vital para a análise de seções complexas, permitindo a soma dos momentos de inércia de diferentes componentes para obter o resultado total. A compreensão desses conceitos é essencial para a aplicação prática em diversas áreas, como construção civil, mecânica e design estrutural.</p>
+
+</body>
+</html>

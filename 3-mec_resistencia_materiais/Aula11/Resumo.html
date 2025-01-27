@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 9 - Momento de Inércia</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+    <!-- Inclusão do MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #2C3E50;
+    }
+    h1, h2 {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: white;
+    }
+    .container {
+        margin: 0px;
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    .table-container {
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+        h2, h3 {
+            font-size: 1.2em;
+        }
+    }
+</style>
+<body>
+    <a class="btn btn-default btn-sm" href="../Aula11-Flexaoemvigaseeixos.html">
+        <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+    </a>
+    <h2>Pré Aula 11 - Flexão em Vigas e Eixos</h2>
+    <div class="container">
+
+        <p>A flexão é um dos principais fenômenos que afetam a resistência e a estabilidade de vigas e eixos. Ela ocorre quando uma força é aplicada perpendicularmente ao eixo longitudinal de um elemento, resultando em deformações e tensões internas que podem levar à falha estrutural se não forem adequadamente analisadas.</p>
+
+        <h3>Diagrama de Forças e Momentos</h3>
+
+        <p>O diagrama de forças e momentos é um recurso visual que representa as forças externas aplicadas e os momentos resultantes ao longo de uma viga ou eixo. Esse diagrama é fundamental para a análise estrutural, pois permite identificar os pontos críticos de maior tensão e deformação. Os principais tipos de diagramas incluem:</p>
+
+        <ul>
+            <li><strong>Diagrama de Cortante:</strong> Mostra a distribuição da força cortante ao longo do comprimento da viga.</li>
+            <li><strong>Diagrama de Momento Fletor:</strong> Representa a distribuição do momento fletor ao longo da viga, indicando onde ocorrem os maiores momentos.</li>
+        </ul>
+
+        <h3>Fórmulas de Tensão em Flexão</h3>
+
+        <p>A tensão de flexão \( \sigma \) em uma seção transversal de uma viga é dada pela fórmula:</p>
+        \[
+        \sigma = \frac{M \cdot y}{I}
+        \]
+        
+        <p>Onde:</p>
+        <ul>
+            <li><code>M</code> = momento fletor na seção</li>
+            <li><code>y</code> = distância do eixo neutro até o ponto onde a tensão é calculada</li>
+            <li><code>I</code> = momento de inércia da seção transversal</li>
+        </ul>
+
+        <p>Essa fórmula é essencial para o dimensionamento de vigas, permitindo determinar as tensões máximas que podem ocorrer sob diferentes carregamentos.</p>
+
+        <h3>Momento de Inércia</h3>
+
+        <p>O momento de inércia \( I \) é uma propriedade geométrica da seção transversal que quantifica a resistência da viga à flexão. Para diferentes formas geográficas, as fórmulas são as seguintes:</p>
+
+        <ul>
+            <li><strong>Retângulo:</strong>\(I = \frac{b \cdot h^3}{12}\)
+
+
+            </li>
+            <li><strong>Círculo:</strong>
+                <pre>
+I = \frac{\pi \cdot r^4}{4}
+                </pre>
+            </li>
+            <li><strong>Tubo Cilíndrico:</strong>
+                <pre>
+I = \frac{\pi}{4} \left( r_e^4 - r_i^4 \right)
+                </pre>
+            </li>
+        </ul>
+
+        <p>O momento de inércia é crucial para o cálculo das tensões e deformações em vigas e eixos.</p>
+
+        <h3>Cálculo da Deflexão</h3>
+
+        <p>A deflexão máxima \( \delta \) de uma viga sob carregamento pode ser calculada utilizando a fórmula:</p>
+
+        <pre>
+\delta = \frac{F \cdot L^3}{3 \cdot E \cdot I}
+        </pre>
+
+        <p>Onde:</p>
+        <ul>
+            <li><code>F</code> = força aplicada</li>
+            <li><code>L</code> = comprimento da viga</li>
+            <li><code>E</code> = módulo de elasticidade do material</li>
+        </ul>
+
+        <p>Essa fórmula é importante para garantir que a deflexão permaneça dentro de limites aceitáveis, evitando falhas estruturais.</p>
+
+        <h3>Conclusão</h3>
+
+        <p>O estudo da flexão em vigas e eixos é vital para o projeto e análise de estruturas. A compreensão dos conceitos de tensão, deformação, momento de inércia e deflexão é essencial para engenheiros e projetistas, garantindo a segurança e a eficiência das construções. Análises precisas permitem otimizar o uso de materiais e melhorar a performance estrutural das vigas e eixos em diversas aplicações.</p>
+
+    </div>
+</body>
+</html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathJax Example</title>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+  <h1>Fórmula Renderizada com MathJax</h1>
+  <p>A fórmula correta é: \( \sigma = \frac{M \cdot y}{I} \)</p>
+  <p>Você também pode usar em bloco:</p>
+  <div>
+    \[
+    \sigma = \frac{M \cdot y}{I}
+    \]
+  </div>
+</body>
+</html>

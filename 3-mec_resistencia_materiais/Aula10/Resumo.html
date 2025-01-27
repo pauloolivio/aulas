@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 9 - Momento de Inércia</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../Aula10-Torcaoemarvores.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 10 - Torção em Eixos-Árvores</h2>
+<div class="container">
+    <p>A torção é um fenômeno mecânico que ocorre quando um corpo é submetido a um momento torçor, resultando na rotação de suas extremidades em relação ao seu eixo longitudinal. Esse estudo é fundamental em engenharia, especialmente na análise de eixos, tubos e outros elementos estruturais que sofrem esforços de torção.</p>
+
+    <h3>Diagrama de Momento Torçor</h3>
+
+    <p>O diagrama de momento torçor ilustra como o momento torçor é distribuído ao longo de um eixo ou elemento. Este diagrama é essencial para a análise de estruturas, pois permite identificar onde ocorrem os maiores esforços torcionais. Um diagrama típico mostra a variação do momento torçor em função da posição ao longo do eixo, com pontos críticos indicados.</p>
+
+    <h3>Fórmula de Tensão em Elementos de Torção</h3>
+
+    <p>A tensão de cisalhamento (<code>τ</code>) em um elemento sujeito a torção é dada pela fórmula:</p>
+<ul>
+<code>τ = T · r / J</code>
+</ul>
+    <p>Onde:</p>
+    <ul>
+        <li><code>T</code> = momento torçor aplicado</li>
+        <li><code>r</code> = distância do eixo neutro até o ponto onde a tensão é calculada</li>
+        <li><code>J</code> = momento de inércia polar da seção transversal</li>
+    </ul>
+
+    <p>Essa fórmula é fundamental para determinar as tensões em seções transversais de eixos, permitindo o dimensionamento adequado para evitar falhas.</p>
+
+    <h3>Deformação Cisalhante em Torção</h3>
+
+    <p>A deformação cisalhante (<code>γ</code>) em um elemento torcido é calculada pela relação:</p>
+
+    <ul>
+<code>
+γ = τ / G
+</code>
+</ul>
+
+    <p>Onde:</p>
+    <ul>
+        <li><code>G</code> = módulo de rigidez ou módulo de elasticidade cisalhante do material</li>
+    </ul>
+
+    <p>A deformação cisalhante é uma medida da deformação que ocorre em resposta ao esforço de torção, sendo crucial para entender o comportamento do material sob cargas.</p>
+
+    <h3>Equação de Momento de Inércia Polar</h3>
+
+    <p>Para eixos e tubos, o momento de inércia polar (<code>J</code>) é essencial no cálculo das tensões de cisalhamento. As fórmulas para diferentes seções são:</p>
+
+    <ul>
+        <li><strong>Círculo:</strong>
+<code>J = π r<sup>4</sup> / 2</code>
+        </li>
+        <li><strong>Tubo Cilíndrico:</strong>
+<code>J = π / 2 (r<sub>e</sub><sup>4</sup> - r<sub>i</sub><sup>4</sup>)</code>
+        </li>
+    </ul>
+
+    <p>Essas equações permitem calcular a resistência à torção de seções transversais, sendo fundamentais para o projeto de eixos e tubos.</p>
+
+    <h3>Fórmula de Potência de Toque</h3>
+
+    <p>A potência transmitida por um eixo sujeito a torção é dada pela fórmula:</p>
+    <ul>
+<code>P = T · ω</code>
+</ul>    
+<p>Onde:</p>
+   
+<ul>
+    <li><code>P</code> = potência (W)</li>
+    <li><code>T</code> = momento torçor (N·m)</li>
+    <li><code>ω</code> = velocidade angular (rad/s)</li>
+</ul>
+
+<p>Desta forma, em um eixo acoplado a um motor de potência e rotação conhecida, o torque transmitido é calculado pela seguinte equação:</p>
+<ul>
+    <code>T = (30 · P) / (π · n)</code>
+    </ul>    
+    <p>Onde:</p>
+   
+<ul>
+    <li><code>n</code> = Rotações do eixo-arvore (rpm)</li>
+</ul>
+
+    <p>Para dimensionar o diâmetro mínimo de um eixo a torção, pode-se usar a seguinte relação:</p>
+
+    <ul>
+        <code>
+d = (16T / (π · τ<sub>adm</sub>))<sup>1/3</sup>
+        </code>
+</ul>
+    <p>Onde:</p>
+    <ul>
+        <li><code>d</code> = diâmetro do eixo</li>
+        <li><code>τ<sub>adm</sub></code> = tensão admissível ao cisalhamento do material</li>
+    </ul>
+
+    <p>Essa fórmula é crucial para garantir que o eixo-arvore dimensionado resista adequadamente aos esforços torsionais, evitando falhas estruturais.</p>
+</body>
+</html>

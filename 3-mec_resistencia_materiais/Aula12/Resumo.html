@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 9 - Momento de Inércia</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h3, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../Aula12-Esforçoscombinados.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Pré Aula 12 - Análise de Esforços Combinados</h2>
+<div class="container">        
+        <p>Os esforços combinados são uma condição comum em estruturas e materiais submetidos a múltiplos tipos de carregamento, como tração, compressão, flexão e torção. A análise dos esforços combinados envolve o uso de conceitos de tensões, deformações e critérios de falha, garantindo a segurança e a integridade das estruturas. O conceito base está ligado o tensões de tensão e deformação do material e o conceito de tensão principal derivada do conceito de autovalor.</p>
+    
+        <h3>Autovalor e Autovetor</h3>
+    
+        <p>Em mecânica dos sólidos, o tensor de tensão e o tensor de deformação são representados por matrizes que revelam suas propriedades fundamentais através de autovalores e autovetores.</p>
+    
+        <ul>
+            <li><strong>Autovalor</strong>: Representa as tensões principais ou deformações principais em um material, indicando os valores das tensões que atuam em direções específicas.</li>
+            <li><strong>Autovetor</strong>: Relaciona-se às direções principais nas quais as tensões ou deformações ocorrem, ou seja, as orientações em que os efeitos de cisalhamento são nulos.</li>
+        </ul>
+    
+        <h3>Montagem do Tensor de Tensão 3D</h3>
+    
+        <p>O tensor de tensão em 3D é expresso como:</p>
+    
+        <p>
+          \[
+          \sigma = \begin{pmatrix}
+          \sigma_x & \tau_{xy} & \tau_{xz} \\
+          \tau_{yx} & \sigma_y & \tau_{yz} \\
+          \tau_{zx} & \tau_{zy} & \sigma_z
+          \end{pmatrix}
+          \]
+        </p>
+        <p>Onde:</p>
+<ul>\(\sigma_x ,  \sigma_x ,  \sigma_x \), são as tensões normais.</ul>
+<ul>\(\sigma_{xy} ,  \sigma_{yz} ,  \sigma_{xz} \), são as tensões de cisalhamento</ul>
+
+        <h3>Cálculo dos Invariantes</h3>
+    
+        <p>Os invariantes do tensor são definidos como:</p>
+    
+        <ul>
+            <li><strong>Primeiro Invariante</strong> (I<sub>1</sub>):
+                <p>\( I_1 = \sigma_x + \sigma_y + \sigma_z \)</p>
+            </li>
+            <li><strong>Segundo Invariante</strong> (I<sub>2</sub>):
+                <p>\( I_2 = \sigma_x \sigma_y + \sigma_y \sigma_z + \sigma_z \sigma_x - \tau_{xy}^2 - \tau_{yz}^2 - \tau_{zx}^2 \)</p>
+            </li>
+            <li><strong>Terceiro Invariante</strong> (I<sub>3</sub>):
+                <p>\( I_3 = \text{det}(\sigma) \)</p>
+            </li>
+        </ul>
+    
+        <h3>Cálculo das Tensões e Deformações Principais</h3>
+    
+        <p>As tensões principais (σ<sub>1</sub>, σ<sub>2</sub>, σ<sub>3</sub>) e as deformações principais (ε<sub>1</sub>, ε<sub>2</sub>, ε<sub>3</sub>) são obtidas a partir dos tensores de tensão e deformação. O cálculo é feito resolvendo a equação característica associada ao tensor:</p>
+    
+        <p>\( \text{det}(\sigma - \lambda I) = 0 \)</p>
+    
+        <p>A matriz Λ é uma matriz diagonal que contém os autovalores (tensões principais):</p>
+    
+        <p>
+          \[
+          \Lambda = \begin{pmatrix}
+          \sigma_1 & 0 & 0 \\
+          0 & \sigma_2 & 0 \\
+          0 & 0 & \sigma_3
+          \end{pmatrix}
+          \]
+        </p>
+    
+        <h3>Cálculo da Tensão Equivalente</h3>
+    
+        <p>A tensão equivalente (σ<sub>eq</sub>) simplifica a análise de tensões complexas. A fórmula de Von Mises é:</p>
+    
+        <p>\( \sigma_{eq} = \sqrt{\sigma_1^2 - \sigma_1\sigma_2 + \sigma_2^2 - \sigma_2\sigma_3 + \sigma_3^2 - \sigma_1\sigma_3} \)</p>
+    
+        <h3>Critérios de Falha</h3>
+        <p>Os critérios de falha são essenciais para a análise de tensões em materiais submetidos a esforços combinados. Os critérios de Tresca e Von Mises são os mais usados na engenharia para prever a falha de materiais. Abaixo estão as descrições destes critérios, juntamente com suas respectivas equações de tensão.</p>
+    
+        <h3>Critério de Tresca</h3>
+    
+        <p>O critério de Tresca baseia-se na tensão de cisalhamento máxima. De acordo com esse critério, a falha ocorre quando a tensão de cisalhamento máxima (τ<sub>max</sub>) atinge um valor crítico.</p>
+    
+        <p>A tensão de cisalhamento máxima é dada por:</p>
+    
+        <p>\( \tau_{max} = \frac{1}{2} (\sigma_1 - \sigma_3) \)</p>
+    
+        <p>Em termos das tensões do tensor, podemos considerar:</p>
+    
+        <p>\( \tau_{max} = \frac{1}{2} (\sigma_{x} - \sigma_{z}) \)</p>
+        <p>ou</p>
+        <p>\( \tau_{max} = \frac{1}{2} (\sigma_{y} - \sigma_{z}) \)</p>
+    
+        <p>O critério de falha de Tresca é então expresso como:</p>
+    
+        <p>\( \tau_{max} \leq \tau_{adm} \)</p>
+    
+        <h3>Critério de Von Mises</h3>
+    
+        <p>O critério de Von Mises considera a energia de distorção. A falha ocorre quando a tensão equivalente de Von Mises (σ<sub>eq</sub>) excede a tensão de escoamento do material.</p>
+    
+        <p>A tensão equivalente de Von Mises é dada por:</p>
+    
+        <p>
+          \[
+          \sigma_{eq} = \sqrt{\frac{1}{2} \left[ (\sigma_{x} - \sigma_{y})^2 + (\sigma_{y} - \sigma_{z})^2 + (\sigma_{z} - \sigma_{x})^2 + 6 (\tau_{xy}^2 + \tau_{yz}^2 + \tau_{zx}^2) \right]}
+          \]
+        </p>
+    
+        <p>Este critério assegura que a tensão equivalente não ultrapasse a tensão de escoamento do material:</p>
+
+        <p>\( \sigma_{eq} \leq \sigma_{adm} \)</p>
