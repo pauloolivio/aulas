@@ -1,9 +1,5 @@
 <!doctype html>
-<html lang="en">
-
-
-<!-- Mirrored from webstructural.com/beam-calculator.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Apr 2023 17:39:00 GMT -->
-
+<html lang="pt-br">
 <head>
 
     <!-- Google tag (gtag.js) -->
@@ -24,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free Beam Calculator">
     <meta name="author" content="WebStructural, LLC">
-    <title>Calculadora de Momento fletor e força Cortante</title>
+    <title>Calculadora de Momento Fletor e Força Cortante</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
@@ -72,9 +68,8 @@
 
 <body onload="setup();" class="bg-ligth">
     <header class="container text-center">
-        <h1 class="header__headline mt-2 fw-semibold">Materiais de Aula</h1>
-        <h5 class="fw-semibold">Curso de Engenharia Mecânica</h1>
-            <p class="fw-semibold">Professor Paulo Sergio Olivio Filho</p>
+        <h2 class="header__headline mt-2 fw-semibold">Calculadora para Flexão de Vigas</h2>
+
     </header>
     <div class="container">
         <div class="row">
@@ -220,28 +215,23 @@
                                     <br>
                                     <p class="text-center">
                                         <div class="btn-group dropdown">
-                                            <button class="btn btn-default dropdown-toggle" type="button" id="units-dropdown" data-toggle="dropdown" aria-expanded="true">
-                          Sistema Inglês (inches, kips, ksi)
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="units-dropdown" data-toggle="dropdown" aria-expanded="true"> Sistema Métrico (Metros, kN, kPa)
                           <span class="caret"></span>
                         </button>
                                             <ul class="dropdown-menu" role="menu" style="cursor: pointer;" aria-labelledby="units-dropdown">
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" onClick="setEnglishUnits();">Sistema Inglês (inches, kips, ksi)</a></li>
-                                                <li role="presentation"><a role="menuitem" tabindex="-1" onClick="setMetricUnits();">Sistema Métrico (meters, kN, kPa)</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" onClick="setMetricUnits();">Sistema Métrico (Metros, kN, kPa)</a></li>
+                                                <li role="presentation"><a role="menuitem" tabindex="-1" onClick="setEnglishUnits();">Sistema Inglês (Polegadas, kips, ksi)</a></li>       
                                             </ul>
                                             <br>
                                         </div>
                                     </p>
-                                    <label for="E-input" class="grey-text">Modulo de Young, <i>E (<span
+                                    <label for="E-input" class="grey-text">Módulo de Young, <i>E (<span
                           class="units-pressure"></span>)</i></label>
-                                    <input type="text" id="E-input" class="form-control" value="29000" onchange="recalculate();">
-                                    <label for="I-input" class="grey-text">Momento de Inercia, <i>I (<span
+                                    <input type="text" id="E-input" class="form-control" value="290000" onchange="recalculate();">
+                                    <label for="I-input" class="grey-text">Momento de Inércia, <i>I (<span
                           class='units-length'></span><sup>4</sup>)</i></label>
-                                    <div class="input-group">
                                         <input type="text" id="I-input" class="form-control" value="10" onchange="recalculate();">
                                         <span class="input-group-btn noprint">
-                        <button id="shape-selector-button" class="btn btn-primary" type="button" data-toggle="modal"
-                          data-target="#shapeSelectorModal">
-                          <i class="fa fa-search"></i> Tabela de Perfis de Barra
                         </button>
                       </span>
                                     </div>
@@ -264,7 +254,7 @@
                                         <input class="form-control" type="text" id="q-input" value="1" onchange="recalculate();">
                                         <label class="grey-text" for="L-input"><i>L (<span class="units-length">in</span>)</i></label>
                                         <input class="form-control" type="text" id="L-input" value="120" onchange="recalculate();">
-                                        <label class="grey-text" for="x-input"><i>point of interest, x (<span
+                                        <label class="grey-text" for="x-input"><i>ponto de interesse, x (<span
                             class="units-length">in</span>)</i></label>
                                         <input class="form-control" type="text" id="x-input" value="60" onchange="recalculate();">
                                     </div>

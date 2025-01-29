@@ -1,7 +1,7 @@
 /*global $, window, document */
 var ENGLISH_UNITS = "english";
 var METRIC_UNITS = "metric";
-var gUnits = ENGLISH_UNITS;
+var gUnits = METRIC_UNITS;
 var M_PI = 3.14159265;
 
 var previousPoint = null;
@@ -17,38 +17,38 @@ function changeUnits(cssClassName, newUnitStr) {
 }
 
 function setUnits() {
-    if (gUnits === ENGLISH_UNITS) {
+    if (gUnits === METRIC_UNITS) {
+        changeUnits('units-force', 'kN');
+        changeUnits('units-force-per-length', 'kN/m');
+        changeUnits('units-pressure', 'kPa');
+        changeUnits('units-moment', 'kN-m');
+        changeUnits('units-length', 'm');       
+    } else {
         changeUnits('units-force', 'kips');
         changeUnits('units-force-per-length', 'kips/in');
         changeUnits('units-pressure', 'ksi');
         changeUnits('units-moment', 'kip-in');
         changeUnits('units-length', 'in');
-    } else {
-        changeUnits('units-force', 'kN');
-        changeUnits('units-force-per-length', 'kN/m');
-        changeUnits('units-pressure', 'kPa');
-        changeUnits('units-moment', 'kN-m');
-        changeUnits('units-length', 'm');
     }
 }
 
 function setEnglishUnits() {
     gUnits = ENGLISH_UNITS;
     setUnits();
-    $("#units-dropdown").html("Sistema Inglês (inches, kips, ksi)");
+    $("#units-dropdown").html("Sistema Inglês (Polegadas, kips, ksi)");
 }
 
 function setMetricUnits() {
     gUnits = METRIC_UNITS;
     setUnits();
-    $("#units-dropdown").html("Sistema Métrico (meters, kN, kPa)");
+    $("#units-dropdown").html("Sistema Métrico (Metros, kN, kPa)");
 }
 
 function setupConstantsForm() {
     $("#instructions").html("");
     var str = "<h3>Constants</h3>";
     str += "<form action='post' name='constant_data'>";
-    str += "Young's Modulus, E: <input type='text' id='E-input' name='E' value='29000' onchange='recalculate();'>";
+    str += "Young's Modulus, E: <input type='text' id='E-input' name='E' value='290000' onchange='recalculate();'>";
     str += "<br>Moment of Inertia, I: <input type='text' id='I-input' name='I' value='100' onchange='recalculate();'><br></form>";
     $("#constants").html(str);
 }
@@ -270,7 +270,7 @@ BeamClass.prototype.SetupDimensionForm = function(index) {
     }
 
     text += '<div class="form-group">';
-    text += '<label class="control-label" for="x-input"><i>point of interest, x (<span class="units-length"></span>)</i></label>';
+    text += '<label class="control-label" for="x-input"><i>ponto de interesse, x (<span class="units-length"></span>)</i></label>';
     text += '<input class="form-control" type="text" id="x-input" value="60" onchange="recalculate();"></div>';
     $('#dimensions').html(text);
     $('#calculate-button').html('<p class="btn btn-success btn-md" onclick="onCalculateButtonTap(' + index + ')" role="button">Calculate</p>');
