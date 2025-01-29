@@ -2023,7 +2023,8 @@
                         code {
                             padding: 2px 4px;
                             font-size: 90%;
-                            color: #c7254e;
+                            color: #000000;
+                            font-weight: bold;
                             background-color: #f9f2f4;
                             border-radius: 4px;
                         }
@@ -2735,6 +2736,9 @@
                             .col-md-4 {
                                 width: 33.3333333333%;
                             }
+                            .col-md-44 {
+                                width: auto;
+                            }
                             /* line 35, /usr/local/rvm/gems/ruby-2.2.4/gems/bootstrap-sass-3.2.0.0/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
                             .col-md-5 {
                                 width: 41.6666666667%;
@@ -2750,6 +2754,9 @@
                             /* line 35, /usr/local/rvm/gems/ruby-2.2.4/gems/bootstrap-sass-3.2.0.0/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
                             .col-md-8 {
                                 width: 66.6666666667%;
+                            }
+                            .col-md-88{
+                                width: auto;
                             }
                             /* line 35, /usr/local/rvm/gems/ruby-2.2.4/gems/bootstrap-sass-3.2.0.0/assets/stylesheets/bootstrap/mixins/_grid-framework.scss */
                             .col-md-9 {
