@@ -62,13 +62,13 @@
 
         <p>A tensão de flexão \( \sigma \) em uma seção transversal de uma viga é dada pela fórmula:</p>
         \[
-        \sigma = \frac{M \cdot y}{I}
+        \sigma = \frac{M \cdot c}{I}
         \]
         
         <p>Onde:</p>
         <ul>
             <li><code>M</code> = momento fletor na seção</li>
-            <li><code>y</code> = distância do eixo neutro até o ponto onde a tensão é calculada</li>
+            <li><code>c</code> = distância do eixo neutro até o ponto onde a tensão é calculada</li>
             <li><code>I</code> = momento de inércia da seção transversal</li>
         </ul>
 
@@ -79,19 +79,12 @@
         <p>O momento de inércia \( I \) é uma propriedade geométrica da seção transversal que quantifica a resistência da viga à flexão. Para diferentes formas geográficas, as fórmulas são as seguintes:</p>
 
         <ul>
-            <li><strong>Retângulo:</strong>\(I = \frac{b \cdot h^3}{12}\)
-
-
+            <li><strong>Retângulo:</strong> 
+                 \[I = \frac{b \cdot h^3}{12}\]
             </li>
-            <li><strong>Círculo:</strong>
-                <pre>
-I = \frac{\pi \cdot r^4}{4}
-                </pre>
+            <li><strong>Círculo:</strong> \[I = \frac{\pi \cdot r^4}{4}\]
             </li>
-            <li><strong>Tubo Cilíndrico:</strong>
-                <pre>
-I = \frac{\pi}{4} \left( r_e^4 - r_i^4 \right)
-                </pre>
+            <li><strong>Tubo Cilíndrico:</strong>   \[ I = \frac{\pi}{4} \left( r_e^4 - r_i^4 \right)\]
             </li>
         </ul>
 
@@ -101,9 +94,7 @@ I = \frac{\pi}{4} \left( r_e^4 - r_i^4 \right)
 
         <p>A deflexão máxima \( \delta \) de uma viga sob carregamento pode ser calculada utilizando a fórmula:</p>
 
-        <pre>
-\delta = \frac{F \cdot L^3}{3 \cdot E \cdot I}
-        </pre>
+        \[ \delta = \frac{F \cdot L^3}{3 \cdot E \cdot I} \]
 
         <p>Onde:</p>
         <ul>
@@ -114,31 +105,6 @@ I = \frac{\pi}{4} \left( r_e^4 - r_i^4 \right)
 
         <p>Essa fórmula é importante para garantir que a deflexão permaneça dentro de limites aceitáveis, evitando falhas estruturais.</p>
 
-        <h3>Conclusão</h3>
-
-        <p>O estudo da flexão em vigas e eixos é vital para o projeto e análise de estruturas. A compreensão dos conceitos de tensão, deformação, momento de inércia e deflexão é essencial para engenheiros e projetistas, garantindo a segurança e a eficiência das construções. Análises precisas permitem otimizar o uso de materiais e melhorar a performance estrutural das vigas e eixos em diversas aplicações.</p>
-
     </div>
-</body>
-</html>
-
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MathJax Example</title>
-  <script type="text/javascript" id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
-</head>
-<body>
-  <h1>Fórmula Renderizada com MathJax</h1>
-  <p>A fórmula correta é: \( \sigma = \frac{M \cdot y}{I} \)</p>
-  <p>Você também pode usar em bloco:</p>
-  <div>
-    \[
-    \sigma = \frac{M \cdot y}{I}
-    \]
-  </div>
 </body>
 </html>
