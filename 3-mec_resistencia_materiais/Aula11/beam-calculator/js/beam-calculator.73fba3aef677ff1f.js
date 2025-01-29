@@ -151,8 +151,8 @@ function showDataTable(displacements, thetas, moments, shears) {
     var maxLength, longestArray, str, i, x, d, t, m, s;
     str = '<table class="table table-striped table-hover">';
     str += '<tr><th>x (<span class="units-length"></span>)</th>';
-    str += '<th>Deslocamento (<span class="units-length"></span>)</th>';
-    str += '<th>Inclinação (degrees)</th>';
+    str += '<th>Desloc. da Viga (<span class="units-length"></span>)</th>';
+    str += '<th>Ângulo de Flexão (graus)</th>';
     str += '<th>Momento Fletor (<span class="units-moment"></span>)</th>';
     str += '<th>Força Cortante (<span class="units-force"></span>)</th></tr>';
 
