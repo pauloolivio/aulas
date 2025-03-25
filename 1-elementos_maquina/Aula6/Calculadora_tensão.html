@@ -163,10 +163,8 @@
                 <p id="exer1e">Fator kv: ${resExer1[4].toFixed(3)}</p>
                 <p id="exer1f">Fator cpf do pinhão: ${resExer1[5].toFixed(3)}</p>
                 <p id="exer1g">Fator kH do pinhão: ${resExer1[6].toFixed(3)}</p>
-                <p id="exer1h">Fator cpf da coroa: ${resExer1[7].toFixed(3)}</p>
-                <p id="exer1i">Fator kH da coroa: ${resExer1[8].toFixed(3)}</p>
-                <p id="exer1j">Tensão de Flexão no pinhão: ${resExer1[9].toFixed(3)} MPa</p>
-                <p id="exer1k">Tensão de Flexão na coroa: ${resExer1[10].toFixed(3)} MPa</p>
+                <p id="exer1j">Tensão de Flexão no pinhão: ${resExer1[7].toFixed(3)} MPa</p>
+                <p id="exer1k">Tensão de Flexão na coroa: ${resExer1[8].toFixed(3)} MPa</p>
             `;
         }
 
@@ -176,13 +174,11 @@
             var v = (dpp / (2 * 1000)) * rpm * (Math.PI / 30);
             var wt = H / v;
             var kv = ((A + Math.sqrt(200 * v)) / A) ** B;
-            var cpfp = (b / (10 * dpp)) - 0.0375 + ((4.02 * 10 ** -4) * b);
-            var kHp = 1 + cmc * (cpfp * cpm + cma * ce);
-            var cpfg = (b / (10 * dpg)) - 0.0375 + ((4.02 * 10 ** -4) * b);
-            var kHg = 1 + cmc * (cpfg * cpm + cma * ce);
-            var tfp = (wt * ko * kv * ks * kHp * kb) / (b * mt * yjp);
-            var tfg = (wt * ko * kv * ks * kHg * kb) / (b * mt * yjg);
-            return [dpp, dpg, v, wt, kv, cpfp, kHp, cpfg, kHg, tfp, tfg];
+            var cpfp = (b / (10 * dpp)) - 0.0375 + ((4.92 * 10 ** -4) * b);
+            var kH = 1 + cmc * (cpfp * cpm + cma * ce);
+            var tfp = (wt * ko * kv * ks * kH * kb) / (b * mt * yjp);
+            var tfg = (wt * ko * kv * ks * kH * kb) / (b * mt * yjg);
+            return [dpp, dpg, v, wt, kv, cpfp, kH, tfp, tfg];
         }
     </script>
 </body>
