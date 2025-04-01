@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 4 - Forças Internas e Tensões</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../Aula1-Vetoresdeforça.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+        <h2>Tratamento Térmico em Metais</h2>
+<div class="container"> 
+    <p>Os tratamentos térmicos dos metais abrangem uma ampla faixa de temperaturas e tipos de processos, visando melhorias em propriedades mecânicas como dureza, resistência à tração, ductilidade, além de aprimorar a conformabilidade e usinabilidade. Os principais tratamentos são: Recozimento, Normalização, Tempera, Revenido, Solubilização e Precipitação</p>
+    
+    <h3>Tratamento de Recozimento</h3>
+    <p>O recozimento envolve a transformação de fase a partir da austenita em aços, incluindo etapas de recuperação, recristalização e crescimento de grãos. O objetivo é reduzir a dureza do aço, aumentar a usinabilidade, facilitar o trabalho a frio e atingir a microestrutura e propriedades desejadas. Existem três tipos principais de recozimento:</p>
+    
+    <ul>
+        <li>Recozimento Pleno ou Supercrítico</li>
+        <li>Recozimento Subcrítico</li>
+        <li>Recozimento Intercrítico ou Esferoidização</li>
+    </ul>
+    
+    <h3>Recozimento Pleno</h3>
+    
+    <p>Esse tipo consiste em austenitizar o aço acima da linha A3 para aços hipoeutetoides e acima da linha A1 para aços hipereutetoides, sem ultrapassar a linha Acm, evitando a mudança de fase e a dissolução da cementita na austenita. Temperaturas mais baixas geram uma austenita heterogênea, favorecendo a nucleação de carbonetos, enquanto temperaturas mais altas resultam em estrutura perlítica lamelar.</p>
+    
+    <p><strong>Observações:</strong></p>
+    <ul>
+        <li>Temperaturas altas: austenita homogênea com estrutura perlítica.</li>
+        <li>Temperaturas baixas: austenita heterogênea com estrutura esferoidizada.</li>
+    </ul>
+    
+    <h3>Procedimento</h3>
+    
+    <p>O resfriamento pode ser realizado por transformação isotérmica, mantendo a temperatura e diminuindo gradativamente, ou por resfriamento contínuo, geralmente no interior do forno.</p>
+    
+    <h3>Recozimento Subcrítico</h3>
+    
+    <p>O aquecimento é feito abaixo da linha A1, visando melhorar a ductilidade do aço e reduzir tensões internas residuais. As temperaturas variam entre 595 a 675 °C, seguido de resfriamento ao ar. As principais transformações que ocorrem são recuperação e recristalização das fases encruadas, aliviando tensões residuais de peças soldadas, dobradas ou lixadas.</p>
+    
+    <h3>Recozimento Intercrítico ou Esferoidização</h3>
+    
+    <p>Esse tratamento é realizado entre a região crítica, acima ou abaixo da isoterma A1, podendo ocorrer austenitização parcial ou total. A austenita homogênea tende a formar perlita, enquanto a heterogênea forma ferrita e carbonetos esferoidizados.</p>
+    
+    <p><strong>Procedimento:</strong> Austenitizar totalmente ou parcialmente, manter a temperatura um tempo prolongado pouco abaixo da isoterma A1 e resfriar lentamente.</p>
+    
+    <h3>Normalização</h3>
+    
+    <p>A normalização visa homogeneizar a estrutura do aço após forjamento ou tratamento térmico. Consiste na austenitização completa do aço, seguida do resfriamento ao ar. Não é aplicável a aços temperáveis ao ar.</p>
+    
+    <h3>Objetivos da Normalização</h3>
+    
+    <ul>
+        <li>Refinamento de grão por recristalização e homogeneização da estrutura.</li>
+        <li>Melhoria da usinabilidade em aços de baixo carbono.</li>
+        <li>Refinamento de estruturas brutas fundidas.</li>
+        <li>Obtenção de propriedades mecânicas desejadas.</li>
+    </ul>
+    
+    <p>Em aços hipoeutetoides, reduz o tamanho da ferrita proeutetoide e refina a perlita. Em hipereutetoides, reduz os carbonetos na rede, gerando uma distribuição mais uniforme.</p>
+    
+    <h3>Tempera</h3>
+    
+    <p>A têmpera é o tratamento que obtém uma estrutura martensítica metaestável tetragonal de corpo centrado, a partir da ferrita supersaturada de carbono. Consiste em resfriar o aço após austenitização a uma velocidade suficientemente rápida para evitar a transformação em microconstituintes perlíticos e bainíticos.</p>
+    
+    <p>Diferentes aços têm uma taxa de resfriamento crítica que varia. A adição de elementos de liga dificulta a mobilidade atômica, e a formação de martensita é complexa, especialmente para aços com maior teor de carbono.</p>
+    
+    <h3>Controle do Tempo no Processo de Têmpera</h3>
+    
+    <p>Usa-se água pura, óleo, ar e outros meios como nitrogênio, hélio e gelo seco. O nitrogênio é utilizado em têmpera subzero, onde a austenita retida se transforma em martensita.</p>
+    
+    <h3>Tensões Provocadas na Têmpera</h3>
+    
+    <p>Durante o resfriamento, a nucleação da ferrita ocorre de forma heterogênea, levando a tensões internas que podem resultar em trincas. A expansão do núcleo martensítico pode causar fragilidade e fissuras se não for controlada.</p>
+    
+    <h3>Fatores que Aumentam a Temperabilidade</h3>
+    
+    <ul>
+        <li>Adição de elementos de liga.</li>
+        <li>Aumento do grão austenítico.</li>
+        <li>Austenita homogênea sem inclusões.</li>
+    </ul>
+    
+    <h3>Martempera</h3>
+    
+    <p>O processo de martempera visa reduzir tensões de resfriamento. Consiste em resfriar o aço até uma temperatura ligeiramente superior a MI, mantendo por um tempo para equalizar as temperaturas, garantindo transformação simultânea.</p>
+    
+    <h3>Austempera</h3>
+    
+    <p>Esse processo visa obter estrutura bainítica. O material é aquecido até o campo austenítico e resfriado em óleo até a temperatura de geração de bainita, permanecendo até a transformação total.</p>
+    
+    <h3>Têmpera Superficial</h3>
+    
+    <p>O aquecimento por indução eletromagnética provoca o aquecimento por efeito Joule, seguido de resfriamento, gerando uma superfície dura de martensita.</p>
+    
+    <h3>Revenido</h3>
+    
+    <p>O revenido consiste em reaquecer a peça temperada até uma temperatura abaixo da zona crítica, seguido de resfriamento. Durante o processo, ocorre a reversão do reticulado TCC para o reticulado CCC, promovendo reajustes internos e precipitação de carbonetos.</p>
+    
+    <h3>Fases do Revenido</h3>
+    
+    <ul>
+        <li><strong>1º Estágio (100-250°C):</strong> Precipitação de carboneto de ferro.</li>
+        <li><strong>2º Estágio (200-300°C):</strong> Transformação de austenita retida em bainita.</li>
+        <li><strong>3º Estágio (250-350°C):</strong> Formação de carboneto metaestável.</li>
+        <li><strong>4º Estágio (400-600°C):</strong> Recuperação da subestrutura de discordâncias.</li>
+        <li><strong>5º Estágio (500-600°C):</strong> Formação de carbonetos de liga.</li>
+        <li><strong>6º Estágio (600-700°C):</strong> Recristalização e esferoidização.</li>
+    </ul>
+    
+    <h3>Solubilização</h3>
+    
+    <p>Para o endurecimento por precipitação, é necessário dissolver todos os átomos de soluto, formando uma solução sólida monofásica. O tratamento consiste em aquecer a liga até uma temperatura em que os solutos se dissolvam. Após resfriamento rápido, forma-se uma única fase.</p>
+    
+    <h3>Tratamento de Precipitação</h3>
+    
+    <p>Após a solubilização, a solução sólida supersaturada é aquecida para permitir a formação de partículas finamente dispersas, um processo conhecido como envelhecimento, podendo ser natural ou artificial.</p>
+    
+    <h3>Precipitação em Aços e Ligas Ferrosas</h3>
+    
+    <p>Em aços, após solubilização, nitretos, sulfetos e carbonetos são dissolvidos. Durante o tratamento termomecânico, precipitados se formam rapidamente devido ao aumento de discordâncias.</p>
+    
+    <h3>Precipitação em Ligas Não Ferrosas</h3>
+    
+    <p>O endurecimento por precipitação é comum em ligas de alumínio de alta resistência, onde mecanismos de endurecimento são amplamente utilizados.</p>
+    
+    <h3>Principais Intermetálicos</h3>
+    
+    <ul>
+        <li>Al-Ag – GPz &rarr; gama1 &rarr; gama (Ag2Al em placas)</li>
+        <li>Al-Cu – GPz &rarr; teta2 &rarr; teta (CuAl2 em placas)</li>
+        <li>Al-Cu-Mg – GPz &rarr; S1 &rarr; S (CuMgAl2 em ripas)</li>
+        <li>Al-Zn-Mg – GPz &rarr; N1 &rarr; N (MgZn2 em esferas)</li>
+        <li>Al-Mg-Si – GPz &rarr; Beta1 &rarr; Beta (Mg2Si em placas)</li>
+        <li>Cu-Be – GPz &rarr; gama1 &rarr; gama (CuBe em discos)</li>
+        <li>Cu-Co – GPz &rarr; Beta (Cobalto em placas)</li>
+    </ul>
+    
+    </body>
+    </html>
