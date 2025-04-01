@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aulas | ADEM</title>
+    <script src="../assets/application-8013fdc35e4c79f95bcb3d655ff61f137ac05bcee52e6d96588427a84eddef12.js" data-turbolinks-track="true"></script>
+    <link rel="stylesheet" media="all" href="../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon-e8bea7a0071e296638a3a1a08be81f0a30b9c945625e5a200fefecd8d9b2ed6c.ico" />
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="FZTSZKN7+Fp+uALeFUetKoIurtteRcfikEdYFpJeu80RmmAh5mnIBti9GyO0DoWiT0jWdu/iiJ9PmQoZvqC1eQ==" />
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.min.js"></script>
+    <script src="https://unpkg.com/pdfjs-dist@2.11.338/build/pdf.worker.min.js"></script>
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    
+    #wrapper {
+        height: 100%;
+    }
+    
+    .col-md-44.practice {
+        height: 100%;
+        overflow-y: auto; /* Para permitir rolagem se o conteúdo exceder a altura */
+    }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper" class="active">
+
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul id="sidebar_menu" class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">ADEM - Projeto de Ensino
+      <span id="menu-toggle" class="main_icon glyphicon glyphicon-align-justify"></span>
+    </a></li>
+            </ul>
+            <ul class="sidebar-nav" id="sidebar">
+                <li><a class=" " href="MateriaisTratamentosTermicos.html">Ciência dos Materiais e Tratamentos Térmicos </a></li>
+                <li><a class=" " href="EnsaiosDosMateriais.html">Ensaios dos Materiais</a></li>
+                <li><a class="current" href="ConformaçãodosMetais.html">Conformação Plástica dos Metais</a></li>
+                <li><a class=" " href="TecnologiaSoldagem.html">Soldagem e Metalurgia da Soldagem</a></li>
+                <li><a class=" " href="UsinagemDosMetais.html">Tecnologia da Usinagem dos Metais</a></li>
+            </ul>
+        </div>
+        
+        <div class="col-md-44 practice">
+                <a class="btn btn-default btn-sm" href="../index.html">
+                    <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+                </a>
+
+                    <div class="exercise-content">
+                        <h3>Resumos para Leitura Guiada</h3>
+                        <p>Utilize o material para fortalecer seus conhecimentos</p>
+                        <ul>
+                            <li><a href="Resumos/Resumo1.html">Transformações de Fases em Materiais Metálicos</a></li>
+                            <li><a href="Resumos/Resumo2.html">Princípios de Tratamento Térmico</a></li>
+                            <li><a href="Resumos/Resumo3.html">Critérios de Limite de Conformação</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="quiz-content">
+                        <h3>Ferramentas, jogos e Tutoriais</h3>
+                        
+                      
+                    </div>
+
+                    <div class="quiz-content">
+                        <h3>Teste seus conhecimentos</h3>
+                        
+                    </div>
+                      
+                      <script src="links.js"></script>
+                      <script> 
+                         loadLinks();
+                      </script> 
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+<script>
+    $(document).ready(optimizeMobile);
+    $(window).on('resize', optimizeMobile);
+
+    function optimizeMobile() {
+        if (($(window).width() <= 767) || (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+            $("#wrapper ").removeClass("active ");
+        } else {
+            $("#wrapper ").addClass("active ");
+        }
+    }
+
+    $("#menu-toggle ").click(function(e) {
+        e.preventDefault();
+        $("#wrapper ").toggleClass("active ");
+    });
+
+    $("#hint-toggle ").click(function(e) {
+        $("#hint ").toggle();
+    });
+</script>
+</body>
+</html>

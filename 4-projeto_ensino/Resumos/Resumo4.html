@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pré Aula 4 - Forças Internas e Tensões</title>
+    <link rel="stylesheet" media="all" href="../../assets/application-b0b91461d093aa2ed95d8a7467856e4dc16f55744d3c17a927c3598e5b26cd3f.css" data-turbolinks-track="true" />
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #2C3E50;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .container {
+            /*max-width: 95%;*/
+            margin: 0px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            h2, h3 {
+                font-size: 1.2em;
+            }
+        }
+</style>
+<body>
+        <a class="btn btn-default btn-sm" href="../MateriaisTratamentosTermicos.html">
+            <i class="glyphicon glyphicon glyphicon-home"></i> Página Principal
+        </a>
+    <h2>METALURGIA DA SOLDAGEM</h2>
+    <div class="container">
+        <p>A maioria dos processos de soldagem utiliza calor como principal fonte de energia. O calor é elemento essencial para uniões de solda, e influencia diretamente nas transformações metalúrgicas e fenômenos mecânicos na zona de solda.</p>
+    <h3>Transferência de calor na soldagem</h3>
+    <p>A transferência de calor da soldagem está relacionada com:</p>
+    <ul>
+        <li>Aporte de energia o calor da junta soldada</li>
+        <li>Rendimento térmico do arco elétrico</li>
+        <li>Distribuição e picos de temperatura (ciclos térmicos da soldagem)</li>
+        <li>Tempo de permanência na temperatura de solda</li>
+        <li>Velocidade de resfriamento das zonas soldada</li>
+    </ul>
+
+    <h3>Rendimento térmico do arco elétrico</h3>
+    <p>O rendimento térmico do arco elétrico é a fração da energia elétrica fornecida que é efetivamente transferida para a peça de trabalho durante o processo de soldagem. Esse rendimento varia dependendo do processo de soldagem utilizado, mas geralmente está na faixa de 60% a 90%. O restante da energia é perdida na forma de radiação, convecção e outros fatores.</p>
+
+    <h3>Aporte térmico</h3>
+    <p>O aporte de energia ou calor na junta soldada é a quantidade de energia térmica fornecida durante o processo de soldagem. Essa energia é responsável por fundir o metal de adição e o metal de base, formando a poça de fusão. O aporte de calor depende de fatores como a corrente de soldagem, a tensão do arco, a velocidade de soldagem e a eficiência térmica do processo.</p>
+    
+    <p>O aporte térmico do processo influencia diretamente a qualidade da solda, a microestrutura da zona afetada pelo calor (ZAC) e as propriedades mecânicas do material soldado.</p>
+
+    <h3>Efeito do Aporte térmico</h3>
+    <p>Nem sempre existe uma relação direta entre energia de soldagem e seus efeitos na peça, pois os parâmetros do aporte térmico afetam de modo diferente a intensidade do arco e o rendimento térmico do processo. Assim, embora utilizando o mesmo processo e energia de soldagem, é possível obter soldas de formatos completamente diferentes.</p>
+
+    <h3>Balanço Térmico na Soldagem por Fusão</h3>
+    <p>Depende dos seguintes parâmetros:</p>
+    <ul>
+        <li>Fonte de calor (intensidade, rendimento)</li>
+        <li>Reações metalúrgicas exotérmicas e termodinâmicas</li>
+        <li>Temperatura inicial do material</li>
+        <li>Saídas de calor:
+            <ul>
+                <li>Condução através da peça</li>
+                <li>Condução através do eletrodo</li>
+                <li>Perdas por radiação e convecção</li>
+                <li>Reações endotérmicas</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Condução de calor em chapas grossas</h3>
+    <p>O calor é distribuído em um gradiente térmico de linhas isotermas ao longo do plano da chapa e da espessura, apresentando regiões com diferentes temperaturas.</p>
+
+    <h3>Condução de calor em chapas finas</h3>
+    <p>O calor é distribuído em um gradiente térmico ao longo do plano da chapa. Na espessura o gradiente segue isotermas com temperaturas constantes.</p>
+
+    <h3>Ciclo térmico na Soldagem</h3>
+    <p>A variação de temperatura durante a soldagem em um ponto da peça é descrita pelo seu Ciclo Térmico de Soldagem. Os principais parâmetros que descrevem o ciclo térmico são:</p>
+    <ul>
+        <li><strong>Temperatura de Pico (Tp):</strong> é a temperatura máxima atingida em um dado ponto. É influenciada pela temperatura inicial, condutibilidade do material, calor especifico, densidade, espessura e aporte térmico líquido.</li>
+        <li><strong>Tempo de Permanência (tc) e Temperatura Crítica (Tc):</strong> Este parâmetro pode ser de interesse para materiais na dissolução e/ou formação de precipitados e/ou crescimento de grãos.</li>
+        <li><strong>Taxa de Resfriamento:</strong> A velocidade de resfriamento é um parâmetro importante na determinação da microestrutura. Para se reduzir a taxa de resfriamento um pré-aquecimento promove o aumento da taxa de resfriamento dadas as lei de condução térmica.</li>
+    </ul>
+
+    <h3>Influência dos parâmetros operacionais</h3>
+    <p><strong>Condutividade Térmica da Peça:</strong> Materiais de menor condutividade térmica dissipam o calor por condução mais lentamente, tendendo a apresentar gradientes térmicos curtos no aquecimento e menores velocidades de resfriamento.</p>
+    
+    <p><strong>Espessura da Junta:</strong> Para uma mesma condição de soldagem, uma junta de maior espessura permite um escoamento mais fácil do calor por condução.</p>
+    
+    <p><strong>Geometria da Junta:</strong> Influencia a velocidade de resfriamento de uma solda de forma importante. A velocidade de resfriamento será maior na soldagem de juntas em T do que em juntas de topo.</p>
+    
+    <p><strong>Energia de Soldagem:</strong> A alta energia faz com que a velocidade de resfriamento da solda diminua, levando a tempo maiores.</p>
+    
+    <p><strong>Temperatura de Pré-aquecimento:</strong> Como a energia de soldagem, a utilização de pré-aquecimento causa uma diminuição na velocidade de resfriamento (principalmente em temperaturas mais baixas).</p>
+
+    <h3>Métodos Para o Cálculo da Velocidade de Resfriamento</h3>
+    <ul>
+        <li>Equações de Rosenthal</li>
+        <li>Nomogramas do IRSID aplicado para aços C-Mn e microligados</li>
+        <li>Método de Inagaki</li>
+        <li>Norma Européia EN1011</li>
+    </ul>
+
+    <h3>Métodos Experimentais</h3>
+    <p>Alguns métodos experimentais que podem ser utilizados no estudo do fluxo de calor em soldagem:</p>
+    <ul>
+        <li>Medida da temperatura através de termopares</li>
+        <li>Análise Metalográfica</li>
+        <li>Simulação em máquina de Gleeble</li>
+        <li>Calorimetria</li>
+    </ul>
+
+    <h3>Macroestrutura da Solda</h3>
+    <p>Durante a realização de uma solda, regiões adjacentes do metal base são submetidas a ciclos térmicos cujas temperaturas de pico decrescem à medida que se afasta do eixo central da solda, podem-se esperar alterações microestruturais.</p>
+    <ul>
+        <li>Zona Fundida (ZF)</li>
+        <li>Zona de ligação</li>
+        <li>Zona Termicamente Afetada (ZTA)</li>
+        <li>Metal Base (MB)</li>
+    </ul>
+    
+    <p>A ZTA promove mudanças diversas, podendo apresentar:</p>
+    <ul>
+        <li>Região de crescimento de grão</li>
+        <li>Região de refino de grão</li>
+        <li>Região transformada parcialmente</li>
+        <li>Região de esferoidização de carbonetos</li>
+    </ul>
+    
+    <p>Na soldagem, os pontos da junta podem ser submetidos a ciclos térmicos múltiplos devido aos múltiplos passes.</p>
+    
+    <p>Outros processo podem apresentar algumas dessas regiões ou regiões semelhantes. Exemplo: Soldagem por atrito - MB – Metal base, ZTA – Zona termicamente afetada, ZTMA – Zona termomecanicamente afetada e ZM – Zona mistura da regiões.</p>
+
+    <h3>Diluição</h3>
+    <p>A zona fundida é formada por contribuições do metal base e do metal de adição, que são misturados, no estado líquido, na poça de fusão. O coeficiente de diluição (δ), é a proporção entre a massa fundida do metal base pela massa total do cordão de solda. O coeficiente de diluição pode variar entre 100% (soldagem autógena) e 0% (brasagem), dependendo do tipo de processo e configuração da junta.</p>
+
+    <h3>Modos de Solidificação</h3>
+    <p>Como em fundição, o crescimento do grão na zona de solidificação ocorre de forma PLANAR, CELULAR, CELULAR DENDRÍTICO, DENDRÍTICO E COM FORMAÇÃO DE NÚCLEOS EQUIXIAIS.</p>
+    <p>Valores altos de gradiente térmico a frente da interface, aliado a baixa velocidade da interface, baixo resfriamento e baixa concentração de elementos químicos promovera crescimento PLANAR.</p>
+    <p>A redução do gradiente térmico a frente da interface, aliada ao aumento dos outros fatores, irá proporcionar em outras estruturas de solidificação.</p>
+
+    <h3>Solidificação da poça de fusão</h3>
+    <p><strong>Nucleação e Crescimento:</strong> Na soldagem, de forma simplificada, pode acontecer a nucleação homogênea, no meio da poça de fusão devido a composição química e altas taxas de resfriamentos rápidos, ou o crescimento sem nucleação, a partir de grãos e direções cristalinas já existente no metal de base.</p>
+    
+    <p><strong>Crescimento Epitaxial:</strong> Durante a solidificação, ocorre o fenômeno de crescimento epitaxial, que se refere ao crescimento dos grãos da região fundida sobre os grãos pré-existentes do metal base adjacente. Esse crescimento competitivo entre os grãos ocorre porque os átomos tendem a se organizar em continuidade com a estrutura cristalina já presente, minimizando assim a energia livre necessária para a formação de novos núcleos.</p>
+    
+    <p><strong>Efeito da composição química e a nucleação:</strong> Quando a composição química da solda é sensivelmente diferente da composição do metal base e, principalmente, as estruturas cristalinas do metal base e a resultante na ZF durante a sua solidificação são diferentes, o crescimento epitaxial pode ser inibido e a solidificação, neste caso, pode se iniciar pela nucleação de novos grãos.</p>
+
+    <h3>Formação da Poça de Fusão</h3>
+    <p>A poça de fusão pode ocorrer de forma elíptica ou em gota.</p>
+    
+    <p><strong>Poça de fusão elíptica:</strong> Ocorre baixas velocidades de soldagem. O crescimento ocorre na direção do gradiente de temperatura, em direção a poça de fusão. Os grãos encontram condições ótimas para o seu crescimento e um maior número de grãos terá condições de sobreviver durante a solidificação.</p>
+    
+    <p><strong>Poça de fusão em gota:</strong> Ocorre para valores maiores da velocidade de soldagem. A solidificação tem uma orientação constante em relação à direção de soldagem, seguindo a linha de fusão até o centro da solda, caracterizando duas paredes, uma de cada lado do cordão.</p>
+    
+    <p><strong>Velocidade de solidificação:</strong> Em velocidades de solidificação mais lentas favorecem o crescimento epitaxial, resultando em grãos grosseiros e alongados na direção de extração de calor. Por outro lado, velocidades de solidificação maiores, tendem a suprimir o crescimento epitaxial, levando à formação de uma estrutura de grãos mais finos e equiaxiais.</p>
+    
+    <p>Essa relação entre a velocidade de solidificação e a macroestrutura dos grãos é explicada pela teoria da solidificação. Em velocidades lentas, os grãos têm tempo suficiente para crescer de forma epitaxial, seguindo a orientação cristalográfica favorável dos grãos pré-existentes. No entanto, em velocidades mais rápidas, a taxa de nucleação aumenta, resultando na formação de múltiplos núcleos independentes que competem pelo crescimento, levando à formação de grãos mais finos e equiaxiais.</p>
+
+    <h3>Segregação na poça de fusão</h3>
+    <p>Na solidificação da poça de fusão ocorre alterações locais de composição química (segregação). Esta pode causar variações de propriedades mecânicas ao longo do material e, em casos mais graves, problemas de fissuração. Em soldagem, as formas mais comuns de segregação são:</p>
+    <ul>
+        <li><strong>Segregação intercelular e interdendrítica:</strong> este tipo de segregação ocorre dentro dos grãos com uma certa periodicidade que depende do espaçamento intercelular ou interdendrítico.</li>
+        <li><strong>Segregação em contornos de grão:</strong> esta forma de segregação é mais intensa do que a anterior e ocorre entre os grãos que se solidificam.</li>
+        <li><strong>Segregação central:</strong> esta segregação ocorre no centro do cordão, podendo ser particularmente intensa quando resulta do encontro de duas frentes de solidificação, como ocorre em uma poça de fusão em gota.</li>
+        <li><strong>Segregação na cratera:</strong> A solidificação final do cordão ocorre em sua cratera de uma forma similar ao que acontece em uma pequena peça fundida, com uma região de segregação final e, às vezes, com a formação de um pequeno "rechupe".</li>
+        <li><strong>Bandeamento transversal:</strong> esta forma de segregação é característica da soldagem, o bandeamento transversal é formado por regiões sucessivas ao longo do cordão, enriquecidas e empobrecidas em soluto e parece associado com ondulações periódicas na superfície da solda.</li>
+    </ul>
+
+    <h3>Transformações na Zona Fundida</h3>
+    <p>Geralmente, a estrutura da zona fundida inclui inclusões, poros, descontinuidades e precipitados em uma matriz de grãos colunares e grosseiros. Em ligas instáveis, a estrutura de grãos colunares pode ser modificada.</p>
+    <ul>
+        <li><strong>Aços baixo carbono e baixa liga:</strong> A microestrutura da zona fundida é complexa, composta de grãos grosseiros e colunares de austenita com muitas inclusões. Durante o resfriamento, a austenita se decompõe em ferrita e carbonetos, e possivelmente martensita, dependendo da composição química e condições de resfriamento. A nucleação da ferrita ocorre preferencialmente em contornos de grão e em meio a inclusões favorecendo a nucleação intragranular, desenvolvendo morfologia acicular.</li>
+        <li><strong>Aços inoxidáveis austeníticos:</strong> Estas ligas Fe-Cr-Ni podem solidificar como ferrita, austenita ou uma mistura, dependendo da relação Cr/Ni. Em geral, a solidificação e a transformação subsequente determinam a microestrutura final, que consiste em uma matriz austenítica com ferrita residual. A quantidade ideal de ferrita (5-15%) proporciona ótima resistência à formação de trincas a quente em aços inox austenítico, pois a ferrita delta pode ajudar a absorver tensões, reduzir a segregação de impurezas e formação de eutético. Teores menores são menos usuais, somente em caso de aços inoxidável totalmente austeníticos para trabalho específicos relacionado a resistência a corrosão e a baixas temperaturas.</li>
+    </ul>
+
+    <h3>Transformações na Zona Termicamente afetada</h3>
+    <p><strong>Efeito da energia:</strong> Aumentar a energia de soldagem amplia a Zona Termicamente Afetada (ZTA) e prolonga o tempo de permanência, resultando em uma região de grãos mais grossos. Com maior energia de soldagem, a velocidade de resfriamento diminui, impactando a estrutura final de ligas transformáveis, como os aços.</p>
+    
+    <p><strong>Velocidade de Resfriamento:</strong> Uma velocidade de resfriamento alta (com baixa energia de soldagem) pode temperar a ZTA, formando martensita, enquanto uma menor velocidade (com alta energia de soldagem) forma produtos mais macios.</p>
+    
+    <p><strong>Pré-Aquecimento:</strong> O pré-aquecimento também reduz a velocidade de resfriamento, prevenindo trincas na ZTA em aços estruturais. A dureza e tenacidade da ZTA variam com a velocidade de resfriamento: alta velocidade forma martensita dura e frágil; baixa velocidade resulta em uma microestrutura grossa e tenacidade reduzida.</p>
+    
+    <p><strong>Ciclo térmico e Crescimento de grão:</strong> Alterações microestruturais na ZTA, causadas pelo ciclo térmico de soldagem, podem fragilizar a região. O crescimento de grão próximo à linha de fusão e a difusão de hidrogênio podem causar fragilização temporária em alguns materiais.</p>
+    
+    <p><strong>Oxigênio, Nitrogênio e Precipitação:</strong> A absorção de oxigênio e nitrogênio e a precipitação de fases em contornos de grão também contribuem para a fragilização. Esses problemas, junto com tensões de tração, podem levar à formação de trincas, consideradas indesejáveis em muitas aplicações.</p>
+
+    <h3>Tensões Residuais em Soldas</h3>
+    <p>As tensões residuais são tensões internas que permanecem em um corpo mesmo após a remoção de todas as cargas externas. Elas são frequentemente resultantes de variações não uniformes de temperatura, como as que ocorrem durante o processo de soldagem.</p>
+    <p>O desenvolvimento dessas tensões pode ser exemplificado por um arranjo de três barras de metal conectadas a blocos rígidos, que apresentação tensões de tração e compressão.</p>
+    <ul>
+        <li><strong>Tensões de Tração:</strong> Geralmente ocorrem na zona de fusão e nas imediações. Podendo abrir ou iniciar novas trincas.</li>
+        <li><strong>Tensões de Compressão:</strong> Podem ocorrer nas áreas adjacentes à zona de tração. Ajudam fechar trincas existentes e aumentar a resistência à fadiga.</li>
+    </ul>
+    <p>A tensão residual máxima geralmente atinge a resistência ao escoamento do metal de solda. As tensões residuais longitudinais e transversais variam ao longo da solda e são influenciadas por fatores como a geometria da junta e os processos de soldagem utilizados.</p>
+
+    <h3>Distorção</h3>
+    <p>A distorção em soldagens ocorre devido à contração térmica e ao encolhimento de solidificação do metal de solda. Existem diferentes tipos de distorção, como encolhimento/contração transversal e longitudinal, distorção angular, e distorção em soldas de filete (flambagem e chapas finas, rotação devido a aporte térmico).</p>
+
+    <h3>Métodos de Redução das Tensões Residuais</h3>
+    <ul>
+        <li>Tratamento Térmico Pós-Solda (TTPS)</li>
+        <li>Shot Peening</li>
+        <li>Controle da Sequência de Soldagem</li>
+        <li>Pré-aquecimento</li>
+        <li>Uso de Materiais de Adição Apropriados</li>
+    </ul>
+
+    <h3>Monitoramento e Avaliação das Tensões Residuais</h3>
+    <ul>
+        <li>Método do Furo Cego</li>
+        <li>Difração de Raios X</li>
+        <li>Ultrassom</li>
+        <li>Técnicas com strain gauge</li>
+    </ul>
+
+    <h3>Fissuração em solda</h3>
+    <p>Fissuras, ou trincas, são consideradas um dos tipos mais graves de descontinuidade em uma junta soldada. Formam-se quando tensões de tração se desenvolvem em um material fragilizado, incapaz de se deformar plasticamente para absorver estas tensões.</p>
+
+    <h3>Trincas a quente</h3>
+    <p>Associada a presença de filme líquido, em temperaturas elevadas, próximo à ponte de fusão a durante a solidificação da solda.</p>
+    <ul>
+        <li><strong>Trinca de solidificação:</strong> Formação de cratera, o material líquido é preso em uma macroestrutura de grão epitaxiais, que ao solidificar promove a trinca a quente.</li>
+        <li><strong>Trica de liquação:</strong> Ocorre predominantemente na Zona Termicamente Afetada (ZTA) e na região de transição entre a Zona de Fusão (ZF) e a ZTA. Durante o reaquecimento, ocorre a fusão nos contornos de grão devido à presença de eutéticos e fases de baixo ponto de fusão, como carbonetos, boretos, sulfetos, fosfetos e fases intermetálicas.</li>
+    </ul>
+
+    <h3>Tricas a Frio</h3>
+    <p>Ocorrem em material no estado solido, geralmente associada a presença de hidrogênio e formação de fases frágeis, podendo ocorrer por:</p>
+    <ul>
+        <li><strong>Trinca devido à Queda de Ductilidade:</strong> Ocorre quando a ductilidade do material é reduzida por efeitos como a precipitação de fases frágeis ou presença de elementos químicos como oxigênio e nitrogênio.</li>
+        <li><strong>Trinca devido à Contração de Solidificação:</strong> Resulta de tensões residuais induzidas pela contração durante o resfriamento após a soldagem.</li>
+        <li><strong>Fissuração pelo Hidrogênio (fissuração a frio ou cold cracking):</strong> O hidrogênio difunde-se para regiões de alta tensão, promovendo fissuração em temperaturas mais baixas.</li>
+        <li><strong>Decoesão Lamelar:</strong> A força de contração da solda, promove a separação entre camadas do material devido a tensões internas ou à presença de inclusões não metálicas, resultando em falhas interlaminares.</li>
+    </ul>
+
+    <p>A fissuração pelo hidrogênio está associada à formação de fases duras, como a martensita. Nessas regiões de alta tensão, o hidrogênio aprisionado tende a se difundir, aumentando a tensão local. Devido à baixa tenacidade da martensita, ocorre a trinca. Para reduzir esse inconveniente, o cálculo do carbono equivalente é necessário para avaliar a possibilidade de formação de martensita. Conforme a literatura, valores de carbono equivalente maiores que 0,4 podem gerar a formação de martensita. Dessa forma, é recomendado o uso de tratamento térmico pós-soldagem.</p>
+
+    <p>Outras falhas podem ocorrer devido ao ambiente: Fissuração por Corrosão sob Tensão, Falha por Fadiga, falha por corrosão intergranular (Cr23C6) e falha por corrosão por faca (Inox estabilizados ao Ti e Nb).</p>
+
+    <div class="conclusion">
+        <h3>FIM</h3>
+        <p>A metalurgia ainda engloba, influências diretas relacionadas a ligas, ao processo de soldagem e soldas de materiais dissimilares, englobando assuntos como: metalurgia e formação em ligas de aço, alumínio, titânio e cobre. Indice de basicidade, impactos do uso de fluxos, básicos, celulósicos e rutílicos, impacto do uso de gases ativos e inertes, impactos na composição química e permanência em temperaturas formadoras de precipitados.</p>
+        <p>A escória desempenha várias funções metalúrgicas essenciais:</p>
+        <ol>
+            <li><strong>Proteção do Metal Fundido:</strong> A escória forma uma barreira contra a contaminação atmosférica, protegendo o metal fundido de oxidações indesejadas.</li>
+            <li><strong>Interação e Ajuste de Composição:</strong> A escória pode fornecer elementos de liga, ajustar a composição química da solda e atuar como desoxidante. Elementos como Si e Mn são comumente utilizados para este fim.</li>
+            <li><strong>Remoção de Impurezas:</strong> Ela dissolve e remove impurezas da poça de fusão, facilitando a fusão entre o metal base e o metal de adição.</li>
+            <li><strong>Controle de Penetração e Movimento do Metal:</strong> Na soldagem ATIG, a escória controla o movimento do metal líquido na poça de fusão, aumentando a penetração do cordão de solda.</li>
+        </ol>
+    </div>
+</body>
+</html>
